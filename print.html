@@ -1,0 +1,392 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Subalfred Documentation</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="user/cli/index.html"><strong aria-hidden="true">2.</strong> Command Line Tool</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="user/cli/state.html"><strong aria-hidden="true">2.6.</strong> state</a></li><li class="chapter-item expanded "><a href="user/cli/storage-key.html"><strong aria-hidden="true">2.7.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="user/cli/workspace.html"><strong aria-hidden="true">2.8.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> todo</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.2.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.3.</strong> todo</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Subalfred Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div align="center">
+<!-- Logo -->
+<!-- ![Subalfred]() -->
+<h1 id="subalfred"><a class="header" href="#subalfred">Subalfred</a></h1>
+<h3 id="an-all-in-one-substrate-development-toolbox"><a class="header" href="#an-all-in-one-substrate-development-toolbox">An All-In-One <a href="https://github.com/paritytech/substrate">Substrate</a> Development Toolbox.</a></h3>
+<p><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License" /></a>
+<a href="https://github.com/hack-ink/subalfred/actions/workflows/checks.yml"><img src="https://github.com/hack-ink/subalfred/actions/workflows/checks.yml/badge.svg?branch=main" alt="Checks" /></a>
+<a href="https://github.com/hack-ink/subalfred/actions/workflows/release.yml"><img src="https://github.com/hack-ink/subalfred/actions/workflows/release.yml/badge.svg" alt="Release" /></a>
+<a href="https://github.com/hack-ink/subalfred/tags"><img src="https://img.shields.io/github/v/tag/hack-ink/subalfred" alt="GitHub tag (latest by date)" /></a>
+<a href="https://github.com/hack-ink/subalfred"><img src="https://tokei.rs/b1/github/hack-ink/subalfred" alt="GitHub code lines" /></a>
+<a href="https://github.com/hack-ink/subalfred"><img src="https://img.shields.io/github/last-commit/hack-ink/subalfred?color=red&amp;style=plastic" alt="GitHub last commit" /></a></p>
+<p><a href="https://github.com/hack-ink/subalfred/pulse"><img src="https://repobeats.axiom.co/api/embed/acdcdaf322ac3f7e821eb71a6985b14ec57e5c44.svg" alt="Subalfred" title="Repobeats analytics image" /></a></p>
+</div>
+<h2 id="philosophies"><a class="header" href="#philosophies">Philosophies</a></h2>
+<ul>
+<li><strong>Lighting Fast</strong></li>
+<li><strong>Less Dependencies</strong></li>
+<li><strong>No <code>unsafe {}</code>/<code>.unwrap()</code></strong></li>
+<li><strong>Easy to Use</strong></li>
+<li><strong>Strive for Excellence</strong></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>There are multiple ways to install the <code>subalfred</code> CLI tool.
+Choose any one of the methods below that best suit your needs.</p>
+<h2 id="pre-compiled-binaries"><a class="header" href="#pre-compiled-binaries">Pre-compiled Binaries</a></h2>
+<p>Executable binaries are available for download on the <a href="https://github.com/hack-ink/subalfred/releases">GitHub Releases page</a>.
+Download the binary for your platform (Windows, macOS, or Linux) and extract the archive.
+The archive contains an <code>subalfred</code> executable which you can run to build your books.</p>
+<p>The compressing algorithm is zstd.
+For some old systems, you might need to install zstd lib first.
+And for the macOS users, you need to install gnu-tar and replace the <code>tar</code> command with <code>gtar</code>.</p>
+<p>Example:</p>
+<pre><code class="language-sh"># One line command:
+curl -L https://github.com/hack-ink/subalfred/releases/download/v0.9.0-rc6/subalfred-x86_64-unknown-linux-gnu.tar.zst | tar x -I pzstd
+# Or:
+curl -LO https://github.com/hack-ink/subalfred/releases/download/v0.9.0-rc6/subalfred-x86_64-unknown-linux-gnu.tar.zst
+tar xf subalfred-x86_64-unknown-linux-gnu.tar.zst -I pzstd
+</code></pre>
+<h2 id="build-from-source"><a class="header" href="#build-from-source">Build from Source</a></h2>
+<p>To build the <code>subalfred</code> executable from source, you will first need to install Rust and Cargo.
+Once you have installed Rust, the following command can be used to build and install <code>subalfred</code>:</p>
+<pre><code class="language-sh"># Build from crates.io:
+cargo install subalfred
+# Build from the latest main branch code:
+cargo install subalfred --git https://github.com/hack-ink/subalfred
+</code></pre>
+<p>This will automatically download <code>subalfred</code> from <a href="https://crates.io">crates.io</a>/<a href="https://github.com/hack-ink/subalfred">github.com</a>, build it, and install it in Cargo's global binary directory (<code>~/.cargo/bin/</code> by default).</p>
+<p>The version published to crates.io will ever so slightly be behind the version hosted on GitHub.
+If you need the latest version you can build the git version of <code>subalfred</code> yourself.
+Cargo makes this <em><strong>super easy</strong></em>!</p>
+<p>To uninstall, run the command <code>cargo uninstall subalfred</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-line-tool"><a class="header" href="#command-line-tool">Command Line Tool</a></h1>
+<p>The <code>subalfred</code> command-line tool is used to create and build books.
+After you have <a href="user/cli/../installation.html">installed</a> <code>subalfred</code>, you can run the <code>subalfred help</code> command in your terminal to view the available commands.</p>
+<p>This following sections provide in-depth information on the different commands available.</p>
+<ul>
+<li><a href="user/cli/check.html"><code>subalfred check</code></a></li>
+<li><a href="user/cli/convert.html"><code>subalfred convert</code></a></li>
+<li><a href="user/cli/get.html"><code>subalfred get</code></a></li>
+<li><a href="user/cli/hash.html"><code>subalfred hash</code></a></li>
+<li><a href="user/cli/key.html"><code>subalfred key</code></a></li>
+<li><a href="user/cli/state.html"><code>subalfred state</code></a></li>
+<li><a href="user/cli/storage-key.html"><code>subalfred storage-key</code></a></li>
+<li><a href="user/cli/workspace.html"><code>subalfred workspace</code></a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-check-command"><a class="header" href="#the-check-command">The Check Command</a></h1>
+<p>Currently, there are two subcommands available.</p>
+<h2 id="runtime"><a class="header" href="#runtime">Runtime</a></h2>
+<p>As the name says, the checks are on the runtime level.</p>
+<p>There are three shared options:</p>
+<ul>
+<li><code>--chain &lt;NAME&gt;</code>The chain name, which will supply to the executable.</li>
+<li><code>--executable &lt;PATH&gt;</code> The executable path.</li>
+<li><code>--live &lt;URI&gt;</code> The live chain's RPC HTTP endpoint.</li>
+</ul>
+<p>And there are two properties to check, <code>storage</code> and <code>version</code>.</p>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<p>For convenience, I use the <a href="https://github.com/darwinia-network/darwinia-common">Pangolin Network</a> to demonstrate.</p>
+<ul>
+<li><code>pangolin-dev</code> is the dev chain spec, which means its genesis is built from the latest code.
+If you are on Polkadot, then use <code>polkadot-dev</code>.</li>
+<li><code>./drml</code> is the path to my local pangolin node executable.</li>
+<li><code>https://pangolin-rpc.darwinia.network</code> is the Pangoro live chain's RPC HTTP endpoint. Note, I use the Pangoro here. Just because I'm doing a demonstration. Compare with two different chains' runtime storage/version will get a lot of output.</li>
+</ul>
+<h4 id="check-runtime-storage"><a class="header" href="#check-runtime-storage">Check Runtime Storage</a></h4>
+<pre><code class="language-sh">subalfred check runtime --chain pangolin-dev --executable ./drml --live https://pangoro-rpc.darwinia.network --property storage
+</code></pre>
+<pre><code class="language-diff">+ Pallet: &quot;Bounties&quot;
+- Pallet: &quot;BridgePangolinGrandpa&quot;
+- Pallet: &quot;BridgePangolinMessages&quot;
++ Pallet: &quot;BridgePangolinParachainMessages&quot;
++ Pallet: &quot;BridgePangoroGrandpa&quot;
++ Pallet: &quot;BridgePangoroMessages&quot;
++ Pallet: &quot;BridgeRococoGrandpa&quot;
++ Pallet: &quot;BridgeRococoParachains&quot;
++ Pallet: &quot;Council&quot;
++ Pallet: &quot;DarwiniaEthereumRelay&quot;
++ Pallet: &quot;Democracy&quot;
++ Pallet: &quot;EcdsaRelayAuthority&quot;
++ Pallet: &quot;EthereumBacking&quot;
++ Pallet: &quot;HeaderMmr&quot;
++ Pallet: &quot;Identity&quot;
++ Pallet: &quot;Instance1DarwiniaRelayerGame&quot;
++ Pallet: &quot;KtonTreasury&quot;
++ Pallet: &quot;Multisig&quot;
+- Pallet: &quot;PangolinFeeMarket&quot;
++ Pallet: &quot;PangolinParachainFeeMarket&quot;
++ Pallet: &quot;PangoroFeeMarket&quot;
++ Pallet: &quot;PhragmenElection&quot;
++ Pallet: &quot;Proxy&quot;
++ Pallet: &quot;Recovery&quot;
++ Pallet: &quot;Society&quot;
+- Pallet: &quot;Substrate2SubstrateBacking&quot;
++ Pallet: &quot;Substrate2SubstrateIssuing&quot;
++ Pallet: &quot;TechnicalCommittee&quot;
++ Pallet: &quot;TechnicalMembership&quot;
++ Pallet: &quot;Tips&quot;
++ Pallet: &quot;ToPangolinParachainBacking&quot;
++ Pallet: &quot;Vesting&quot;
+
+Pallet ElectionProviderMultiPhase
++ Entry: StorageEntryMetadata { name: &quot;SignedSubmissionsMap&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 227, marker: PhantomData } }, default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], docs: [&quot; Unchecked, signed solutions.&quot;, &quot;&quot;, &quot; Together with `SubmissionIndices`, this stores a bounded set of `SignedSubmissions` while&quot;, &quot; allowing us to keep only a single one in memory at a time.&quot;, &quot;&quot;, &quot; Twox note: the key of the map is an auto-incrementing index which users cannot inspect or&quot;, &quot; affect; we shouldn't need a cryptographically secure hasher.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;SignedSubmissionsMap&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 186, marker: PhantomData } }, default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], docs: [&quot; Unchecked, signed solutions.&quot;, &quot;&quot;, &quot; Together with `SubmissionIndices`, this stores a bounded set of `SignedSubmissions` while&quot;, &quot; allowing us to keep only a single one in memory at a time.&quot;, &quot;&quot;, &quot; Twox note: the key of the map is an auto-incrementing index which users cannot inspect or&quot;, &quot; affect; we shouldn't need a cryptographically secure hasher.&quot;] }
+
+Pallet Scheduler
++ Entry: StorageEntryMetadata { name: &quot;Agenda&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 609, marker: PhantomData } }, default: [0], docs: [&quot; Items to be executed, indexed by the block number that they should be executed on.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;Agenda&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 378, marker: PhantomData } }, default: [0], docs: [&quot; Items to be executed, indexed by the block number that they should be executed on.&quot;] }
+
+Pallet Session
++ Entry: StorageEntryMetadata { name: &quot;NextKeys&quot;, modifier: Optional, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 347, marker: PhantomData } }, default: [0], docs: [&quot; The next session keys for a validator.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;NextKeys&quot;, modifier: Optional, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 282, marker: PhantomData } }, default: [0], docs: [&quot; The next session keys for a validator.&quot;] }
++ Entry: StorageEntryMetadata { name: &quot;QueuedKeys&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 345, marker: PhantomData }), default: [0], docs: [&quot; The queued keys for the next session. When the next session begins, these keys&quot;, &quot; will be used to determine the validator's session keys.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;QueuedKeys&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 280, marker: PhantomData }), default: [0], docs: [&quot; The queued keys for the next session. When the next session begins, these keys&quot;, &quot; will be used to determine the validator's session keys.&quot;] }
+
+Pallet System
++ Entry: StorageEntryMetadata { name: &quot;Events&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 15, marker: PhantomData }), default: [0], docs: [&quot; Events deposited for the current block.&quot;, &quot;&quot;, &quot; NOTE: This storage item is explicitly unbounded since it is never intended to be read&quot;, &quot; from within the runtime.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;Events&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 15, marker: PhantomData }), default: [0], docs: [&quot; Events deposited for the current block.&quot;, &quot;&quot;, &quot; NOTE: This storage item is explicitly unbounded since it is never intended to be read&quot;, &quot; from within the runtime.&quot;] }
+</code></pre>
+<h4 id="check-runtime-version"><a class="header" href="#check-runtime-version">Check Runtime Version</a></h4>
+<pre><code class="language-sh">subalfred check runtime --chain pangolin-dev --executable ./drml --live https://pangoro-rpc.darwinia.network --property version
+</code></pre>
+<pre><code class="language-diff">RuntimeVersion {
+-   spec_name: &quot;Pangoro&quot;,
++   spec_name: &quot;Pangolin&quot;,
+-   impl_name: &quot;Pangoro&quot;,
++   impl_name: &quot;Pangolin&quot;,
+    authoring_version: 0,
+    spec_version: 29020,
+    impl_version: 0,
+    transaction_version: 0,
+}
+</code></pre>
+<h2 id="std-feature"><a class="header" href="#std-feature">STD Feature</a></h2>
+<p>As we know Substrate have two runtime ENVs, native and WASM.</p>
+<p>If a runtime dependency is not pure no-std, we need to write:</p>
+<pre><code class="language-toml">[features]
+std = [&quot;xxx/std&quot;]
+
+[dependencies]
+xxx = { version = &quot;0.1.0&quot;, default-features = false }
+</code></pre>
+<p>Sometimes, we might forget to write add the <code>xxx/std</code>.
+Recently, I found someone have the same <a href="https://github.com/paritytech/substrate/pull/11715">requirement</a>.
+So, I decide to make this public.</p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<pre><code class="language-sh">git clone https://github.com/paritytech/frontier /tmp/paritytech
+subalfred check std-feature --manifest-path /tmp/paritytech/frontier/Cargo.toml
+</code></pre>
+<pre><code>`fp-evm`'s std feature was disabled in `/tmp/paritytech/frontier/primitives/ethereum/Cargo.toml`
+`ed25519-dalek`'s std feature was disabled in `/tmp/paritytech/frontier/frame/evm/precompile/ed25519/Cargo.toml`
+`bn`'s std feature was disabled in `/tmp/paritytech/frontier/frame/evm/precompile/bn128/Cargo.toml`
+`curve25519-dalek`'s std feature was disabled in `/tmp/paritytech/frontier/frame/evm/precompile/curve25519/Cargo.toml`
+`frame-benchmarking`'s std feature was disabled in `/tmp/paritytech/frontier/template/runtime/Cargo.toml`
+`frame-system-benchmarking`'s std feature was disabled in `/tmp/paritytech/frontier/template/runtime/Cargo.toml`
+</code></pre>
+<hr />
+<h2 id="ci"><a class="header" href="#ci">CI</a></h2>
+<p>Moreover, we can add the checks into your project CI.</p>
+<p>I've already add these to the <a href="https://github.com/darwinia-network/darwinia/blob/v0.12.3/.github/workflows/ci.yml">Darwinia CI</a>.
+And here is a real world <a href="https://github.com/darwinia-network/darwinia/pull/940#issuecomment-1226917895">example</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="convert"><a class="header" href="#convert">convert</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-get-command"><a class="header" href="#the-get-command">The Get Command</a></h1>
+<p>Currently, there only one subcommand available.</p>
+<h2 id="runtime-upgrade-block"><a class="header" href="#runtime-upgrade-block">Runtime Upgrade Block</a></h2>
+<p>The origin question is from <a href="https://substrate.stackexchange.com/questions/3861/how-do-you-tell-which-block-number-the-last-runtime-upgrade-happened-on-a-chain">stackexchange</a>.</p>
+<p>Yep, I think that is an interesting question.
+SO, I implemented this method.</p>
+<p>It uses dichotomy algorithm, the whole process takes <img src="https://latex.codecogs.com/svg.image?log_2&space;BlockHeight" title="log_2 BlockHeight"/> times requests.</p>
+<h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
+<pre><code class="language-sh">subalfred get runtime-upgrade-block 9100 --uri wss://polkadot.api.onfinality.io/public-ws -lsubalfred::core::node
+</code></pre>
+<pre><code class="language-log">2022-08-27T13:58:07.684200Z TRACE subalfred::core::node: (0, 11788056) -&gt; 9050
+2022-08-27T13:58:09.469688Z TRACE subalfred::core::node: (5894028, 11788056) -&gt; 9151
+2022-08-27T13:58:10.874493Z TRACE subalfred::core::node: (5894028, 8841042) -&gt; 9110
+2022-08-27T13:58:11.852626Z TRACE subalfred::core::node: (5894028, 7367535) -&gt; 9080
+2022-08-27T13:58:12.916960Z TRACE subalfred::core::node: (6630782, 7367535) -&gt; 9090
+2022-08-27T13:58:13.126836Z TRACE subalfred::core::node: (6999158, 7367535) -&gt; 9090
+2022-08-27T13:58:14.591213Z TRACE subalfred::core::node: (7183346, 7367535) -&gt; 9110
+2022-08-27T13:58:14.800144Z TRACE subalfred::core::node: (7183346, 7275440) -&gt; 9110
+2022-08-27T13:58:15.921005Z TRACE subalfred::core::node: (7183346, 7229393) -&gt; 9090
+2022-08-27T13:58:18.036717Z TRACE subalfred::core::node: (7206370, 7229393) -&gt; 9090
+2022-08-27T13:58:18.993673Z TRACE subalfred::core::node: (7217881, 7229393) -&gt; 9100
+2022-08-27T13:58:19.208425Z TRACE subalfred::core::node: (7217881, 7223637) -&gt; 9100
+2022-08-27T13:58:19.415621Z TRACE subalfred::core::node: (7217881, 7220759) -&gt; 9100
+2022-08-27T13:58:19.624220Z TRACE subalfred::core::node: (7217881, 7219320) -&gt; 9100
+2022-08-27T13:58:19.828821Z TRACE subalfred::core::node: (7217881, 7218601) -&gt; 9100
+2022-08-27T13:58:20.035127Z TRACE subalfred::core::node: (7217881, 7218241) -&gt; 9100
+2022-08-27T13:58:20.240336Z TRACE subalfred::core::node: (7217881, 7218061) -&gt; 9100
+2022-08-27T13:58:20.444889Z TRACE subalfred::core::node: (7217881, 7217971) -&gt; 9100
+2022-08-27T13:58:21.594894Z TRACE subalfred::core::node: (7217881, 7217926) -&gt; 9090
+2022-08-27T13:58:24.625042Z TRACE subalfred::core::node: (7217904, 7217926) -&gt; 9100
+2022-08-27T13:58:24.824345Z TRACE subalfred::core::node: (7217904, 7217915) -&gt; 9100
+2022-08-27T13:58:25.030852Z TRACE subalfred::core::node: (7217904, 7217910) -&gt; 9100
+2022-08-27T13:58:26.058492Z TRACE subalfred::core::node: (7217904, 7217907) -&gt; 9090
+2022-08-27T13:58:26.275470Z TRACE subalfred::core::node: (7217906, 7217907) -&gt; 9090
+7217907 0x8f10de9e6dcf190dccc90f464a8aa4448c9b080746d8e905bb0e4841fef80fdd
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hash"><a class="header" href="#hash">hash</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="key"><a class="header" href="#key">key</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="state"><a class="header" href="#state">state</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="storage-key"><a class="header" href="#storage-key">storage-key</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="workspace"><a class="header" href="#workspace">workspace</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

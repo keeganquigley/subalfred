@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>check - Subalfred Documentation</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../user/cli/index.html"><strong aria-hidden="true">2.</strong> Command Line Tool</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user/cli/check.html" class="active"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="../../user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="../../user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="../../user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="../../user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="../../user/cli/state.html"><strong aria-hidden="true">2.6.</strong> state</a></li><li class="chapter-item expanded "><a href="../../user/cli/storage-key.html"><strong aria-hidden="true">2.7.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="../../user/cli/workspace.html"><strong aria-hidden="true">2.8.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> todo</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.2.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.3.</strong> todo</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Subalfred Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-check-command"><a class="header" href="#the-check-command">The Check Command</a></h1>
+<p>Currently, there are two subcommands available.</p>
+<h2 id="runtime"><a class="header" href="#runtime">Runtime</a></h2>
+<p>As the name says, the checks are on the runtime level.</p>
+<p>There are three shared options:</p>
+<ul>
+<li><code>--chain &lt;NAME&gt;</code>The chain name, which will supply to the executable.</li>
+<li><code>--executable &lt;PATH&gt;</code> The executable path.</li>
+<li><code>--live &lt;URI&gt;</code> The live chain's RPC HTTP endpoint.</li>
+</ul>
+<p>And there are two properties to check, <code>storage</code> and <code>version</code>.</p>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<p>For convenience, I use the <a href="https://github.com/darwinia-network/darwinia-common">Pangolin Network</a> to demonstrate.</p>
+<ul>
+<li><code>pangolin-dev</code> is the dev chain spec, which means its genesis is built from the latest code.
+If you are on Polkadot, then use <code>polkadot-dev</code>.</li>
+<li><code>./drml</code> is the path to my local pangolin node executable.</li>
+<li><code>https://pangolin-rpc.darwinia.network</code> is the Pangoro live chain's RPC HTTP endpoint. Note, I use the Pangoro here. Just because I'm doing a demonstration. Compare with two different chains' runtime storage/version will get a lot of output.</li>
+</ul>
+<h4 id="check-runtime-storage"><a class="header" href="#check-runtime-storage">Check Runtime Storage</a></h4>
+<pre><code class="language-sh">subalfred check runtime --chain pangolin-dev --executable ./drml --live https://pangoro-rpc.darwinia.network --property storage
+</code></pre>
+<pre><code class="language-diff">+ Pallet: &quot;Bounties&quot;
+- Pallet: &quot;BridgePangolinGrandpa&quot;
+- Pallet: &quot;BridgePangolinMessages&quot;
++ Pallet: &quot;BridgePangolinParachainMessages&quot;
++ Pallet: &quot;BridgePangoroGrandpa&quot;
++ Pallet: &quot;BridgePangoroMessages&quot;
++ Pallet: &quot;BridgeRococoGrandpa&quot;
++ Pallet: &quot;BridgeRococoParachains&quot;
++ Pallet: &quot;Council&quot;
++ Pallet: &quot;DarwiniaEthereumRelay&quot;
++ Pallet: &quot;Democracy&quot;
++ Pallet: &quot;EcdsaRelayAuthority&quot;
++ Pallet: &quot;EthereumBacking&quot;
++ Pallet: &quot;HeaderMmr&quot;
++ Pallet: &quot;Identity&quot;
++ Pallet: &quot;Instance1DarwiniaRelayerGame&quot;
++ Pallet: &quot;KtonTreasury&quot;
++ Pallet: &quot;Multisig&quot;
+- Pallet: &quot;PangolinFeeMarket&quot;
++ Pallet: &quot;PangolinParachainFeeMarket&quot;
++ Pallet: &quot;PangoroFeeMarket&quot;
++ Pallet: &quot;PhragmenElection&quot;
++ Pallet: &quot;Proxy&quot;
++ Pallet: &quot;Recovery&quot;
++ Pallet: &quot;Society&quot;
+- Pallet: &quot;Substrate2SubstrateBacking&quot;
++ Pallet: &quot;Substrate2SubstrateIssuing&quot;
++ Pallet: &quot;TechnicalCommittee&quot;
++ Pallet: &quot;TechnicalMembership&quot;
++ Pallet: &quot;Tips&quot;
++ Pallet: &quot;ToPangolinParachainBacking&quot;
++ Pallet: &quot;Vesting&quot;
+
+Pallet ElectionProviderMultiPhase
++ Entry: StorageEntryMetadata { name: &quot;SignedSubmissionsMap&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 227, marker: PhantomData } }, default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], docs: [&quot; Unchecked, signed solutions.&quot;, &quot;&quot;, &quot; Together with `SubmissionIndices`, this stores a bounded set of `SignedSubmissions` while&quot;, &quot; allowing us to keep only a single one in memory at a time.&quot;, &quot;&quot;, &quot; Twox note: the key of the map is an auto-incrementing index which users cannot inspect or&quot;, &quot; affect; we shouldn't need a cryptographically secure hasher.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;SignedSubmissionsMap&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 186, marker: PhantomData } }, default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], docs: [&quot; Unchecked, signed solutions.&quot;, &quot;&quot;, &quot; Together with `SubmissionIndices`, this stores a bounded set of `SignedSubmissions` while&quot;, &quot; allowing us to keep only a single one in memory at a time.&quot;, &quot;&quot;, &quot; Twox note: the key of the map is an auto-incrementing index which users cannot inspect or&quot;, &quot; affect; we shouldn't need a cryptographically secure hasher.&quot;] }
+
+Pallet Scheduler
++ Entry: StorageEntryMetadata { name: &quot;Agenda&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 609, marker: PhantomData } }, default: [0], docs: [&quot; Items to be executed, indexed by the block number that they should be executed on.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;Agenda&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 378, marker: PhantomData } }, default: [0], docs: [&quot; Items to be executed, indexed by the block number that they should be executed on.&quot;] }
+
+Pallet Session
++ Entry: StorageEntryMetadata { name: &quot;NextKeys&quot;, modifier: Optional, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 347, marker: PhantomData } }, default: [0], docs: [&quot; The next session keys for a validator.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;NextKeys&quot;, modifier: Optional, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 282, marker: PhantomData } }, default: [0], docs: [&quot; The next session keys for a validator.&quot;] }
++ Entry: StorageEntryMetadata { name: &quot;QueuedKeys&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 345, marker: PhantomData }), default: [0], docs: [&quot; The queued keys for the next session. When the next session begins, these keys&quot;, &quot; will be used to determine the validator's session keys.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;QueuedKeys&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 280, marker: PhantomData }), default: [0], docs: [&quot; The queued keys for the next session. When the next session begins, these keys&quot;, &quot; will be used to determine the validator's session keys.&quot;] }
+
+Pallet System
++ Entry: StorageEntryMetadata { name: &quot;Events&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 15, marker: PhantomData }), default: [0], docs: [&quot; Events deposited for the current block.&quot;, &quot;&quot;, &quot; NOTE: This storage item is explicitly unbounded since it is never intended to be read&quot;, &quot; from within the runtime.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;Events&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 15, marker: PhantomData }), default: [0], docs: [&quot; Events deposited for the current block.&quot;, &quot;&quot;, &quot; NOTE: This storage item is explicitly unbounded since it is never intended to be read&quot;, &quot; from within the runtime.&quot;] }
+</code></pre>
+<h4 id="check-runtime-version"><a class="header" href="#check-runtime-version">Check Runtime Version</a></h4>
+<pre><code class="language-sh">subalfred check runtime --chain pangolin-dev --executable ./drml --live https://pangoro-rpc.darwinia.network --property version
+</code></pre>
+<pre><code class="language-diff">RuntimeVersion {
+-   spec_name: &quot;Pangoro&quot;,
++   spec_name: &quot;Pangolin&quot;,
+-   impl_name: &quot;Pangoro&quot;,
++   impl_name: &quot;Pangolin&quot;,
+    authoring_version: 0,
+    spec_version: 29020,
+    impl_version: 0,
+    transaction_version: 0,
+}
+</code></pre>
+<h2 id="std-feature"><a class="header" href="#std-feature">STD Feature</a></h2>
+<p>As we know Substrate have two runtime ENVs, native and WASM.</p>
+<p>If a runtime dependency is not pure no-std, we need to write:</p>
+<pre><code class="language-toml">[features]
+std = [&quot;xxx/std&quot;]
+
+[dependencies]
+xxx = { version = &quot;0.1.0&quot;, default-features = false }
+</code></pre>
+<p>Sometimes, we might forget to write add the <code>xxx/std</code>.
+Recently, I found someone have the same <a href="https://github.com/paritytech/substrate/pull/11715">requirement</a>.
+So, I decide to make this public.</p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<pre><code class="language-sh">git clone https://github.com/paritytech/frontier /tmp/paritytech
+subalfred check std-feature --manifest-path /tmp/paritytech/frontier/Cargo.toml
+</code></pre>
+<pre><code>`fp-evm`'s std feature was disabled in `/tmp/paritytech/frontier/primitives/ethereum/Cargo.toml`
+`ed25519-dalek`'s std feature was disabled in `/tmp/paritytech/frontier/frame/evm/precompile/ed25519/Cargo.toml`
+`bn`'s std feature was disabled in `/tmp/paritytech/frontier/frame/evm/precompile/bn128/Cargo.toml`
+`curve25519-dalek`'s std feature was disabled in `/tmp/paritytech/frontier/frame/evm/precompile/curve25519/Cargo.toml`
+`frame-benchmarking`'s std feature was disabled in `/tmp/paritytech/frontier/template/runtime/Cargo.toml`
+`frame-system-benchmarking`'s std feature was disabled in `/tmp/paritytech/frontier/template/runtime/Cargo.toml`
+</code></pre>
+<hr />
+<h2 id="ci"><a class="header" href="#ci">CI</a></h2>
+<p>Moreover, we can add the checks into your project CI.</p>
+<p>I've already add these to the <a href="https://github.com/darwinia-network/darwinia/blob/v0.12.3/.github/workflows/ci.yml">Darwinia CI</a>.
+And here is a real world <a href="https://github.com/darwinia-network/darwinia/pull/940#issuecomment-1226917895">example</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../user/cli/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../../user/cli/convert.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../user/cli/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../../user/cli/convert.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
