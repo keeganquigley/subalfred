@@ -145,9 +145,9 @@ The archive contains an <code>subalfred</code> executable which you can run to b
 For some old systems, you might need to install zstd lib first.
 And for the macOS users, you need to install gnu-tar and replace the <code>tar</code> command with <code>gtar</code>.</p>
 <p>Example:</p>
-<pre><code class="language-sh"># One line command:
+<pre><code class="language-sh"># One line command
 curl -L https://github.com/hack-ink/subalfred/releases/download/v0.9.0-rc6/subalfred-x86_64-unknown-linux-gnu.tar.zst | tar x -I pzstd
-# Or:
+# Or
 curl -LO https://github.com/hack-ink/subalfred/releases/download/v0.9.0-rc6/subalfred-x86_64-unknown-linux-gnu.tar.zst
 tar xf subalfred-x86_64-unknown-linux-gnu.tar.zst -I pzstd
 </code></pre>
@@ -160,7 +160,7 @@ cargo install subalfred
 cargo install subalfred --git https://github.com/hack-ink/subalfred
 </code></pre>
 <p>This will automatically download <code>subalfred</code> from <a href="https://crates.io">crates.io</a>/<a href="https://github.com/hack-ink/subalfred">github.com</a>, build it, and install it in Cargo's global binary directory (<code>~/.cargo/bin/</code> by default).</p>
-<p>The version published to crates.io will ever so slightly be behind the version hosted on GitHub.
+<p>The version published to <a href="https://crates.io">crates.io</a> will ever so slightly be behind the version hosted on GitHub.
 If you need the latest version you can build the git version of <code>subalfred</code> yourself.
 Cargo makes this <em><strong>super easy</strong></em>!</p>
 <p>To uninstall, run the command <code>cargo uninstall subalfred</code>.</p>
