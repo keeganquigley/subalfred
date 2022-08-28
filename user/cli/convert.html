@@ -140,7 +140,49 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="convert"><a class="header" href="#convert">convert</a></h1>
+                        <h1 id="the-convert-command"><a class="header" href="#the-convert-command">The Convert Command</a></h1>
+<p>A set of really useful convertors.</p>
+<h2 id="ascii-to-hex"><a class="header" href="#ascii-to-hex">Ascii to Hex</a></h2>
+<p>Convert the ascii to hex.</p>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<pre><code class="language-sh">subalfred convert ascii2hex AurevoirXavier
+</code></pre>
+<pre><code>0x41757265766f6972586176696572
+</code></pre>
+<h2 id="bytes-style"><a class="header" href="#bytes-style">Bytes Style</a></h2>
+<p>Convert the bytes between several different styles.</p>
+<h3 id="examples-1"><a class="header" href="#examples-1">Examples</a></h3>
+<h4 id="from-vec-string-to-byte-string-literal"><a class="header" href="#from-vec-string-to-byte-string-literal">From Vec String to Byte String Literal</a></h4>
+<pre><code class="language-sh">subalfred convert bytes-style --from vec-string --to byte-string-literal &quot;[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]&quot;
+</code></pre>
+<pre><code>AurevoirXavier
+</code></pre>
+<pre><code class="language-sh">subalfred convert bytes-style --from vec-string --to byte-string-literal &quot;[1, 1, 1, 1]&quot;
+</code></pre>
+<pre><code>\x01\x01\x01\x01
+</code></pre>
+<h4 id="from-byte-string-literal-to-vec-string"><a class="header" href="#from-byte-string-literal-to-vec-string">From Byte String Literal to Vec String</a></h4>
+<pre><code class="language-sh">subalfred convert bytes-style --from byte-string-literal --to vec-string &quot;AurevoirXavier&quot;
+[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]
+</code></pre>
+<pre><code class="language-sh">subalfred convert bytes-style --from byte-string-literal --to vec-string &quot;\x01\x01\x01\x01&quot;
+</code></pre>
+<pre><code>[1, 1, 1, 1]
+</code></pre>
+<h2 id="bytes-to-hex"><a class="header" href="#bytes-to-hex">Bytes to Hex</a></h2>
+<p>Convert the bytes to hex.</p>
+<h3 id="examples-2"><a class="header" href="#examples-2">Examples</a></h3>
+<pre><code class="language-sh">subalfred convert bytes2hex &quot;[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]&quot;
+</code></pre>
+<pre><code>0x41757265766f6972586176696572
+</code></pre>
+<h2 id="hex-to-bytes"><a class="header" href="#hex-to-bytes">Hex to Bytes</a></h2>
+<p>Convert the hex to bytes.</p>
+<h3 id="examples-3"><a class="header" href="#examples-3">Examples</a></h3>
+<pre><code class="language-sh">subalfred convert hex2bytes 0x41757265766f6972586176696572
+</code></pre>
+<pre><code>[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]
+</code></pre>
 
                     </main>
 

@@ -140,7 +140,30 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="storage-key"><a class="header" href="#storage-key">storage-key</a></h1>
+                        <h1 id="the-storage-key-command"><a class="header" href="#the-storage-key-command">The Storage Key Command</a></h1>
+<p>Calculate the storage key for the storage prefix/item quickly.</p>
+<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
+<pre><code class="language-sh">subalfred storage-key --prefix System --item Number
+</code></pre>
+<pre><code>0x26aa394eea5630e07c48ae0c9558cef702a5c1b19ab7a04f536c519aca4983ac
+</code></pre>
+<p>Actually, it equals to <code>twox128(prefix) + twox128(item)</code>.</p>
+<pre><code class="language-sh">subalfred convert ascii2hex System
+subalfred hash --hasher twox128 0x53797374656d
+subalfred convert ascii2hex Number
+subalfred hash --hasher twox128 0x4e756d626572
+</code></pre>
+<pre><code>0x53797374656d
+0x26aa394eea5630e07c48ae0c9558cef7
+0x4e756d626572
+0x02a5c1b19ab7a04f536c519aca4983ac
+
+0x26aa394eea5630e07c48ae0c9558cef7
++
+0x02a5c1b19ab7a04f536c519aca4983ac
+=
+0x26aa394eea5630e07c48ae0c9558cef702a5c1b19ab7a04f536c519aca4983ac
+</code></pre>
 
                     </main>
 

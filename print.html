@@ -341,7 +341,49 @@ subalfred check std-feature --manifest-path /tmp/paritytech/frontier/Cargo.toml
 <p>Moreover, we can add the checks into your project CI.</p>
 <p>I've already add these to the <a href="https://github.com/darwinia-network/darwinia/blob/v0.12.3/.github/workflows/ci.yml">Darwinia CI</a>.
 And here is a real world <a href="https://github.com/darwinia-network/darwinia/pull/940#issuecomment-1226917895">example</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="convert"><a class="header" href="#convert">convert</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-convert-command"><a class="header" href="#the-convert-command">The Convert Command</a></h1>
+<p>A set of really useful convertors.</p>
+<h2 id="ascii-to-hex"><a class="header" href="#ascii-to-hex">Ascii to Hex</a></h2>
+<p>Convert the ascii to hex.</p>
+<h3 id="examples-2"><a class="header" href="#examples-2">Examples</a></h3>
+<pre><code class="language-sh">subalfred convert ascii2hex AurevoirXavier
+</code></pre>
+<pre><code>0x41757265766f6972586176696572
+</code></pre>
+<h2 id="bytes-style"><a class="header" href="#bytes-style">Bytes Style</a></h2>
+<p>Convert the bytes between several different styles.</p>
+<h3 id="examples-3"><a class="header" href="#examples-3">Examples</a></h3>
+<h4 id="from-vec-string-to-byte-string-literal"><a class="header" href="#from-vec-string-to-byte-string-literal">From Vec String to Byte String Literal</a></h4>
+<pre><code class="language-sh">subalfred convert bytes-style --from vec-string --to byte-string-literal &quot;[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]&quot;
+</code></pre>
+<pre><code>AurevoirXavier
+</code></pre>
+<pre><code class="language-sh">subalfred convert bytes-style --from vec-string --to byte-string-literal &quot;[1, 1, 1, 1]&quot;
+</code></pre>
+<pre><code>\x01\x01\x01\x01
+</code></pre>
+<h4 id="from-byte-string-literal-to-vec-string"><a class="header" href="#from-byte-string-literal-to-vec-string">From Byte String Literal to Vec String</a></h4>
+<pre><code class="language-sh">subalfred convert bytes-style --from byte-string-literal --to vec-string &quot;AurevoirXavier&quot;
+[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]
+</code></pre>
+<pre><code class="language-sh">subalfred convert bytes-style --from byte-string-literal --to vec-string &quot;\x01\x01\x01\x01&quot;
+</code></pre>
+<pre><code>[1, 1, 1, 1]
+</code></pre>
+<h2 id="bytes-to-hex"><a class="header" href="#bytes-to-hex">Bytes to Hex</a></h2>
+<p>Convert the bytes to hex.</p>
+<h3 id="examples-4"><a class="header" href="#examples-4">Examples</a></h3>
+<pre><code class="language-sh">subalfred convert bytes2hex &quot;[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]&quot;
+</code></pre>
+<pre><code>0x41757265766f6972586176696572
+</code></pre>
+<h2 id="hex-to-bytes"><a class="header" href="#hex-to-bytes">Hex to Bytes</a></h2>
+<p>Convert the hex to bytes.</p>
+<h3 id="examples-5"><a class="header" href="#examples-5">Examples</a></h3>
+<pre><code class="language-sh">subalfred convert hex2bytes 0x41757265766f6972586176696572
+</code></pre>
+<pre><code>[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-get-command"><a class="header" href="#the-get-command">The Get Command</a></h1>
 <p>Currently, there only one subcommand available.</p>
 <h2 id="runtime-upgrade-block"><a class="header" href="#runtime-upgrade-block">Runtime Upgrade Block</a></h2>
@@ -349,7 +391,7 @@ And here is a real world <a href="https://github.com/darwinia-network/darwinia/p
 <p>Yep, I think that is an interesting question.
 So, I implemented this method.</p>
 <p>It uses dichotomy algorithm, the whole process takes <img src="https://latex.codecogs.com/svg.image?log_2&space;BlockHeight" title="log_2 BlockHeight"/> times requests.</p>
-<h3 id="examples-2"><a class="header" href="#examples-2">Examples</a></h3>
+<h3 id="examples-6"><a class="header" href="#examples-6">Examples</a></h3>
 <pre><code class="language-sh">subalfred get runtime-upgrade-block 9100 --uri wss://rpc.polkadot.io -lsubalfred::core::node
 </code></pre>
 <pre><code class="language-log">2022-08-27T13:58:07.684200Z TRACE subalfred::core::node: (0, 11788056) -&gt; 9050
@@ -378,10 +420,81 @@ So, I implemented this method.</p>
 2022-08-27T13:58:26.275470Z TRACE subalfred::core::node: (7217906, 7217907) -&gt; 9090
 7217907 0x8f10de9e6dcf190dccc90f464a8aa4448c9b080746d8e905bb0e4841fef80fdd
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="hash"><a class="header" href="#hash">hash</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-hash-command"><a class="header" href="#the-hash-command">The Hash Command</a></h1>
+<p>Hash the data with the specify algorithm.</p>
+<p>Available algorithms:</p>
+<ul>
+<li>blake2-128</li>
+<li>blake2-128-concat (default)</li>
+<li>blake2-256</li>
+<li>blake2-512</li>
+<li>twox64</li>
+<li>twox64-concat</li>
+<li>twox128</li>
+<li>twox256</li>
+<li>keccak256</li>
+<li>keccak512</li>
+<li>sha2-256</li>
+</ul>
+<h2 id="examples-7"><a class="header" href="#examples-7">Examples</a></h2>
+<h3 id="blake2-128-concat-default"><a class="header" href="#blake2-128-concat-default">blake2-128-concat (Default)</a></h3>
+<pre><code class="language-sh">subalfred hash 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0xe58b08eb4646f23e89bde2676c8e1feeb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<h3 id="blake2-128"><a class="header" href="#blake2-128">blake2-128</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher blake2-128 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0xe58b08eb4646f23e89bde2676c8e1fee
+</code></pre>
+<h3 id="blake2-256"><a class="header" href="#blake2-256">blake2-256</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher blake2-256 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0x83aa9248019a972a674ada58cfcb6b0dc85cc94c90691b1e93d3e71ded507d32
+</code></pre>
+<h3 id="blake2-512"><a class="header" href="#blake2-512">blake2-512</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher blake2-512 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0x7068368532a7b4a4dedf9994bfe584e4479304e8db003cee3658db7ad938add4ab2ce8d62e559e4de141227124d3b5b1d8d84d3e5e56084ea7804f871b3fde9d
+</code></pre>
+<h3 id="twox64"><a class="header" href="#twox64">twox64</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher twox64 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0x3ab053dc6b6a71e1
+</code></pre>
+<h3 id="twox64-concat"><a class="header" href="#twox64-concat">twox64-concat</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher twox64-concat 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0x3ab053dc6b6a71e1b4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<h3 id="twox128"><a class="header" href="#twox128">twox128</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher twox128 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0x3ab053dc6b6a71e13f13e44949b8e388
+</code></pre>
+<h3 id="twox256"><a class="header" href="#twox256">twox256</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher twox256 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0x3ab053dc6b6a71e13f13e44949b8e388638838f880a0e3dc18e197b7f8efd6dc
+</code></pre>
+<h3 id="keccak256"><a class="header" href="#keccak256">keccak256</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher keccak256 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0x7774e3a14e4868bd5f3f6bd409685efd0e5179e783ed53d2a5da42c911efb05a
+</code></pre>
+<h3 id="keccak512"><a class="header" href="#keccak512">keccak512</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher keccak512 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0xe7aeb316f9808098e7d71998d4642c784aecbdbbc03061fdcaec6992831bf6ae5abb5673af4f3dec4f4aeed543390ffeda9e0f8900f771f56043128177b1bcea
+</code></pre>
+<h3 id="sha2-256"><a class="header" href="#sha2-256">sha2-256</a></h3>
+<pre><code class="language-sh">subalfred hash --hasher sha2-256 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
+</code></pre>
+<pre><code>0x5d0ae9ab625ce7c50e5ced079f414f28161b1b645df49679ebd794fc43c239bc
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-key-command"><a class="header" href="#the-key-command">The Key Command</a></h1>
 <p>Convert the public key/SS58 address from SS58 address/public key.</p>
-<h2 id="examples-3"><a class="header" href="#examples-3">Examples</a></h2>
+<h2 id="examples-8"><a class="header" href="#examples-8">Examples</a></h2>
 <h3 id="get-the-public-key"><a class="header" href="#get-the-public-key">Get the Public Key</a></h3>
 <pre><code class="language-sh">subalfred key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 </code></pre>
@@ -573,7 +686,7 @@ Substrate 42 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 <p>In fact, it accepts two chain spec files. So, make sure JSON file contains the <code>object[&quot;genesis&quot;][&quot;raw&quot;][&quot;top]</code> field.</p>
 <p>Note that, this is not a symmetric diff.
 <code>a.diff(b)</code> may equals to <code>b.diff(a)</code>, but not always.</p>
-<h3 id="examples-4"><a class="header" href="#examples-4">Examples</a></h3>
+<h3 id="examples-9"><a class="header" href="#examples-9">Examples</a></h3>
 <pre><code class="language-sh">subalfred state diff a.json b.json
 </code></pre>
 <pre><code class="language-diff">-0xbd2a529379475088d3e29a918cd47872878d434d6125b40443fe11fd292d13a4:0x03000000
@@ -596,7 +709,7 @@ Substrate 42 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 <h2 id="export"><a class="header" href="#export">Export</a></h2>
 <p>Export the chain state from a live chain.</p>
 <p>The result will be store at <code>&lt;a&gt;.export</code>.</p>
-<h3 id="examples-5"><a class="header" href="#examples-5">Examples</a></h3>
+<h3 id="examples-10"><a class="header" href="#examples-10">Examples</a></h3>
 <p>For convenience, I use the <a href="https://github.com/darwinia-network">Darwinia Network</a> to demonstrate.</p>
 <p>Here is a most common way to use this command.
 To build a fork-off chain:</p>
@@ -671,7 +784,7 @@ subalfred state export wss://rpc.darwinia.network --renew-consensus-with darwini
 <p>Sometimes, you have already running a node yourself.
 So, you don't want to fetch the state from a live chain, which is slow.
 Then you could use this command.</p>
-<h3 id="examples-6"><a class="header" href="#examples-6">Examples</a></h3>
+<h3 id="examples-11"><a class="header" href="#examples-11">Examples</a></h3>
 <p>For convenience, I use the <a href="https://github.com/darwinia-network">Darwinia Network</a> to demonstrate.</p>
 <p>Here is a most common way to use this command.
 To build a fork-off chain:</p>
@@ -690,13 +803,44 @@ There some GRANDPA round state old data. Check this <a href="https://substrate.s
 <p>Override state a with b.</p>
 <p>In fact, it accepts two chain spec files. So, make sure JSON file contains the <code>object[&quot;genesis&quot;][&quot;raw&quot;][&quot;top]</code> field.</p>
 <p>The result will be store at <code>&lt;a&gt;.override</code>.</p>
-<h3 id="examples-7"><a class="header" href="#examples-7">Examples</a></h3>
+<h3 id="examples-12"><a class="header" href="#examples-12">Examples</a></h3>
 <pre><code class="language-sh">subalfred state override a.json b.json
 # You could check this command's output. It should be empty.
 subalfred state diff a.json b.json
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="storage-key"><a class="header" href="#storage-key">storage-key</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="workspace"><a class="header" href="#workspace">workspace</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-storage-key-command"><a class="header" href="#the-storage-key-command">The Storage Key Command</a></h1>
+<p>Calculate the storage key for the storage prefix/item quickly.</p>
+<h2 id="examples-13"><a class="header" href="#examples-13">Examples</a></h2>
+<pre><code class="language-sh">subalfred storage-key --prefix System --item Number
+</code></pre>
+<pre><code>0x26aa394eea5630e07c48ae0c9558cef702a5c1b19ab7a04f536c519aca4983ac
+</code></pre>
+<p>Actually, it equals to <code>twox128(prefix) + twox128(item)</code>.</p>
+<pre><code class="language-sh">subalfred convert ascii2hex System
+subalfred hash --hasher twox128 0x53797374656d
+subalfred convert ascii2hex Number
+subalfred hash --hasher twox128 0x4e756d626572
+</code></pre>
+<pre><code>0x53797374656d
+0x26aa394eea5630e07c48ae0c9558cef7
+0x4e756d626572
+0x02a5c1b19ab7a04f536c519aca4983ac
+
+0x26aa394eea5630e07c48ae0c9558cef7
++
+0x02a5c1b19ab7a04f536c519aca4983ac
+=
+0x26aa394eea5630e07c48ae0c9558cef702a5c1b19ab7a04f536c519aca4983ac
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-workspace-command"><a class="header" href="#the-workspace-command">The Workspace Command</a></h1>
+<p>This is a release helper.</p>
+<p>Currently, there is only one command.</p>
+<h2 id="update"><a class="header" href="#update">Update</a></h2>
+<p>Update the workspace members version to the given one.
+If <code>--manifest-path</code> is missing, it will read the current folder's <code>Cargo.toml</code> as the root manifest.</p>
+<h3 id="examples-14"><a class="header" href="#examples-14">Examples</a></h3>
+<pre><code class="language-sh">subalfred workspace update v0.9.1
+</code></pre>
 
                     </main>
 
