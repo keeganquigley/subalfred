@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Subalfred Documentation</title>
+        <title>Subalfred Book</title>
         <meta name="robots" content="noindex" />
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -105,7 +105,7 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Subalfred Documentation</h1>
+                    <h1 class="menu-title">Subalfred Book</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -179,32 +179,49 @@ subalfred check runtime --help
 <div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
 <p>There are multiple ways to install the <code>subalfred</code> CLI tool.
 Choose any one of the methods below that best suit your needs.</p>
-<h2 id="pre-compiled-binaries"><a class="header" href="#pre-compiled-binaries">Pre-compiled Binaries</a></h2>
+<h2 id="pre-built-binaries"><a class="header" href="#pre-built-binaries">Pre-built Binaries</a></h2>
 <ol>
 <li>Download it from the <a href="https://github.com/hack-ink/subalfred/releases">GitHub Releases page</a>.</li>
 <li>Uncompress the downloaded file.</li>
-<li>Rename it to whatever you like. (optional)</li>
+<li>Rename it to whatever you like. (<em>optional</em>)</li>
 <li>Give the execution privilege to it.</li>
 </ol>
 <p>The compressing algorithm is <a href="https://github.com/facebook/zstd/releases">zstd</a>.
 For some systems, you might need to install <a href="https://github.com/facebook/zstd/releases">zstd</a> first.
 For <em>Windows</em> users, you would like to rename the extracted content name to <code>subalfred.exe</code>.</p>
-<p>Example:</p>
-<pre><code class="language-sh"># One line command
-curl -L https://github.com/hack-ink/subalfred/releases/download/v0.9.0-rc8/subalfred-aarch64-apple-darwin.zst | zstd -o subalfred -d &amp;&amp; chmod u+x subalfred
-# Or
-curl -LO https://github.com/hack-ink/subalfred/releases/download/v0.9.0-rc6/subalfred-x86_64-unknown-linux-gnu.tar.zst
+<p>Use <code>subalfred-aarch64-apple-darwin.zst</code> as an example.</p>
+<ul>
+<li>One line command:
+<pre><code class="language-sh">curl -L https://github.com/hack-ink/subalfred/releases/download/v0.9.0-rc8/subalfred-aarch64-apple-darwin.zst | zstd -o subalfred -d &amp;&amp; chmod u+x subalfred
+</code></pre>
+</li>
+<li>Multi-lines command:
+<pre><code class="language-sh">curl -LO https://github.com/hack-ink/subalfred/releases/download/v0.9.0-rc8/subalfred-aarch64-apple-darwin.zst
 zstd -o subalfred -d
 chmod u+x subalfred
 </code></pre>
+</li>
+</ul>
+<p>Available pre-built binaries list.</p>
+<ul>
+<li><code>subalfred-aarch64-apple-darwin.zst</code></li>
+<li><code>subalfred-x86_64-apple-darwin.zst</code></li>
+<li><code>subalfred-x86_64-pc-windows-msvc.zst</code></li>
+<li><code>subalfred-x86_64-unknown-linux-gnu.zst</code></li>
+</ul>
 <h2 id="build-from-source"><a class="header" href="#build-from-source">Build from Source</a></h2>
-<p>To build the <code>subalfred</code> executable from source, you will first need to install <a href="https://rustup.rs">Rust</a>.
+<p>To build <code>subalfred</code> from source, you will first need to install <a href="https://rustup.rs">Rust</a>.
 Once you have installed <a href="https://rustup.rs">Rust</a>, the following command can be used to build and install <code>subalfred</code>:</p>
-<pre><code class="language-sh"># Build from crates.io:
-cargo install subalfred
-# Build from the latest main branch code:
-cargo install subalfred --git https://github.com/hack-ink/subalfred
+<ul>
+<li>Build from crates.io:
+<pre><code class="language-sh">cargo install subalfred
 </code></pre>
+</li>
+<li>Build from the latest main branch code:
+<pre><code class="language-sh">cargo install subalfred --git https://github.com/hack-ink/subalfred
+</code></pre>
+</li>
+</ul>
 <p>This will automatically download <code>subalfred</code> from <a href="https://crates.io">crates.io</a>/<a href="https://github.com/hack-ink/subalfred">github.com</a>, build it, and install it in Cargo's global binary directory (<code>~/.cargo/bin/</code> by default).</p>
 <p>The version published to <a href="https://crates.io">crates.io</a> will ever so slightly be behind the version hosted on <a href="https://github.com/hack-ink/subalfred">github.com</a>.
 If you need the latest version you can build the git version of <code>subalfred</code> yourself.
