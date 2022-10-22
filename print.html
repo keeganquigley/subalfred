@@ -330,8 +330,10 @@ Pallet System
     transaction_version: 0,
 }
 </code></pre>
-<h2 id="std-feature"><a class="header" href="#std-feature">STD Feature</a></h2>
-<p>As we know Substrate have two runtime ENVs, native and WASM.</p>
+<h2 id="features"><a class="header" href="#features">Features</a></h2>
+<p>You could check if all your runtime features' were enabled correctly in one command.</p>
+<h3 id="episode-1"><a class="header" href="#episode-1">Episode 1</a></h3>
+<p>As we know Substrate has two runtime ENVs, native and WASM.</p>
 <p>If a runtime dependency is not pure no-std, we need to write:</p>
 <pre><code class="language-toml">[features]
 std = [&quot;xxx/std&quot;]
@@ -339,21 +341,48 @@ std = [&quot;xxx/std&quot;]
 [dependencies]
 xxx = { version = &quot;0.1.0&quot;, default-features = false }
 </code></pre>
-<p>Sometimes, we might forget to write add the <code>xxx/std</code>.
-Recently, I found someone have the same <a href="https://github.com/paritytech/substrate/pull/11715">requirement</a>.
-So, I decide to make this public.</p>
+<p>Sometimes, we might forget to write add the <code>xxx/std</code>.</p>
+<p>Recently, I found someone have the same <a href="https://github.com/paritytech/substrate/pull/11715">requirement</a>.</p>
+<p>So, I decide to make this public.</p>
+<h3 id="episode-2"><a class="header" href="#episode-2">Episode 2</a></h3>
+<p>As time passed, more and more features were added to Substrate.</p>
+<p>We have <code>std</code>, <code>runtime-benchmarks</code> and <code>try-runtime</code> now.</p>
+<p>It's hard to check if all features are enabled correctly.</p>
 <h3 id="examples-1"><a class="header" href="#examples-1">Examples</a></h3>
-<pre><code class="language-sh">git clone https://github.com/paritytech/frontier /tmp/paritytech/frontier
-subalfred check std-feature --manifest-path /tmp/paritytech/frontier/Cargo.toml
+<blockquote>
+<p>Testing commit <a href="https://github.com/paritytech/polkadot/commit/0fd106c04e5f57f6342f8e000d471d0f819f7b61">paritytech/polkadot@<code>0fd106c</code></a></p>
+</blockquote>
+<pre><code class="language-sh">git clone https://github.com/paritytech/polkadot /tmp/paritytech/polkadot
+subalfred check features --manifest-path /tmp/paritytech/polkadot/runtime/polkadot -ltrace
 </code></pre>
-<pre><code>`fp-evm`'s std feature was disabled in `/tmp/paritytech/frontier/primitives/ethereum/Cargo.toml`
-`ed25519-dalek`'s std feature was disabled in `/tmp/paritytech/frontier/frame/evm/precompile/ed25519/Cargo.toml`
-`bn`'s std feature was disabled in `/tmp/paritytech/frontier/frame/evm/precompile/bn128/Cargo.toml`
-`curve25519-dalek`'s std feature was disabled in `/tmp/paritytech/frontier/frame/evm/precompile/curve25519/Cargo.toml`
-`frame-benchmarking`'s std feature was disabled in `/tmp/paritytech/frontier/template/runtime/Cargo.toml`
-`frame-system-benchmarking`'s std feature was disabled in `/tmp/paritytech/frontier/template/runtime/Cargo.toml`
+<pre><code>checking: /tmp/paritytech/polkadot/runtime/polkadot/Cargo.toml
+2022-10-22T06:10:58.626261Z TRACE subalfred::core::check::features: check std takes 0.000408458 secs
+2022-10-22T06:10:58.626636Z TRACE subalfred::core::check::features: check runtime-benchmarks takes 0.000177708 secs
+2022-10-22T06:10:58.626764Z TRACE subalfred::core::check::features: check try-runtime takes 0.0001255 secs
+`std` of `frame-benchmarking` was omitted
+`std` of `pallet-election-provider-support-benchmarking` was omitted
+`std` of `polkadot-primitives` was omitted
+`std` of `polkadot-runtime-common` was omitted
+`std` of `polkadot-runtime-parachains` was omitted
+`std` of `serde_json` was omitted
+`std` of `sp-authority-discovery` was omitted
+`std` of `sp-block-builder` was omitted
+`std` of `sp-consensus-babe` was omitted
+`std` of `sp-inherents` was omitted
+`std` of `sp-io` was omitted
+`std` of `sp-offchain` was omitted
+`std` of `sp-tracing` was omitted
+`std` of `sp-transaction-pool` was omitted
+`std` of `sp-trie` was omitted
+`runtime-benchmarks` of `polkadot-primitives` was omitted
+`runtime-benchmarks` of `polkadot-runtime-common` was omitted
+`runtime-benchmarks` of `polkadot-runtime-parachains` was omitted
+`runtime-benchmarks` of `sp-staking` was omitted
+`runtime-benchmarks` of `xcm-executor` was omitted
+`try-runtime` of `frame-support` was omitted
+`try-runtime` of `polkadot-runtime-common` was omitted
+`try-runtime` of `polkadot-runtime-parachains` was omitted
 </code></pre>
-<hr />
 <h2 id="ci"><a class="header" href="#ci">CI</a></h2>
 <p>Moreover, we can add the checks into your project CI.</p>
 <p>I've already add these to the <a href="https://github.com/darwinia-network/darwinia/blob/v0.12.3/.github/workflows/ci.yml">Darwinia CI</a>.
@@ -713,7 +742,6 @@ Substrate 42 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 -0x4a0fb74e77bb0a3a5a6c24785f9805fe878d434d6125b40443fe11fd292d13a4:0x02000500
 -0x2aa79c02f5980c623c5a8c28e06320c4878d434d6125b40443fe11fd292d13a4:0x02000200
 </code></pre>
-<hr />
 <pre><code class="language-sh">subalfred state diff b.json a.json
 </code></pre>
 <pre><code class="language-diff">+0xbd2a529379475088d3e29a918cd47872878d434d6125b40443fe11fd292d13a4:0x03000000
