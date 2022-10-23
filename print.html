@@ -356,9 +356,9 @@ xxx = { version = &quot;0.1.0&quot;, default-features = false }
 subalfred check features --manifest-path /tmp/paritytech/polkadot/runtime/polkadot -ltrace
 </code></pre>
 <pre><code>checking: /tmp/paritytech/polkadot/runtime/polkadot/Cargo.toml
-2022-10-22T06:10:58.626261Z TRACE subalfred::core::check::features: check std takes 0.000408458 secs
-2022-10-22T06:10:58.626636Z TRACE subalfred::core::check::features: check runtime-benchmarks takes 0.000177708 secs
-2022-10-22T06:10:58.626764Z TRACE subalfred::core::check::features: check try-runtime takes 0.0001255 secs
+2022-10-22T06:10:58.626261Z TRACE subalfred_core::check::features: check std takes 0.000408458 secs
+2022-10-22T06:10:58.626636Z TRACE subalfred_core::check::features: check runtime-benchmarks takes 0.000177708 secs
+2022-10-22T06:10:58.626764Z TRACE subalfred_core::check::features: check try-runtime takes 0.0001255 secs
 `std` of `frame-benchmarking` was omitted
 `std` of `pallet-election-provider-support-benchmarking` was omitted
 `std` of `polkadot-primitives` was omitted
@@ -438,32 +438,32 @@ And here is a real world <a href="https://github.com/darwinia-network/darwinia/p
 So, I implemented this method.</p>
 <p>It uses dichotomy algorithm, the whole process takes <img src="https://latex.codecogs.com/svg.image?log_2&space;BlockHeight" title="log_2 BlockHeight"/> times requests.</p>
 <h3 id="examples-6"><a class="header" href="#examples-6">Examples</a></h3>
-<pre><code class="language-sh">subalfred get runtime-upgrade-block 9100 --uri wss://rpc.polkadot.io -lsubalfred::core::node
+<pre><code class="language-sh">subalfred get runtime-upgrade-block 9100 --uri wss://rpc.polkadot.io -lsubalfred_core::node
 </code></pre>
-<pre><code class="language-log">2022-08-27T13:58:07.684200Z TRACE subalfred::core::node: (0, 11788056) -&gt; 9050
-2022-08-27T13:58:09.469688Z TRACE subalfred::core::node: (5894028, 11788056) -&gt; 9151
-2022-08-27T13:58:10.874493Z TRACE subalfred::core::node: (5894028, 8841042) -&gt; 9110
-2022-08-27T13:58:11.852626Z TRACE subalfred::core::node: (5894028, 7367535) -&gt; 9080
-2022-08-27T13:58:12.916960Z TRACE subalfred::core::node: (6630782, 7367535) -&gt; 9090
-2022-08-27T13:58:13.126836Z TRACE subalfred::core::node: (6999158, 7367535) -&gt; 9090
-2022-08-27T13:58:14.591213Z TRACE subalfred::core::node: (7183346, 7367535) -&gt; 9110
-2022-08-27T13:58:14.800144Z TRACE subalfred::core::node: (7183346, 7275440) -&gt; 9110
-2022-08-27T13:58:15.921005Z TRACE subalfred::core::node: (7183346, 7229393) -&gt; 9090
-2022-08-27T13:58:18.036717Z TRACE subalfred::core::node: (7206370, 7229393) -&gt; 9090
-2022-08-27T13:58:18.993673Z TRACE subalfred::core::node: (7217881, 7229393) -&gt; 9100
-2022-08-27T13:58:19.208425Z TRACE subalfred::core::node: (7217881, 7223637) -&gt; 9100
-2022-08-27T13:58:19.415621Z TRACE subalfred::core::node: (7217881, 7220759) -&gt; 9100
-2022-08-27T13:58:19.624220Z TRACE subalfred::core::node: (7217881, 7219320) -&gt; 9100
-2022-08-27T13:58:19.828821Z TRACE subalfred::core::node: (7217881, 7218601) -&gt; 9100
-2022-08-27T13:58:20.035127Z TRACE subalfred::core::node: (7217881, 7218241) -&gt; 9100
-2022-08-27T13:58:20.240336Z TRACE subalfred::core::node: (7217881, 7218061) -&gt; 9100
-2022-08-27T13:58:20.444889Z TRACE subalfred::core::node: (7217881, 7217971) -&gt; 9100
-2022-08-27T13:58:21.594894Z TRACE subalfred::core::node: (7217881, 7217926) -&gt; 9090
-2022-08-27T13:58:24.625042Z TRACE subalfred::core::node: (7217904, 7217926) -&gt; 9100
-2022-08-27T13:58:24.824345Z TRACE subalfred::core::node: (7217904, 7217915) -&gt; 9100
-2022-08-27T13:58:25.030852Z TRACE subalfred::core::node: (7217904, 7217910) -&gt; 9100
-2022-08-27T13:58:26.058492Z TRACE subalfred::core::node: (7217904, 7217907) -&gt; 9090
-2022-08-27T13:58:26.275470Z TRACE subalfred::core::node: (7217906, 7217907) -&gt; 9090
+<pre><code class="language-log">2022-08-27T13:58:07.684200Z TRACE subalfred_core::node: (0, 11788056) -&gt; 9050
+2022-08-27T13:58:09.469688Z TRACE subalfred_core::node: (5894028, 11788056) -&gt; 9151
+2022-08-27T13:58:10.874493Z TRACE subalfred_core::node: (5894028, 8841042) -&gt; 9110
+2022-08-27T13:58:11.852626Z TRACE subalfred_core::node: (5894028, 7367535) -&gt; 9080
+2022-08-27T13:58:12.916960Z TRACE subalfred_core::node: (6630782, 7367535) -&gt; 9090
+2022-08-27T13:58:13.126836Z TRACE subalfred_core::node: (6999158, 7367535) -&gt; 9090
+2022-08-27T13:58:14.591213Z TRACE subalfred_core::node: (7183346, 7367535) -&gt; 9110
+2022-08-27T13:58:14.800144Z TRACE subalfred_core::node: (7183346, 7275440) -&gt; 9110
+2022-08-27T13:58:15.921005Z TRACE subalfred_core::node: (7183346, 7229393) -&gt; 9090
+2022-08-27T13:58:18.036717Z TRACE subalfred_core::node: (7206370, 7229393) -&gt; 9090
+2022-08-27T13:58:18.993673Z TRACE subalfred_core::node: (7217881, 7229393) -&gt; 9100
+2022-08-27T13:58:19.208425Z TRACE subalfred_core::node: (7217881, 7223637) -&gt; 9100
+2022-08-27T13:58:19.415621Z TRACE subalfred_core::node: (7217881, 7220759) -&gt; 9100
+2022-08-27T13:58:19.624220Z TRACE subalfred_core::node: (7217881, 7219320) -&gt; 9100
+2022-08-27T13:58:19.828821Z TRACE subalfred_core::node: (7217881, 7218601) -&gt; 9100
+2022-08-27T13:58:20.035127Z TRACE subalfred_core::node: (7217881, 7218241) -&gt; 9100
+2022-08-27T13:58:20.240336Z TRACE subalfred_core::node: (7217881, 7218061) -&gt; 9100
+2022-08-27T13:58:20.444889Z TRACE subalfred_core::node: (7217881, 7217971) -&gt; 9100
+2022-08-27T13:58:21.594894Z TRACE subalfred_core::node: (7217881, 7217926) -&gt; 9090
+2022-08-27T13:58:24.625042Z TRACE subalfred_core::node: (7217904, 7217926) -&gt; 9100
+2022-08-27T13:58:24.824345Z TRACE subalfred_core::node: (7217904, 7217915) -&gt; 9100
+2022-08-27T13:58:25.030852Z TRACE subalfred_core::node: (7217904, 7217910) -&gt; 9100
+2022-08-27T13:58:26.058492Z TRACE subalfred_core::node: (7217904, 7217907) -&gt; 9090
+2022-08-27T13:58:26.275470Z TRACE subalfred_core::node: (7217906, 7217907) -&gt; 9090
 7217907 0x8f10de9e6dcf190dccc90f464a8aa4448c9b080746d8e905bb0e4841fef80fdd
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-hash-command"><a class="header" href="#the-hash-command">The Hash Command</a></h1>
@@ -763,10 +763,10 @@ To build a fork-off chain:</p>
 darwinia build-spec --raw &gt; darwinia-dev.json
 # `--simple-governance` will simplify the the governance state for more detail check the `--help`.
 # If some pallets state are too large, you could skip them with this flag: `--skip-pallets System,Staking,Scheduler`.
-subalfred state export wss://rpc.darwinia.network --renew-consensus-with darwinia-dev.json --simple-governance --disable-default-bootnodes -lsubalfred::core::node,subalfred::core::substrate_client
+subalfred state export wss://rpc.darwinia.network --renew-consensus-with darwinia-dev.json --simple-governance --disable-default-bootnodes -lsubalfred_core::node,subalfred_core::substrate_client
 </code></pre>
-<pre><code class="language-log">2022-08-27T17:30:15.077768Z TRACE subalfred::core::substrate_client: fetched 512 keys
-2022-08-27T17:30:15.103602Z TRACE subalfred::core::substrate_client: fetched 1024 keys
+<pre><code class="language-log">2022-08-27T17:30:15.077768Z TRACE subalfred_core::substrate_client: fetched 512 keys
+2022-08-27T17:30:15.103602Z TRACE subalfred_core::substrate_client: fetched 1024 keys
 ...
 ✓ fully exported 152674 pairs, takes 7s
 </code></pre>
