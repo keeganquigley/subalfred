@@ -410,7 +410,8 @@ And here is a real world <a href="https://github.com/darwinia-network/darwinia/p
 </code></pre>
 <h4 id="from-byte-string-literal-to-vec-string"><a class="header" href="#from-byte-string-literal-to-vec-string">From Byte String Literal to Vec String</a></h4>
 <pre><code class="language-sh">subalfred convert bytes-style --from byte-string-literal --to vec-string &quot;AurevoirXavier&quot;
-[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]
+</code></pre>
+<pre><code>[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]
 </code></pre>
 <pre><code class="language-sh">subalfred convert bytes-style --from byte-string-literal --to vec-string &quot;\x01\x01\x01\x01&quot;
 </code></pre>
@@ -433,7 +434,7 @@ And here is a real world <a href="https://github.com/darwinia-network/darwinia/p
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-get-command"><a class="header" href="#the-get-command">The Get Command</a></h1>
 <p>Currently, there only one subcommand available.</p>
 <h2 id="runtime-upgrade-block"><a class="header" href="#runtime-upgrade-block">Runtime Upgrade Block</a></h2>
-<p>The origin question is from <a href="https://substrate.stackexchange.com/questions/3861/how-do-you-tell-which-block-number-the-last-runtime-upgrade-happened-on-a-chain">stackexchange</a>.</p>
+<p>The original question was from <a href="https://substrate.stackexchange.com/questions/3861/how-do-you-tell-which-block-number-the-last-runtime-upgrade-happened-on-a-chain">stackexchange</a>.</p>
 <p>Yep, I think that is an interesting question.
 So, I implemented this method.</p>
 <p>It uses dichotomy algorithm, the whole process takes <img src="https://latex.codecogs.com/svg.image?log_2&space;BlockHeight" title="log_2 BlockHeight"/> times requests.</p>
@@ -862,19 +863,22 @@ subalfred state diff a.json.override b.json
 </code></pre>
 <p>Actually, it equals to <code>twox128(prefix) + twox128(item)</code>.</p>
 <pre><code class="language-sh">subalfred convert ascii2hex System
-subalfred hash --hasher twox128 0x53797374656d
-subalfred convert ascii2hex Number
-subalfred hash --hasher twox128 0x4e756d626572
 </code></pre>
 <pre><code>0x53797374656d
-0x26aa394eea5630e07c48ae0c9558cef7
-0x4e756d626572
-0x02a5c1b19ab7a04f536c519aca4983ac
-
-0x26aa394eea5630e07c48ae0c9558cef7
-+
-0x02a5c1b19ab7a04f536c519aca4983ac
-=
+</code></pre>
+<pre><code class="language-sh">subalfred hash --hasher twox128 0x53797374656d
+</code></pre>
+<pre><code>0x26aa394eea5630e07c48ae0c9558cef7
+</code></pre>
+<pre><code class="language-sh">subalfred convert ascii2hex Number
+</code></pre>
+<pre><code>0x4e756d626572
+</code></pre>
+<pre><code class="language-sh">subalfred hash --hasher twox128 0x4e756d626572
+</code></pre>
+<pre><code>0x02a5c1b19ab7a04f536c519aca4983ac
+</code></pre>
+<pre><code>0x26aa394eea5630e07c48ae0c9558cef7 + 0x02a5c1b19ab7a04f536c519aca4983ac
 0x26aa394eea5630e07c48ae0c9558cef702a5c1b19ab7a04f536c519aca4983ac
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-workspace-command"><a class="header" href="#the-workspace-command">The Workspace Command</a></h1>
