@@ -432,12 +432,13 @@ And here is a real world <a href="https://github.com/darwinia-network/darwinia/p
 <pre><code>[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-get-command"><a class="header" href="#the-get-command">The Get Command</a></h1>
-<p>Currently, there only one subcommand available.</p>
+<p>Currently, there's only one subcommand available.</p>
 <h2 id="runtime-upgrade-block"><a class="header" href="#runtime-upgrade-block">Runtime Upgrade Block</a></h2>
 <p>The original question was from <a href="https://substrate.stackexchange.com/questions/3861/how-do-you-tell-which-block-number-the-last-runtime-upgrade-happened-on-a-chain">stackexchange</a>.</p>
 <p>Yep, I think that is an interesting question.
 So, I implemented this method.</p>
-<p>It uses dichotomy algorithm, the whole process takes <img src="https://latex.codecogs.com/svg.image?log_2&space;BlockHeight" title="log_2 BlockHeight"/> times requests.</p>
+<p>It uses dichotomy algorithm, the whole process takes:
+$$\log_{2} BlockHeight\times Requests$$</p>
 <h3 id="examples-6"><a class="header" href="#examples-6">Examples</a></h3>
 <pre><code class="language-sh">subalfred get runtime-upgrade-block 9100 --uri wss://rpc.polkadot.io -lsubalfred_core::node
 </code></pre>
