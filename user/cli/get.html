@@ -146,8 +146,8 @@
 <p>The original question was from <a href="https://substrate.stackexchange.com/questions/3861/how-do-you-tell-which-block-number-the-last-runtime-upgrade-happened-on-a-chain">stackexchange</a>.</p>
 <p>Yep, I think that is an interesting question.
 So, I implemented this method.</p>
-<p>It uses dichotomy algorithm, the whole process takes:
-$$\log_{2} BlockHeight\times Requests$$</p>
+<p>It uses dichotomy algorithm, the whole process takes:</p>
+<p>$$\log_{2} BlockHeight\times Requests$$</p>
 <h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
 <pre><code class="language-sh">subalfred get runtime-upgrade-block 9100 --uri wss://rpc.polkadot.io -lsubalfred_core::node
 </code></pre>
