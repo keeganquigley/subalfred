@@ -249,7 +249,7 @@ After you have <a href="user/cli/../installation.html">installed</a> <code>subal
 <ul>
 <li><code>--chain &lt;NAME&gt;</code>The chain name, which will supply to the executable.</li>
 <li><code>--executable &lt;PATH&gt;</code> The executable path.</li>
-<li><code>--live &lt;URI&gt;</code> The live chain's RPC HTTP endpoint.</li>
+<li><code>--live &lt;URI&gt;</code> The live chain's HTTP RPC endpoint.</li>
 </ul>
 <p>And there are two properties to check, <code>storage</code> and <code>version</code>.</p>
 <h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
@@ -258,7 +258,7 @@ After you have <a href="user/cli/../installation.html">installed</a> <code>subal
 <li><code>pangolin-dev</code> is the dev chain spec, which means its genesis is built from the latest code.
 If you are on Polkadot, then use <code>polkadot-dev</code>.</li>
 <li><code>./drml</code> is the path to my local pangolin node executable.</li>
-<li><code>https://pangolin-rpc.darwinia.network</code> is the Pangoro live chain's RPC HTTP endpoint.
+<li><code>https://pangolin-rpc.darwinia.network</code> is the Pangoro live chain's HTTP RPC endpoint.
 Note that, I use the Pangoro here. Just because I'm doing a demonstration.
 Compare with two different chains' runtime storage/version will get a lot of output.</li>
 </ul>
@@ -755,7 +755,7 @@ Substrate 42 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
 <h2 id="export"><a class="header" href="#export">Export</a></h2>
 <p>Export the chain state from a live chain.</p>
-<p>The result will be store at <code>&lt;a&gt;.export</code>.</p>
+<p>The result will be stored at <code>&lt;a&gt;.export</code>.</p>
 <h3 id="examples-10"><a class="header" href="#examples-10">Examples</a></h3>
 <p>For convenience, I use the <a href="https://github.com/darwinia-network">Darwinia Network</a> to demonstrate.</p>
 <p>Here is a most common way to use this command.
@@ -827,7 +827,7 @@ subalfred state export wss://rpc.darwinia.network --renew-consensus-with darwini
 <p>It's a really useful testing tool.</p>
 <h2 id="fork-off"><a class="header" href="#fork-off">Fork-Off</a></h2>
 <p>This is very similar to the <code>export</code> command. But this command can build a fork-off chain even offline.</p>
-<p>The result will be store at <code>&lt;a&gt;.fork-off</code>.</p>
+<p>The result will be stored at <code>&lt;a&gt;.fork-off</code>.</p>
 <p>Sometimes, you have already running a node yourself.
 So, you don't want to fetch the state from a live chain, which is slow.
 Then you could use this command.</p>
@@ -849,7 +849,7 @@ There some GRANDPA round state old data. Check this <a href="https://substrate.s
 <h2 id="override"><a class="header" href="#override">Override</a></h2>
 <p>Override state a with b.</p>
 <p>In fact, it accepts two chain spec files. So, make sure JSON file contains the <code>object[&quot;genesis&quot;][&quot;raw&quot;][&quot;top]</code> field.</p>
-<p>The result will be store at <code>&lt;a&gt;.override</code>.</p>
+<p>The result will be stored at <code>&lt;a&gt;.override</code>.</p>
 <h3 id="examples-12"><a class="header" href="#examples-12">Examples</a></h3>
 <pre><code class="language-sh">subalfred state override a.json b.json
 # You could check this command's output. It should be empty.
