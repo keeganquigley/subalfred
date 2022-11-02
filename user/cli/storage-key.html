@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../user/cli/index.html"><strong aria-hidden="true">2.</strong> Command Line Tool</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="../../user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="../../user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="../../user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="../../user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="../../user/cli/state.html"><strong aria-hidden="true">2.6.</strong> state</a></li><li class="chapter-item expanded "><a href="../../user/cli/storage-key.html" class="active"><strong aria-hidden="true">2.7.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="../../user/cli/workspace.html"><strong aria-hidden="true">2.8.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> todo</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.2.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.3.</strong> todo</div></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../user/cli/index.html"><strong aria-hidden="true">2.</strong> Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="../../user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="../../user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="../../user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="../../user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="../../user/cli/rpc.html"><strong aria-hidden="true">2.6.</strong> rpc</a></li><li class="chapter-item expanded "><a href="../../user/cli/state.html"><strong aria-hidden="true">2.7.</strong> state</a></li><li class="chapter-item expanded "><a href="../../user/cli/storage-key.html" class="active"><strong aria-hidden="true">2.8.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="../../user/cli/workspace.html"><strong aria-hidden="true">2.9.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide(TODO)</li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -140,12 +140,32 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="the-storage-key-command"><a class="header" href="#the-storage-key-command">The Storage Key Command</a></h1>
-<p>Calculate the storage key for the storage prefix/item quickly.</p>
-<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
-<pre><code class="language-sh">subalfred storage-key --prefix System --item Number
+                        <h1 id="command-storage-key"><a class="header" href="#command-storage-key">Command <code>storage-key</code></a></h1>
+<pre><code>Calculate the storage key of the storage item
+
+Usage: subalfred storage-key [OPTIONS] --pallet &lt;PREFIX&gt; --item &lt;ITEM&gt;
+
+Options:
+      --pallet &lt;PREFIX&gt;
+          Prefix of the storage
+
+      --item &lt;ITEM&gt;
+          Name of the storage item
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
 </code></pre>
-<pre><code>0x26aa394eea5630e07c48ae0c9558cef702a5c1b19ab7a04f536c519aca4983ac
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-sh">subalfred storage-key --pallet System --item Account
+</code></pre>
+<pre><code>0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9
 </code></pre>
 <p>Actually, it equals to <code>twox128(prefix) + twox128(item)</code>.</p>
 <pre><code class="language-sh">subalfred convert ascii2hex System

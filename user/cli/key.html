@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../user/cli/index.html"><strong aria-hidden="true">2.</strong> Command Line Tool</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="../../user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="../../user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="../../user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="../../user/cli/key.html" class="active"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="../../user/cli/state.html"><strong aria-hidden="true">2.6.</strong> state</a></li><li class="chapter-item expanded "><a href="../../user/cli/storage-key.html"><strong aria-hidden="true">2.7.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="../../user/cli/workspace.html"><strong aria-hidden="true">2.8.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> todo</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.2.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.3.</strong> todo</div></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../user/cli/index.html"><strong aria-hidden="true">2.</strong> Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="../../user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="../../user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="../../user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="../../user/cli/key.html" class="active"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="../../user/cli/rpc.html"><strong aria-hidden="true">2.6.</strong> rpc</a></li><li class="chapter-item expanded "><a href="../../user/cli/state.html"><strong aria-hidden="true">2.7.</strong> state</a></li><li class="chapter-item expanded "><a href="../../user/cli/storage-key.html"><strong aria-hidden="true">2.8.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="../../user/cli/workspace.html"><strong aria-hidden="true">2.9.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide(TODO)</li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -140,22 +140,59 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="the-key-command"><a class="header" href="#the-key-command">The Key Command</a></h1>
-<p>Convert the public key/SS58 address from SS58 address/public key.</p>
-<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
-<h3 id="get-the-public-key"><a class="header" href="#get-the-public-key">Get the Public Key</a></h3>
+                        <h1 id="command-key"><a class="header" href="#command-key">Command <code>key</code></a></h1>
+<pre><code>Calculate the public key/SS58 address of the SS58 address/public key
+
+Usage: subalfred key [OPTIONS] &lt;PUBLIC KEY/SS58 ADDRESS&gt;
+
+Arguments:
+  &lt;PUBLIC KEY/SS58 ADDRESS&gt;
+          Public key/SS58 address
+
+Options:
+      --type &lt;TYPE&gt;
+          Key type
+
+          [possible values: pallet, parachain, sibling]
+
+      --network &lt;NAME&gt;
+          Network name
+
+          [default: Substrate]
+
+      --list-all
+          List all the networks' addresses
+
+      --show-prefix
+          Show network(s) prefix(es)
+
+      --json-output
+          Enable JSON output
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<h3 id="calculate-the-public-key"><a class="header" href="#calculate-the-public-key">Calculate the public key</a></h3>
 <pre><code class="language-sh">subalfred key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 Substrate 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
-<h3 id="get-the-ss58-address"><a class="header" href="#get-the-ss58-address">Get the SS58 Address</a></h3>
+<h3 id="calculate-the-ss58-address"><a class="header" href="#calculate-the-ss58-address">Calculate the SS58 address</a></h3>
 <pre><code class="language-sh">subalfred key 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 Substrate 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
-<h3 id="get-the-pallet-address"><a class="header" href="#get-the-pallet-address">Get the Pallet Address</a></h3>
+<h3 id="calculate-the-pallet-address"><a class="header" href="#calculate-the-pallet-address">Calculate the pallet address</a></h3>
 <pre><code class="language-sh">subalfred key --type pallet &quot;py/trsry&quot;
 </code></pre>
 <pre><code>public-key 0x6d6f646c70792f74727372790000000000000000000000000000000000000000 PalletId(py/trsry)
@@ -167,7 +204,7 @@ Substrate 5EYCAe5ijiYfyeZ2JJCGq56LmPyNRAKzpG4QkoQkkQNB5e6Z
 <pre><code>public-key 0x6d6f646c70792f74727372790000000000000000000000000000000000000000 PalletId(py/trsry)
 Substrate 5EYCAe5ijiYfyeZ2JJCGq56LmPyNRAKzpG4QkoQkkQNB5e6Z
 </code></pre>
-<h3 id="get-the-sovereign-address"><a class="header" href="#get-the-sovereign-address">Get the Sovereign Address</a></h3>
+<h3 id="calculate-the-sovereign-address"><a class="header" href="#calculate-the-sovereign-address">Calculate the sovereign address</a></h3>
 <p>Sovereign address on relaychain.</p>
 <pre><code class="language-sh">subalfred key --type parachain 2000
 </code></pre>
@@ -180,7 +217,7 @@ Substrate 5Ec4AhPUwPeyTFyuhGuBbD224mY85LKLMSqSSo33JYWCazU4
 <pre><code>public-key 0x7369626cd0070000000000000000000000000000000000000000000000000000 SiblId(2000)
 Substrate 5Eg2fntJ27qsari4FGrGhrMqKFDRnkNSR6UshkZYBGXmSuC8
 </code></pre>
-<p>Note that, if you are on Moonbeam-link chain, remove 24 trailing zeros from the public-key.</p>
+<p>Note that, if you are on Moonbeam-link chain, remove last 24 zeros from the public-key.</p>
 <pre><code class="language-sh">public-key 0x7369626cd0070000000000000000000000000000000000000000000000000000 SiblId(2000)
 public-key 0x7369626cd0070000000000000000000000000000 SiblId(2000)
 </code></pre>
@@ -190,10 +227,7 @@ public-key 0x7369626cd0070000000000000000000000000000 SiblId(2000)
 <pre><code>public-key 0x7369626cd0070000000000000000000000000000000000000000000000000000 SiblId(2000)
 Substrate 5Eg2fntJ27qsari4FGrGhrMqKFDRnkNSR6UshkZYBGXmSuC8
 </code></pre>
-<h2 id="options"><a class="header" href="#options">Options</a></h2>
-<p>These flags can be applied to any key command.
-Also, they could be used with any other flags.</p>
-<h3 id="list-all"><a class="header" href="#list-all">List All</a></h3>
+<h3 id="option-list-all"><a class="header" href="#option-list-all">Option <code>list-all</code></a></h3>
 <pre><code class="language-sh">subalfred key --list-all 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
@@ -312,21 +346,37 @@ zeitgeist             dE37RvKbC2wym613QKksdD6QEK5FncNYTBpLdZPpPrzi2jYtt
 zero                  3Tz7Uc9YssP4DSYpz8c5QNzyPqfLHqTRuQsByyfwexnbeM1M
 zero-alphaville       3ZmmjbgxGAFnNVxHtfV6nHGQ3KodM25x6MRKbfKF7pP5vUpv
 </code></pre>
-<h3 id="network"><a class="header" href="#network">Network</a></h3>
+<h3 id="option---network"><a class="header" href="#option---network">Option <code>--network</code></a></h3>
 <p>The network parameter is case <a href="https://github.com/paritytech/ss58-registry/pull/106">insensitive</a>.</p>
 <pre><code class="language-sh">subalfred key --network polkadot 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 polkadot 156HGo9setPcU2qhFMVWLkcmtCEGySLwNqa3DaEiYSWtte4Y
 </code></pre>
-<h3 id="show-prefix"><a class="header" href="#show-prefix">Show Prefix</a></h3>
+<h3 id="option---show-prefix"><a class="header" href="#option---show-prefix">Option <code>--show-prefix</code></a></h3>
 <pre><code class="language-sh">subalfred key --show-prefix 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 Substrate 42 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
-<h3 id="type"><a class="header" href="#type">Type</a></h3>
-<p>See <a href="#get-the-pallet-address">Get the Pallet Address</a> and <a href="#get-the-sovereign-address">Get the Sovereign Address</a> sections.</p>
+<h3 id="option---show-prefix-1"><a class="header" href="#option---show-prefix-1">Option <code>--show-prefix</code></a></h3>
+<p>If you don't have the <code>jq</code> command, then just ignore that.
+I only use it to beautify the output here.</p>
+<pre><code class="language-sh">subalfred key --json-output 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP | jq
+</code></pre>
+<pre><code class="language-json">{
+  &quot;addresses&quot;: [
+    {
+      &quot;address&quot;: &quot;5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP&quot;,
+      &quot;network&quot;: &quot;Substrate&quot;
+    }
+  ],
+  &quot;public-key&quot;: &quot;0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747&quot;,
+  &quot;sub-seed&quot;: &quot;&quot;
+}
+</code></pre>
+<h3 id="option---type"><a class="header" href="#option---type">Option <code>--type</code></a></h3>
+<p>See <a href="#calculate-the-pallet-address">Calculate the pallet address</a> and <a href="#calculate-the-sovereign-address">Calculate the sovereign address</a> sections.</p>
 
                     </main>
 
@@ -335,7 +385,7 @@ Substrate 42 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
                             <a rel="prev" href="../../user/cli/hash.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../../user/cli/state.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../user/cli/rpc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -347,7 +397,7 @@ Substrate 42 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
                     <a rel="prev" href="../../user/cli/hash.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../../user/cli/state.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../user/cli/rpc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

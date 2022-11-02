@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="user/cli/index.html"><strong aria-hidden="true">2.</strong> Command Line Tool</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="user/cli/state.html"><strong aria-hidden="true">2.6.</strong> state</a></li><li class="chapter-item expanded "><a href="user/cli/storage-key.html"><strong aria-hidden="true">2.7.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="user/cli/workspace.html"><strong aria-hidden="true">2.8.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> todo</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.2.</strong> todo</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.3.</strong> todo</div></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="user/cli/index.html"><strong aria-hidden="true">2.</strong> Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="user/cli/rpc.html"><strong aria-hidden="true">2.6.</strong> rpc</a></li><li class="chapter-item expanded "><a href="user/cli/state.html"><strong aria-hidden="true">2.7.</strong> state</a></li><li class="chapter-item expanded "><a href="user/cli/storage-key.html"><strong aria-hidden="true">2.8.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="user/cli/workspace.html"><strong aria-hidden="true">2.9.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide(TODO)</li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -227,178 +227,348 @@ Once you have installed <a href="https://rustup.rs">Rust</a>, the following comm
 If you need the latest version you can build the git version of <code>subalfred</code> yourself.
 Cargo makes this <em><strong>super easy</strong></em>!</p>
 <p>To uninstall, run the command <code>cargo uninstall subalfred</code>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="command-line-tool"><a class="header" href="#command-line-tool">Command Line Tool</a></h1>
-<p>The <code>subalfred</code> command-line tool is used to create and build books.
-After you have <a href="user/cli/../installation.html">installed</a> <code>subalfred</code>, you can run the <code>subalfred help</code> command in your terminal to view the available commands.</p>
-<p>This following sections provide in-depth information on the different commands available.</p>
-<ul>
-<li><a href="user/cli/check.html"><code>subalfred check</code></a></li>
-<li><a href="user/cli/convert.html"><code>subalfred convert</code></a></li>
-<li><a href="user/cli/get.html"><code>subalfred get</code></a></li>
-<li><a href="user/cli/hash.html"><code>subalfred hash</code></a></li>
-<li><a href="user/cli/key.html"><code>subalfred key</code></a></li>
-<li><a href="user/cli/state.html"><code>subalfred state</code></a></li>
-<li><a href="user/cli/storage-key.html"><code>subalfred storage-key</code></a></li>
-<li><a href="user/cli/workspace.html"><code>subalfred workspace</code></a></li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-check-command"><a class="header" href="#the-check-command">The Check Command</a></h1>
-<p>Currently, there are two subcommands available.</p>
-<h2 id="runtime"><a class="header" href="#runtime">Runtime</a></h2>
-<p>As the name says, the checks are on the runtime level.</p>
-<p>There are three shared options:</p>
-<ul>
-<li><code>--chain &lt;NAME&gt;</code>The chain name, which will supply to the executable.</li>
-<li><code>--executable &lt;PATH&gt;</code> The executable path.</li>
-<li><code>--live &lt;URI&gt;</code> The live chain's HTTP RPC endpoint.</li>
-</ul>
-<p>And there are two properties to check, <code>storage</code> and <code>version</code>.</p>
-<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
-<p>For convenience, I use the <a href="https://github.com/darwinia-network/darwinia-common">Pangolin Network</a> to demonstrate.</p>
-<ul>
-<li><code>pangolin-dev</code> is the dev chain spec, which means its genesis is built from the latest code.
-If you are on Polkadot, then use <code>polkadot-dev</code>.</li>
-<li><code>./drml</code> is the path to my local pangolin node executable.</li>
-<li><code>https://pangolin-rpc.darwinia.network</code> is the Pangoro live chain's HTTP RPC endpoint.
-Note that, I use the Pangoro here. Just because I'm doing a demonstration.
-Compare with two different chains' runtime storage/version will get a lot of output.</li>
-</ul>
-<h4 id="check-runtime-storage"><a class="header" href="#check-runtime-storage">Check Runtime Storage</a></h4>
-<pre><code class="language-sh">subalfred check runtime --chain pangolin-dev --executable ./drml --live https://pangoro-rpc.darwinia.network --property storage
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-subalfred"><a class="header" href="#command-subalfred">Command <code>subalfred</code></a></h1>
+<pre><code>Your Substrate Alfred.
+
+Usage: subalfred [OPTIONS] &lt;COMMAND&gt;
+
+Commands:
+  check
+          Substrate development checkers
+  convert
+          Data style converters
+  get
+          Substrate-link node getter
+  hash
+          Hash the hex with the specific hasher(hash algorithm)
+  key
+          Calculate the public key/SS58 address of the SS58 address/public key
+  rpc
+          Send a RPC request to the node's HTTP RPC endpoint
+  state
+          A set of tools to process Substrate-like chain state
+  storage-key
+          Calculate the storage key of the storage item
+  workspace
+          Workspace manager
+  help
+          Print this message or the help of the given subcommand(s)
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+
+  -V, --version
+          Print version information
 </code></pre>
-<pre><code class="language-diff">+ Pallet: &quot;Bounties&quot;
-- Pallet: &quot;BridgePangolinGrandpa&quot;
-- Pallet: &quot;BridgePangolinMessages&quot;
-+ Pallet: &quot;BridgePangolinParachainMessages&quot;
-+ Pallet: &quot;BridgePangoroGrandpa&quot;
-+ Pallet: &quot;BridgePangoroMessages&quot;
-+ Pallet: &quot;BridgeRococoGrandpa&quot;
-+ Pallet: &quot;BridgeRococoParachains&quot;
-+ Pallet: &quot;Council&quot;
-+ Pallet: &quot;DarwiniaEthereumRelay&quot;
-+ Pallet: &quot;Democracy&quot;
-+ Pallet: &quot;EcdsaRelayAuthority&quot;
-+ Pallet: &quot;EthereumBacking&quot;
-+ Pallet: &quot;HeaderMmr&quot;
-+ Pallet: &quot;Identity&quot;
-+ Pallet: &quot;Instance1DarwiniaRelayerGame&quot;
-+ Pallet: &quot;KtonTreasury&quot;
-+ Pallet: &quot;Multisig&quot;
-- Pallet: &quot;PangolinFeeMarket&quot;
-+ Pallet: &quot;PangolinParachainFeeMarket&quot;
-+ Pallet: &quot;PangoroFeeMarket&quot;
-+ Pallet: &quot;PhragmenElection&quot;
-+ Pallet: &quot;Proxy&quot;
-+ Pallet: &quot;Recovery&quot;
-+ Pallet: &quot;Society&quot;
-- Pallet: &quot;Substrate2SubstrateBacking&quot;
-+ Pallet: &quot;Substrate2SubstrateIssuing&quot;
-+ Pallet: &quot;TechnicalCommittee&quot;
-+ Pallet: &quot;TechnicalMembership&quot;
-+ Pallet: &quot;Tips&quot;
-+ Pallet: &quot;ToPangolinParachainBacking&quot;
-+ Pallet: &quot;Vesting&quot;
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-check"><a class="header" href="#command-check">Command <code>check</code></a></h1>
+<pre><code>Substrate development checkers
 
-Pallet ElectionProviderMultiPhase
-+ Entry: StorageEntryMetadata { name: &quot;SignedSubmissionsMap&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 227, marker: PhantomData } }, default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], docs: [&quot; Unchecked, signed solutions.&quot;, &quot;&quot;, &quot; Together with `SubmissionIndices`, this stores a bounded set of `SignedSubmissions` while&quot;, &quot; allowing us to keep only a single one in memory at a time.&quot;, &quot;&quot;, &quot; Twox note: the key of the map is an auto-incrementing index which users cannot inspect or&quot;, &quot; affect; we shouldn't need a cryptographically secure hasher.&quot;] }
-- Entry: StorageEntryMetadata { name: &quot;SignedSubmissionsMap&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 186, marker: PhantomData } }, default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], docs: [&quot; Unchecked, signed solutions.&quot;, &quot;&quot;, &quot; Together with `SubmissionIndices`, this stores a bounded set of `SignedSubmissions` while&quot;, &quot; allowing us to keep only a single one in memory at a time.&quot;, &quot;&quot;, &quot; Twox note: the key of the map is an auto-incrementing index which users cannot inspect or&quot;, &quot; affect; we shouldn't need a cryptographically secure hasher.&quot;] }
+Usage: subalfred check [OPTIONS] &lt;COMMAND&gt;
 
-Pallet Scheduler
-+ Entry: StorageEntryMetadata { name: &quot;Agenda&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 609, marker: PhantomData } }, default: [0], docs: [&quot; Items to be executed, indexed by the block number that they should be executed on.&quot;] }
-- Entry: StorageEntryMetadata { name: &quot;Agenda&quot;, modifier: Default, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 4, marker: PhantomData }, value: UntrackedSymbol { id: 378, marker: PhantomData } }, default: [0], docs: [&quot; Items to be executed, indexed by the block number that they should be executed on.&quot;] }
+Commands:
+  runtime
+          Compare the local node's runtime version with the live's one
+  features
+          Check if the crates' features are enabled correctly
+  help
+          Print this message or the help of the given subcommand(s)
 
-Pallet Session
-+ Entry: StorageEntryMetadata { name: &quot;NextKeys&quot;, modifier: Optional, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 347, marker: PhantomData } }, default: [0], docs: [&quot; The next session keys for a validator.&quot;] }
-- Entry: StorageEntryMetadata { name: &quot;NextKeys&quot;, modifier: Optional, ty: Map { hashers: [Twox64Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 282, marker: PhantomData } }, default: [0], docs: [&quot; The next session keys for a validator.&quot;] }
-+ Entry: StorageEntryMetadata { name: &quot;QueuedKeys&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 345, marker: PhantomData }), default: [0], docs: [&quot; The queued keys for the next session. When the next session begins, these keys&quot;, &quot; will be used to determine the validator's session keys.&quot;] }
-- Entry: StorageEntryMetadata { name: &quot;QueuedKeys&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 280, marker: PhantomData }), default: [0], docs: [&quot; The queued keys for the next session. When the next session begins, these keys&quot;, &quot; will be used to determine the validator's session keys.&quot;] }
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="command-check-runtime"><a class="header" href="#command-check-runtime">Command <code>check runtime</code></a></h2>
+<pre><code>Compare the local node's runtime version with the live's one
+
+Usage: subalfred check runtime [OPTIONS] --executable &lt;PATH&gt; --chain &lt;NAME&gt; --live &lt;URI&gt; --property &lt;PROPERTY&gt;
+
+Options:
+      --executable &lt;PATH&gt;
+          Node executable's path
+
+      --chain &lt;NAME&gt;
+          Pass this name to `--chain` to launch the local chain
+
+      --live &lt;URI&gt;
+          Live chain's HTTP RPC endpoint
+
+      --property &lt;PROPERTY&gt;
+          Target property
+
+          [possible values: storage, version]
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<p>We assume node-template's live chain is Polkadot here.</p>
+<h4 id="env-preparation"><a class="header" href="#env-preparation">ENV preparation</a></h4>
+<pre><code class="language-sh">git clone https://github.com/substrate-developer-hub/substrate-node-template.git /tmp/subalfred-example/substrate-node-template
+cd /tmp/subalfred-example/substrate-node-template
+cargo build
+</code></pre>
+<h4 id="command-check-runtime---property-storage"><a class="header" href="#command-check-runtime---property-storage">Command <code>check runtime --property storage</code></a></h4>
+<pre><code class="language-sh">subalfred check runtime --chain dev --executable target/debug/node-template --live https://rpc.polkadot.io --property storage
+</code></pre>
+<pre><code class="language-diff">- Pallet: &quot;Auctions&quot;
++ Pallet: &quot;Aura&quot;
+- Pallet: &quot;Authorship&quot;
+- Pallet: &quot;Babe&quot;
+- Pallet: &quot;Bounties&quot;
+- Pallet: &quot;ChildBounties&quot;
+- Pallet: &quot;Claims&quot;
+- Pallet: &quot;Configuration&quot;
+- Pallet: &quot;Council&quot;
+- Pallet: &quot;Crowdloan&quot;
+- Pallet: &quot;Democracy&quot;
+- Pallet: &quot;Dmp&quot;
+- Pallet: &quot;ElectionProviderMultiPhase&quot;
+- Pallet: &quot;Hrmp&quot;
+- Pallet: &quot;Identity&quot;
+- Pallet: &quot;ImOnline&quot;
+- Pallet: &quot;Indices&quot;
+- Pallet: &quot;Initializer&quot;
+- Pallet: &quot;Multisig&quot;
+- Pallet: &quot;NominationPools&quot;
+- Pallet: &quot;Offences&quot;
+- Pallet: &quot;ParaInclusion&quot;
+- Pallet: &quot;ParaInherent&quot;
+- Pallet: &quot;ParaScheduler&quot;
+- Pallet: &quot;ParaSessionInfo&quot;
+- Pallet: &quot;Paras&quot;
+- Pallet: &quot;ParasDisputes&quot;
+- Pallet: &quot;ParasShared&quot;
+- Pallet: &quot;PhragmenElection&quot;
+- Pallet: &quot;Preimage&quot;
+- Pallet: &quot;Proxy&quot;
++ Pallet: &quot;RandomnessCollectiveFlip&quot;
+- Pallet: &quot;Registrar&quot;
+- Pallet: &quot;Scheduler&quot;
+- Pallet: &quot;Session&quot;
+- Pallet: &quot;Slots&quot;
+- Pallet: &quot;Staking&quot;
++ Pallet: &quot;Sudo&quot;
+- Pallet: &quot;TechnicalCommittee&quot;
+- Pallet: &quot;TechnicalMembership&quot;
++ Pallet: &quot;TemplateModule&quot;
+- Pallet: &quot;Tips&quot;
+- Pallet: &quot;Treasury&quot;
+- Pallet: &quot;Ump&quot;
+- Pallet: &quot;Vesting&quot;
+- Pallet: &quot;VoterList&quot;
+- Pallet: &quot;XcmPallet&quot;
+
+Pallet Balances
++ Entry: StorageEntryMetadata { name: &quot;Locks&quot;, modifier: Default, ty: Map { hashers: [Blake2_128Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 94, marker: PhantomData } }, default: [0], docs: [&quot; Any liquidity locks on some account balances.&quot;, &quot; NOTE: Should only be accessed when setting, changing and freeing a lock.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;Locks&quot;, modifier: Default, ty: Map { hashers: [Blake2_128Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 467, marker: PhantomData } }, default: [0], docs: [&quot; Any liquidity locks on some account balances.&quot;, &quot; NOTE: Should only be accessed when setting, changing and freeing a lock.&quot;] }
++ Entry: StorageEntryMetadata { name: &quot;Reserves&quot;, modifier: Default, ty: Map { hashers: [Blake2_128Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 98, marker: PhantomData } }, default: [0], docs: [&quot; Named reserves on some account balances.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;Reserves&quot;, modifier: Default, ty: Map { hashers: [Blake2_128Concat], key: UntrackedSymbol { id: 0, marker: PhantomData }, value: UntrackedSymbol { id: 471, marker: PhantomData } }, default: [0], docs: [&quot; Named reserves on some account balances.&quot;] }
+
+Pallet Grandpa
++ Entry: StorageEntryMetadata { name: &quot;PendingChange&quot;, modifier: Optional, ty: Plain(UntrackedSymbol { id: 77, marker: PhantomData }), default: [0], docs: [&quot; Pending change: (signaled at, scheduled change).&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;PendingChange&quot;, modifier: Optional, ty: Plain(UntrackedSymbol { id: 513, marker: PhantomData }), default: [0], docs: [&quot; Pending change: (signaled at, scheduled change).&quot;] }
 
 Pallet System
-+ Entry: StorageEntryMetadata { name: &quot;Events&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 15, marker: PhantomData }), default: [0], docs: [&quot; Events deposited for the current block.&quot;, &quot;&quot;, &quot; NOTE: This storage item is explicitly unbounded since it is never intended to be read&quot;, &quot; from within the runtime.&quot;] }
-- Entry: StorageEntryMetadata { name: &quot;Events&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 15, marker: PhantomData }), default: [0], docs: [&quot; Events deposited for the current block.&quot;, &quot;&quot;, &quot; NOTE: This storage item is explicitly unbounded since it is never intended to be read&quot;, &quot; from within the runtime.&quot;] }
++ Entry: StorageEntryMetadata { name: &quot;BlockWeight&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 7, marker: PhantomData }), default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], docs: [&quot; The current weight for the block.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;BlockWeight&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 7, marker: PhantomData }), default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], docs: [&quot; The current weight for the block.&quot;] }
++ Entry: StorageEntryMetadata { name: &quot;Events&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 16, marker: PhantomData }), default: [0], docs: [&quot; Events deposited for the current block.&quot;, &quot;&quot;, &quot; NOTE: The item is unbound and should therefore never be read on chain.&quot;, &quot; It could otherwise inflate the PoV size of a block.&quot;, &quot;&quot;, &quot; Events have a large in-memory size. Box the events to not go out-of-memory&quot;, &quot; just in case someone still reads them from within the runtime.&quot;] }
+- Entry: StorageEntryMetadata { name: &quot;Events&quot;, modifier: Default, ty: Plain(UntrackedSymbol { id: 16, marker: PhantomData }), default: [0], docs: [&quot; Events deposited for the current block.&quot;, &quot;&quot;, &quot; NOTE: The item is unbound and should therefore never be read on chain.&quot;, &quot; It could otherwise inflate the PoV size of a block.&quot;, &quot;&quot;, &quot; Events have a large in-memory size. Box the events to not go out-of-memory&quot;, &quot; just in case someone still reads them from within the runtime.&quot;] }
 </code></pre>
-<h4 id="check-runtime-version"><a class="header" href="#check-runtime-version">Check Runtime Version</a></h4>
-<pre><code class="language-sh">subalfred check runtime --chain pangolin-dev --executable ./drml --live https://pangoro-rpc.darwinia.network --property version
+<h4 id="command-check-runtime---property-version"><a class="header" href="#command-check-runtime---property-version">Command <code>check runtime --property version</code></a></h4>
+<pre><code class="language-sh">subalfred check runtime --chain dev --executable target/debug/substrate-node-template --live https://rpc.polkadot.io --property version
 </code></pre>
 <pre><code class="language-diff">RuntimeVersion {
--   spec_name: &quot;Pangoro&quot;,
-+   spec_name: &quot;Pangolin&quot;,
--   impl_name: &quot;Pangoro&quot;,
-+   impl_name: &quot;Pangolin&quot;,
-    authoring_version: 0,
-    spec_version: 29020,
-    impl_version: 0,
-    transaction_version: 0,
+-   spec_name: &quot;polkadot&quot;,
++   spec_name: &quot;node-template&quot;,
+-   impl_name: &quot;parity-polkadot&quot;,
++   impl_name: &quot;node-template&quot;,
+-   authoring_version: 0,
++   authoring_version: 1,
+-   spec_version: 9291,
++   spec_version: 100,
+-   impl_version: 0,
++   impl_version: 1,
+-   transaction_version: 14,
++   transaction_version: 1,
+-   state_version: 0,
++   state_version: 1,
 }
 </code></pre>
 <h2 id="features"><a class="header" href="#features">Features</a></h2>
-<p>You could check if all your runtime features' were enabled correctly in one command.</p>
+<pre><code>Check if the crates' features are enabled correctly
+
+Usage: subalfred check features [OPTIONS] [PATH]
+
+Arguments:
+  [PATH]
+          Target `Cargo.toml`'s path. The target could be a pallet or runtime.
+
+          If `Cargo.toml` wasn't given, Subalfred will search it under the given path.
+
+          [default: ./Cargo.toml]
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
 <h3 id="episode-1"><a class="header" href="#episode-1">Episode 1</a></h3>
-<p>As we know Substrate has two runtime ENVs, native and WASM.</p>
-<p>If a runtime dependency is not pure no-std, we need to write:</p>
+<p>As we know Substrate has two runtime ENVs, native and WASM.
+If a runtime dependency is not pure no-std, we need to write:</p>
 <pre><code class="language-toml">[features]
-std = [&quot;xxx/std&quot;]
+std = [&quot;pallet/std&quot;]
 
 [dependencies]
-xxx = { version = &quot;0.1.0&quot;, default-features = false }
+pallet = { version = &quot;0.1.0&quot;, default-features = false }
 </code></pre>
-<p>Sometimes, we might forget to write add the <code>xxx/std</code>.</p>
-<p>Recently, I found someone have the same <a href="https://github.com/paritytech/substrate/pull/11715">requirement</a>.</p>
-<p>So, I decide to make this public.</p>
+<p>Sometimes, we might forget to write add the <code>pallet/std</code>.
+Recently, I found someone have the same <a href="https://github.com/paritytech/substrate/pull/11715">requirement</a>.
+So, I decide to make this tool.</p>
 <h3 id="episode-2"><a class="header" href="#episode-2">Episode 2</a></h3>
-<p>As time passed, more and more features were added to Substrate.</p>
-<p>We have <code>std</code>, <code>runtime-benchmarks</code> and <code>try-runtime</code> now.</p>
-<p>It's hard to check if all features are enabled correctly.</p>
-<h3 id="examples-1"><a class="header" href="#examples-1">Examples</a></h3>
-<blockquote>
-<p>Testing commit <a href="https://github.com/paritytech/polkadot/commit/0fd106c04e5f57f6342f8e000d471d0f819f7b61">paritytech/polkadot@<code>0fd106c</code></a></p>
-</blockquote>
-<pre><code class="language-sh">git clone https://github.com/paritytech/polkadot /tmp/paritytech/polkadot
-subalfred check features --manifest-path /tmp/paritytech/polkadot/runtime/polkadot -ltrace
+<p>As time passed, more and more features were added to Substrate.
+We have <code>std</code>, <code>runtime-benchmarks</code> and <code>try-runtime</code> now.
+It's hard to check if all features are enabled correctly.</p>
+<h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
+<pre><code class="language-sh">git clone https://github.com/paritytech/polkadot /tmp/subalfred-example/polkadot
+cd /tmp/subalfred-example/polkadot
+git checkout 0fd106c04e5f57f6342f8e000d471d0f819f7b61
+subalfred check features runtime/polkadot -lsubalfred
 </code></pre>
-<pre><code>checking: /tmp/paritytech/polkadot/runtime/polkadot/Cargo.toml
-2022-10-22T06:10:58.626261Z TRACE subalfred_core::check::features: check std takes 0.000408458 secs
-2022-10-22T06:10:58.626636Z TRACE subalfred_core::check::features: check runtime-benchmarks takes 0.000177708 secs
-2022-10-22T06:10:58.626764Z TRACE subalfred_core::check::features: check try-runtime takes 0.0001255 secs
-`std` of `frame-benchmarking` was omitted
-`std` of `pallet-election-provider-support-benchmarking` was omitted
-`std` of `polkadot-primitives` was omitted
-`std` of `polkadot-runtime-common` was omitted
-`std` of `polkadot-runtime-parachains` was omitted
-`std` of `serde_json` was omitted
-`std` of `sp-authority-discovery` was omitted
-`std` of `sp-block-builder` was omitted
-`std` of `sp-consensus-babe` was omitted
-`std` of `sp-inherents` was omitted
-`std` of `sp-io` was omitted
-`std` of `sp-offchain` was omitted
-`std` of `sp-tracing` was omitted
-`std` of `sp-transaction-pool` was omitted
-`std` of `sp-trie` was omitted
-`runtime-benchmarks` of `polkadot-primitives` was omitted
-`runtime-benchmarks` of `polkadot-runtime-common` was omitted
-`runtime-benchmarks` of `polkadot-runtime-parachains` was omitted
-`runtime-benchmarks` of `sp-staking` was omitted
-`runtime-benchmarks` of `xcm-executor` was omitted
-`try-runtime` of `frame-support` was omitted
-`try-runtime` of `polkadot-runtime-common` was omitted
-`try-runtime` of `polkadot-runtime-parachains` was omitted
+<pre><code>checking: runtime/polkadot/Cargo.toml
+2022-11-02T17:50:17.766228Z TRACE subalfred_core::check::features: check::features::try-runtime takes 0.000155583 secs
+2022-11-02T17:50:17.766669Z TRACE subalfred_core::check::features: check::features::std takes 0.000417541 secs
+2022-11-02T17:50:17.766846Z TRACE subalfred_core::check::features: check::features::runtime-benchmarks takes 0.000169125 secs
+incomplete `try-runtime` of `frame-support`
+incomplete `try-runtime` of `runtime-parachains`
+incomplete `std` of `frame-benchmarking`
+incomplete `std` of `frame-system-benchmarking`
+incomplete `std` of `pallet-election-provider-support-benchmarking`
+incomplete `std` of `pallet-nomination-pools-benchmarking`
+incomplete `std` of `pallet-offences-benchmarking`
+incomplete `std` of `pallet-session-benchmarking`
+incomplete `std` of `runtime-parachains`
+incomplete `std` of `sp-io`
+incomplete `runtime-benchmarks` of `primitives`
+incomplete `runtime-benchmarks` of `sp-staking`
+incomplete `runtime-benchmarks` of `xcm-executor`
 </code></pre>
 <h2 id="ci"><a class="header" href="#ci">CI</a></h2>
 <p>Moreover, we can add the checks into your project CI.</p>
 <p>I've already add these to the <a href="https://github.com/darwinia-network/darwinia/blob/v0.12.3/.github/workflows/ci.yml">Darwinia CI</a>.
-And here is a real world <a href="https://github.com/darwinia-network/darwinia/pull/940#issuecomment-1226917895">example</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-convert-command"><a class="header" href="#the-convert-command">The Convert Command</a></h1>
-<p>A set of really useful convertors.</p>
-<h2 id="ascii-to-hex"><a class="header" href="#ascii-to-hex">Ascii to Hex</a></h2>
-<p>Convert the ascii to hex.</p>
-<h3 id="examples-2"><a class="header" href="#examples-2">Examples</a></h3>
+And here is the result <a href="https://github.com/darwinia-network/darwinia/pull/940#issuecomment-1226917895">example</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-convert"><a class="header" href="#command-convert">Command <code>convert</code></a></h1>
+<pre><code>Data style converters
+
+Usage: subalfred convert [OPTIONS] &lt;COMMAND&gt;
+
+Commands:
+  ascii2hex
+          Convert ascii to hex
+  bytes-style
+          Convert bytes between several different styles
+  bytes2hex
+          Convert bytes to hex
+  hex2bytes
+          Convert hex to bytes
+  help
+          Print this message or the help of the given subcommand(s)
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="command-convert-ascii2hex"><a class="header" href="#command-convert-ascii2hex">Command <code>convert ascii2hex</code></a></h2>
+<pre><code>Convert ascii to hex
+
+Usage: subalfred convert ascii2hex [OPTIONS] &lt;ASCII DATA&gt;
+
+Arguments:
+  &lt;ASCII DATA&gt;
+          Ascii data input
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+
+</code></pre>
+<h3 id="example-2"><a class="header" href="#example-2">Example</a></h3>
 <pre><code class="language-sh">subalfred convert ascii2hex AurevoirXavier
 </code></pre>
 <pre><code>0x41757265766f6972586176696572
 </code></pre>
-<h2 id="bytes-style"><a class="header" href="#bytes-style">Bytes Style</a></h2>
-<p>Convert the bytes between several different styles.</p>
-<h3 id="examples-3"><a class="header" href="#examples-3">Examples</a></h3>
+<h2 id="command-convert-bytes-style"><a class="header" href="#command-convert-bytes-style">Command <code>convert bytes-style</code></a></h2>
+<pre><code>Convert bytes between several different styles
+
+Usage: subalfred convert bytes-style [OPTIONS] --from &lt;BYTES STYLE&gt; --to &lt;BYTES STYLE&gt; &lt;BYTES&gt;
+
+Arguments:
+  &lt;BYTES&gt;
+          Bytes data input
+
+Options:
+      --from &lt;BYTES STYLE&gt;
+          Origin style
+
+          [possible values: byte-string-literal, vec-string]
+
+      --to &lt;BYTES STYLE&gt;
+          Target style
+
+          [possible values: byte-string-literal, vec-string]
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h3 id="example-3"><a class="header" href="#example-3">Example</a></h3>
 <h4 id="from-vec-string-to-byte-string-literal"><a class="header" href="#from-vec-string-to-byte-string-literal">From Vec String to Byte String Literal</a></h4>
 <pre><code class="language-sh">subalfred convert bytes-style --from vec-string --to byte-string-literal &quot;[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]&quot;
 </code></pre>
@@ -417,29 +587,116 @@ And here is a real world <a href="https://github.com/darwinia-network/darwinia/p
 </code></pre>
 <pre><code>[1, 1, 1, 1]
 </code></pre>
-<h2 id="bytes-to-hex"><a class="header" href="#bytes-to-hex">Bytes to Hex</a></h2>
-<p>Convert the bytes to hex.</p>
-<h3 id="examples-4"><a class="header" href="#examples-4">Examples</a></h3>
+<h2 id="command-convert-bytes2hex"><a class="header" href="#command-convert-bytes2hex">Command <code>convert bytes2hex</code></a></h2>
+<pre><code>Convert bytes to hex
+
+Usage: subalfred convert bytes2hex [OPTIONS] &lt;BYTES&gt;
+
+Arguments:
+  &lt;BYTES&gt;
+          Bytes data input.
+
+          Example: `[0, 0, 0, 0]`.
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h3 id="example-4"><a class="header" href="#example-4">Example</a></h3>
 <pre><code class="language-sh">subalfred convert bytes2hex &quot;[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]&quot;
 </code></pre>
 <pre><code>0x41757265766f6972586176696572
 </code></pre>
-<h2 id="hex-to-bytes"><a class="header" href="#hex-to-bytes">Hex to Bytes</a></h2>
-<p>Convert the hex to bytes.</p>
-<h3 id="examples-5"><a class="header" href="#examples-5">Examples</a></h3>
+<h2 id="command-convert-hex2bytes"><a class="header" href="#command-convert-hex2bytes">Command <code>convert hex2bytes</code></a></h2>
+<pre><code>Convert hex to bytes
+
+Usage: subalfred convert hex2bytes [OPTIONS] &lt;HEX&gt;
+
+Arguments:
+  &lt;HEX&gt;
+          Hex input.
+
+          Example: `0x00000000`.
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h3 id="example-5"><a class="header" href="#example-5">Example</a></h3>
 <pre><code class="language-sh">subalfred convert hex2bytes 0x41757265766f6972586176696572
 </code></pre>
 <pre><code>[65, 117, 114, 101, 118, 111, 105, 114, 88, 97, 118, 105, 101, 114]
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-get-command"><a class="header" href="#the-get-command">The Get Command</a></h1>
-<p>Currently, there's only one subcommand available.</p>
-<h2 id="runtime-upgrade-block"><a class="header" href="#runtime-upgrade-block">Runtime Upgrade Block</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-get"><a class="header" href="#command-get">Command <code>get</code></a></h1>
+<pre><code>Substrate-link node getter
+
+Usage: subalfred get [OPTIONS] &lt;COMMAND&gt;
+
+Commands:
+  runtime-upgrade-block
+          Get the runtime upgrade block
+  help
+          Print this message or the help of the given subcommand(s)
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="command-get-runtime-upgrade-block"><a class="header" href="#command-get-runtime-upgrade-block">Command <code>get runtime-upgrade-block</code></a></h2>
+<pre><code>Get the runtime upgrade block.
+
+Using the dichotomy algorithm to find it out. This operation will fail if the runtime version does not existed.
+
+Usage: subalfred get runtime-upgrade-block [OPTIONS] --uri &lt;URI&gt; &lt;VERSION&gt;
+
+Arguments:
+  &lt;VERSION&gt;
+          At this runtime version
+
+Options:
+      --uri &lt;URI&gt;
+          Node's WS RPC endpoint
+
+          [default: ws://localhost:9944]
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h3 id="episode-1-1"><a class="header" href="#episode-1-1">Episode 1</a></h3>
 <p>The original question was from <a href="https://substrate.stackexchange.com/questions/3861/how-do-you-tell-which-block-number-the-last-runtime-upgrade-happened-on-a-chain">stackexchange</a>.</p>
 <p>Yep, I think that is an interesting question.
-So, I implemented this method.</p>
-<p>It uses dichotomy algorithm, the whole process takes:</p>
+So, I implemented this method.
+It uses dichotomy algorithm, the whole process takes:</p>
 <p>$$\log_{2} BlockHeight\times Requests$$</p>
-<h3 id="examples-6"><a class="header" href="#examples-6">Examples</a></h3>
+<h3 id="example-6"><a class="header" href="#example-6">Example</a></h3>
 <pre><code class="language-sh">subalfred get runtime-upgrade-block 9100 --uri wss://rpc.polkadot.io -lsubalfred_core::node
 </code></pre>
 <pre><code class="language-log">2022-08-27T13:58:07.684200Z TRACE subalfred_core::node: (0, 11788056) -&gt; 9050
@@ -468,23 +725,33 @@ So, I implemented this method.</p>
 2022-08-27T13:58:26.275470Z TRACE subalfred_core::node: (7217906, 7217907) -&gt; 9090
 7217907 0x8f10de9e6dcf190dccc90f464a8aa4448c9b080746d8e905bb0e4841fef80fdd
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-hash-command"><a class="header" href="#the-hash-command">The Hash Command</a></h1>
-<p>Hash the data with the specify algorithm.</p>
-<p>Available algorithms:</p>
-<ul>
-<li>blake2-128</li>
-<li>blake2-128-concat (default)</li>
-<li>blake2-256</li>
-<li>blake2-512</li>
-<li>twox64</li>
-<li>twox64-concat</li>
-<li>twox128</li>
-<li>twox256</li>
-<li>keccak256</li>
-<li>keccak512</li>
-<li>sha2-256</li>
-</ul>
-<h2 id="examples-7"><a class="header" href="#examples-7">Examples</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-hash"><a class="header" href="#command-hash">Command <code>hash</code></a></h1>
+<pre><code>Hash the hex with the specific hasher(hash algorithm)
+
+Usage: subalfred hash [OPTIONS] &lt;HEX&gt;
+
+Arguments:
+  &lt;HEX&gt;
+          Hex data input
+
+Options:
+      --hasher &lt;HASHER&gt;
+          Hash algorithm
+
+          [default: blake2-128-concat]
+          [possible values: blake2-128, blake2-128-concat, blake2-256, blake2-512, twox64, twox64-concat, twox128, twox256, keccak256, keccak512, sha2-256]
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <h3 id="blake2-128-concat-default"><a class="header" href="#blake2-128-concat-default">blake2-128-concat (Default)</a></h3>
 <pre><code class="language-sh">subalfred hash 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 </code></pre>
@@ -540,22 +807,59 @@ So, I implemented this method.</p>
 </code></pre>
 <pre><code>0x5d0ae9ab625ce7c50e5ced079f414f28161b1b645df49679ebd794fc43c239bc
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-key-command"><a class="header" href="#the-key-command">The Key Command</a></h1>
-<p>Convert the public key/SS58 address from SS58 address/public key.</p>
-<h2 id="examples-8"><a class="header" href="#examples-8">Examples</a></h2>
-<h3 id="get-the-public-key"><a class="header" href="#get-the-public-key">Get the Public Key</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-key"><a class="header" href="#command-key">Command <code>key</code></a></h1>
+<pre><code>Calculate the public key/SS58 address of the SS58 address/public key
+
+Usage: subalfred key [OPTIONS] &lt;PUBLIC KEY/SS58 ADDRESS&gt;
+
+Arguments:
+  &lt;PUBLIC KEY/SS58 ADDRESS&gt;
+          Public key/SS58 address
+
+Options:
+      --type &lt;TYPE&gt;
+          Key type
+
+          [possible values: pallet, parachain, sibling]
+
+      --network &lt;NAME&gt;
+          Network name
+
+          [default: Substrate]
+
+      --list-all
+          List all the networks' addresses
+
+      --show-prefix
+          Show network(s) prefix(es)
+
+      --json-output
+          Enable JSON output
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
+<h3 id="calculate-the-public-key"><a class="header" href="#calculate-the-public-key">Calculate the public key</a></h3>
 <pre><code class="language-sh">subalfred key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 Substrate 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
-<h3 id="get-the-ss58-address"><a class="header" href="#get-the-ss58-address">Get the SS58 Address</a></h3>
+<h3 id="calculate-the-ss58-address"><a class="header" href="#calculate-the-ss58-address">Calculate the SS58 address</a></h3>
 <pre><code class="language-sh">subalfred key 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 Substrate 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
-<h3 id="get-the-pallet-address"><a class="header" href="#get-the-pallet-address">Get the Pallet Address</a></h3>
+<h3 id="calculate-the-pallet-address"><a class="header" href="#calculate-the-pallet-address">Calculate the pallet address</a></h3>
 <pre><code class="language-sh">subalfred key --type pallet &quot;py/trsry&quot;
 </code></pre>
 <pre><code>public-key 0x6d6f646c70792f74727372790000000000000000000000000000000000000000 PalletId(py/trsry)
@@ -567,7 +871,7 @@ Substrate 5EYCAe5ijiYfyeZ2JJCGq56LmPyNRAKzpG4QkoQkkQNB5e6Z
 <pre><code>public-key 0x6d6f646c70792f74727372790000000000000000000000000000000000000000 PalletId(py/trsry)
 Substrate 5EYCAe5ijiYfyeZ2JJCGq56LmPyNRAKzpG4QkoQkkQNB5e6Z
 </code></pre>
-<h3 id="get-the-sovereign-address"><a class="header" href="#get-the-sovereign-address">Get the Sovereign Address</a></h3>
+<h3 id="calculate-the-sovereign-address"><a class="header" href="#calculate-the-sovereign-address">Calculate the sovereign address</a></h3>
 <p>Sovereign address on relaychain.</p>
 <pre><code class="language-sh">subalfred key --type parachain 2000
 </code></pre>
@@ -580,7 +884,7 @@ Substrate 5Ec4AhPUwPeyTFyuhGuBbD224mY85LKLMSqSSo33JYWCazU4
 <pre><code>public-key 0x7369626cd0070000000000000000000000000000000000000000000000000000 SiblId(2000)
 Substrate 5Eg2fntJ27qsari4FGrGhrMqKFDRnkNSR6UshkZYBGXmSuC8
 </code></pre>
-<p>Note that, if you are on Moonbeam-link chain, remove 24 trailing zeros from the public-key.</p>
+<p>Note that, if you are on Moonbeam-link chain, remove last 24 zeros from the public-key.</p>
 <pre><code class="language-sh">public-key 0x7369626cd0070000000000000000000000000000000000000000000000000000 SiblId(2000)
 public-key 0x7369626cd0070000000000000000000000000000 SiblId(2000)
 </code></pre>
@@ -590,10 +894,7 @@ public-key 0x7369626cd0070000000000000000000000000000 SiblId(2000)
 <pre><code>public-key 0x7369626cd0070000000000000000000000000000000000000000000000000000 SiblId(2000)
 Substrate 5Eg2fntJ27qsari4FGrGhrMqKFDRnkNSR6UshkZYBGXmSuC8
 </code></pre>
-<h2 id="options"><a class="header" href="#options">Options</a></h2>
-<p>These flags can be applied to any key command.
-Also, they could be used with any other flags.</p>
-<h3 id="list-all"><a class="header" href="#list-all">List All</a></h3>
+<h3 id="option-list-all"><a class="header" href="#option-list-all">Option <code>list-all</code></a></h3>
 <pre><code class="language-sh">subalfred key --list-all 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
@@ -712,155 +1013,435 @@ zeitgeist             dE37RvKbC2wym613QKksdD6QEK5FncNYTBpLdZPpPrzi2jYtt
 zero                  3Tz7Uc9YssP4DSYpz8c5QNzyPqfLHqTRuQsByyfwexnbeM1M
 zero-alphaville       3ZmmjbgxGAFnNVxHtfV6nHGQ3KodM25x6MRKbfKF7pP5vUpv
 </code></pre>
-<h3 id="network"><a class="header" href="#network">Network</a></h3>
+<h3 id="option---network"><a class="header" href="#option---network">Option <code>--network</code></a></h3>
 <p>The network parameter is case <a href="https://github.com/paritytech/ss58-registry/pull/106">insensitive</a>.</p>
 <pre><code class="language-sh">subalfred key --network polkadot 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 polkadot 156HGo9setPcU2qhFMVWLkcmtCEGySLwNqa3DaEiYSWtte4Y
 </code></pre>
-<h3 id="show-prefix"><a class="header" href="#show-prefix">Show Prefix</a></h3>
+<h3 id="option---show-prefix"><a class="header" href="#option---show-prefix">Option <code>--show-prefix</code></a></h3>
 <pre><code class="language-sh">subalfred key --show-prefix 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
 <pre><code>public-key 0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747
 Substrate 42 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP
 </code></pre>
-<h3 id="type"><a class="header" href="#type">Type</a></h3>
-<p>See <a href="user/cli/key.html#get-the-pallet-address">Get the Pallet Address</a> and <a href="user/cli/key.html#get-the-sovereign-address">Get the Sovereign Address</a> sections.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-state-command"><a class="header" href="#the-state-command">The State Command</a></h1>
-<p>Provides a series of useful state operations.</p>
-<h2 id="diff"><a class="header" href="#diff">Diff</a></h2>
-<p>Get the differences between the two given states.</p>
-<p>In fact, it accepts two chain spec files. So, make sure JSON file contains the <code>object[&quot;genesis&quot;][&quot;raw&quot;][&quot;top]</code> field.</p>
-<p>Note that, this is not a symmetric diff.
-<code>a.diff(b)</code> may equals to <code>b.diff(a)</code>, but not always.</p>
-<h3 id="examples-9"><a class="header" href="#examples-9">Examples</a></h3>
-<pre><code class="language-sh">subalfred state diff a.json b.json
+<h3 id="option---show-prefix-1"><a class="header" href="#option---show-prefix-1">Option <code>--show-prefix</code></a></h3>
+<p>If you don't have the <code>jq</code> command, then just ignore that.
+I only use it to beautify the output here.</p>
+<pre><code class="language-sh">subalfred key --json-output 5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP | jq
+</code></pre>
+<pre><code class="language-json">{
+  &quot;addresses&quot;: [
+    {
+      &quot;address&quot;: &quot;5G9z8Ttoo7892VqBHiSWCbnd2aEdH8noJLqZ4HFMzMVNhvgP&quot;,
+      &quot;network&quot;: &quot;Substrate&quot;
+    }
+  ],
+  &quot;public-key&quot;: &quot;0xb4f7f03bebc56ebe96bc52ea5ed3159d45a0ce3a8d7f082983c33ef133274747&quot;,
+  &quot;sub-seed&quot;: &quot;&quot;
+}
+</code></pre>
+<h3 id="option---type"><a class="header" href="#option---type">Option <code>--type</code></a></h3>
+<p>See <a href="user/cli/key.html#calculate-the-pallet-address">Calculate the pallet address</a> and <a href="user/cli/key.html#calculate-the-sovereign-address">Calculate the sovereign address</a> sections.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-rpc"><a class="header" href="#command-rpc">Command <code>rpc</code></a></h1>
+<pre><code>Send a RPC request to the node's HTTP RPC endpoint.
+
+Example: Get the Polkadot's block zero's hash: ``` # Normal output subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' # Beautiful output subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' | jq ```
+
+Usage: subalfred rpc [OPTIONS] --method &lt;METHOD&gt; &lt;URI&gt;
+
+Arguments:
+  &lt;URI&gt;
+          Node's HTTP RPC endpoint
+
+          [default: http://localhost:9933]
+
+Options:
+      --method &lt;METHOD&gt;
+          JSONRPC method name
+
+      --params &lt;[PARAMETER]&gt;
+          JSONRPC parameters
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
+<p>If you don't have the <code>jq</code> command, then just ignore that.
+I only use it to beautify the output here.</p>
+<pre><code class="language-sh">subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' | jq
+</code></pre>
+<pre><code class="language-json">{
+  &quot;id&quot;: 0,
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;result&quot;: [
+    &quot;0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3&quot;,
+    &quot;0xc0096358534ec8d21d01d34b836eed476a1c343f8724fa2153dc0725ad797a90&quot;,
+    &quot;0x409d0bfe677594d7558101d574633d5808a6fc373cbd964ef236f00941f290ee&quot;
+  ]
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-state"><a class="header" href="#command-state">Command <code>state</code></a></h1>
+<pre><code>A set of tools to process Substrate-like chain state
+
+Usage: subalfred state [OPTIONS] &lt;COMMAND&gt;
+
+Commands:
+  diff
+          Check the differences between the two states.
+          Note:
+          This is not a symmetric difference operation.
+          `a.diff(b)` might equal `b.diff(a)`, but not always.
+  export
+          Export the chain state from the Substrate-like node through the WS RPC endpoint
+  fork-off
+          Fork-off the Substrate-like chain state
+  insert
+          Insert the key/value pair into the specific file
+  override
+          Override the chain spec a with b.
+  help
+          Print this message or the help of the given subcommand(s)
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="command-state-diff"><a class="header" href="#command-state-diff">Command <code>state diff</code></a></h2>
+<pre><code>Check the differences between the two states.
+Note:
+This is not a symmetric difference operation.
+`a.diff(b)` might equal `b.diff(a)`, but not always.
+
+Usage: subalfred state diff [OPTIONS] &lt;PATH&gt; &lt;PATH&gt;
+
+Arguments:
+  &lt;PATH&gt;
+          Chain spec a's path
+
+  &lt;PATH&gt;
+          Chain spec b's path
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h3 id="example-10"><a class="header" href="#example-10">Example</a></h3>
+<pre><code class="language-sh">subalfred state diff chain-spec-a.json chain-spec-b.json
 </code></pre>
 <pre><code class="language-diff">-0xbd2a529379475088d3e29a918cd47872878d434d6125b40443fe11fd292d13a4:0x03000000
 -0x4d45a146e2a002ba470f48b9ed9a3e23878d434d6125b40443fe11fd292d13a4:0x02000200
 -0xcebf674407db61a30e8759ec5084b7764e7b9012096b41c4eb3aaf947f6ea429:0x0000
--0x2f85f1e1378cb2d7b83adbaf0b5869c24e7b9012096b41c4eb3aaf947f6ea429:0x0000
--0x4a0fb74e77bb0a3a5a6c24785f9805fe878d434d6125b40443fe11fd292d13a4:0x02000500
--0x2aa79c02f5980c623c5a8c28e06320c4878d434d6125b40443fe11fd292d13a4:0x02000200
 </code></pre>
-<pre><code class="language-sh">subalfred state diff b.json a.json
+<pre><code class="language-sh">subalfred state diff chain-spec-b.json chain-spec-a.json
 </code></pre>
 <pre><code class="language-diff">+0xbd2a529379475088d3e29a918cd47872878d434d6125b40443fe11fd292d13a4:0x03000000
 +0x4d45a146e2a002ba470f48b9ed9a3e23878d434d6125b40443fe11fd292d13a4:0x02000200
 +0xcebf674407db61a30e8759ec5084b7764e7b9012096b41c4eb3aaf947f6ea429:0x0000
-+0x2f85f1e1378cb2d7b83adbaf0b5869c24e7b9012096b41c4eb3aaf947f6ea429:0x0000
-+0x4a0fb74e77bb0a3a5a6c24785f9805fe878d434d6125b40443fe11fd292d13a4:0x02000500
-+0x2aa79c02f5980c623c5a8c28e06320c4878d434d6125b40443fe11fd292d13a4:0x02000200
 </code></pre>
-<h2 id="export"><a class="header" href="#export">Export</a></h2>
-<p>Export the chain state from a live chain.</p>
-<p>The result will be stored at <code>&lt;a&gt;.export</code>.</p>
-<h3 id="examples-10"><a class="header" href="#examples-10">Examples</a></h3>
-<p>For convenience, I use the <a href="https://github.com/darwinia-network">Darwinia Network</a> to demonstrate.</p>
-<p>Here is a most common way to use this command.
-To build a fork-off chain:</p>
-<pre><code class="language-sh"># If you want to renew the consensus you need to provide a genesis to override the exported consensus state.
-# Otherwise, you can not get the old validators online. And the new chain will be bricked.
-darwinia build-spec --raw &gt; darwinia-dev.json
-# `--simple-governance` will simplify the the governance state for more detail check the `--help`.
-# If some pallets state are too large, you could skip them with this flag: `--skip-pallets System,Staking,Scheduler`.
-subalfred state export wss://rpc.darwinia.network --renew-consensus-with darwinia-dev.json --simple-governance --disable-default-bootnodes -lsubalfred_core::node,subalfred_core::substrate_client
+<h2 id="command-state-export"><a class="header" href="#command-state-export">Command <code>state export</code></a></h2>
+<pre><code>Export the chain state from the Substrate-like node through the WS RPC endpoint.
+
+The result will be stored at `&lt;a&gt;.export`.
+
+Usage: subalfred state export [OPTIONS] &lt;URI&gt;
+
+Arguments:
+  &lt;URI&gt;
+          Live chain's HTTP RPC endpoint
+
+Options:
+      --at &lt;HASH/NUM&gt;
+          Export the data starting from this block
+
+      --timeout &lt;SECS&gt;
+          Timeout for the fetching
+
+          [default: 10]
+
+      --all
+          Export all the data.
+
+          So, it conflicts with any other filter option.
+
+          Note:
+          The default behaviour (without this option) is fetching according to metadata's pallet
+          storage records, which means if there is any old storage prefix that can not be found in
+          the current runtime's pallet storage names will be ignored.
+
+      --skip-pallets &lt;[PALLET]&gt;
+          Skip these pallets, while fetching.
+
+          It's useful when you want to skip the 'large' pallets.
+
+      --renew-consensus-with &lt;PATH&gt;
+          Renew the consensus relate things of the chain.
+
+          We need the dev chain specification to renew the consensus relates genesis. Otherwise, the
+          fork-off chain won't produce block.
+
+          It will:
+          - Skip `[&quot;System&quot;, &quot;Babe&quot;, &quot;Authorship&quot;, &quot;Session&quot;, &quot;Grandpa&quot;, &quot;Beefy&quot;]` pallets, but keep
+            the `System::Account` data. (in order to make the new chain runnable)
+          - Change the id and impl name to `*-export`.
+          - Clear the bootnodes.
+          - Set the `Staking::ForceEra` to `ForceNone`. (in order to prevent the validator set from
+            changing mid-test)
+
+          Usually use this as below to get a runnable fork-off chain, and you can do whatever you
+          want on it. Test new features, runtime upgrade, etc.
+
+          ```sh
+          xxx-node --export-state &gt; xxx-export.json
+          xxx-node --build-spec xxx-dev &gt; xxx-dev.json
+          subalfred state fork-off xxx-export.json --renew-consensus-with xxx.dev.json --simple-governance --disable-default-bootnodes
+          xxx-node --chain xxx.json.fork-off --alice --tmp
+          ```
+
+          Note:
+          `--alice` only works for which dev chain's genesis validator is `//Alice`, otherwise the
+          new chain won't produce block. If your dev chain's genesis validator is `//Bob`, then
+          running with `--bob`. But if your dev chain's genesis validator isn't any one of the
+          well-known keys, then you should start the node with `--validator` and insert the key
+          manually.
+
+      --simple-governance
+          Use `//Alice` to control the governance.
+
+          It's useful when you want to test the runtime upgrade.
+
+          It will:
+          - Replace sudo key with `//Alice`, if the sudo pallet existed.
+          - Replace phragmen election and council members with `//Alice`, if the collective pallet
+            existed.
+          - Replace technical membership and tech.comm members with `//Alice`, if the membership
+            pallet existed.
+
+      --disable-default-bootnodes
+          Disable adding the default bootnodes to the specification.
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
 </code></pre>
-<pre><code class="language-log">2022-08-27T17:30:15.077768Z TRACE subalfred_core::substrate_client: fetched 512 keys
-2022-08-27T17:30:15.103602Z TRACE subalfred_core::substrate_client: fetched 1024 keys
-...
-✓ fully exported 152674 pairs, takes 7s
+<h3 id="example-11"><a class="header" href="#example-11">Example</a></h3>
+<h4 id="env-preparation-1"><a class="header" href="#env-preparation-1">ENV preparation</a></h4>
+<pre><code class="language-sh">git clone https://github.com/substrate-developer-hub/substrate-node-template.git /tmp/subalfred-example/substrate-node-template
+cd /tmp/subalfred-example/substrate-node-template
+cargo build
+target/debug/node-template build-spec --dev --raw &gt; chain-spec.json
+target/debug/node-template --chain chain-spec.json --alice --tmp
 </code></pre>
-<p>To run the fork-off chain:</p>
-<pre><code class="language-sh">darwinia --chain darwinia-dev.json.export --alice --tmp
+<p>Open <a href="https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/accounts">PolkadotApps account page</a>.
+Check <strong>Dave</strong>'s balances is <strong>0</strong>. Then transfer <strong>10 UNIT</strong> from <strong>Alice</strong> to <strong>Dave</strong>.</p>
+<h4 id="start-example"><a class="header" href="#start-example">Start example</a></h4>
+<pre><code class="language-sh"># Open a new terminal.
+cd /tmp/subalfred-example/substrate-node-template
+subalfred state export ws://127.0.0.1:9944 -lsubalfred_core::state,subalfred_core::substrate_client
 </code></pre>
-<pre><code class="language-log">2022-08-25 15:31:45   _____                      _       _
-2022-08-25 15:31:45  |  __ \                    (_)     (_)
-2022-08-25 15:31:45  | |  | | __ _ _ ____      ___ _ __  _  __ _
-2022-08-25 15:31:45  | |  | |/ _` | '__\ \ /\ / / | '_ \| |/ _` |
-2022-08-25 15:31:45  | |__| | (_| | |   \ V  V /| | | | | | (_| |
-2022-08-25 15:31:45  |_____/ \__,_|_|    \_/\_/ |_|_| |_|_|\__,_|
-2022-08-25 15:31:45 Darwinia
-2022-08-25 15:31:45 ✌️  version 0.12.3-2-unknown-x86_64-linux-gnu
-2022-08-25 15:31:45 ❤️  by Darwinia Network &lt;hello@darwinia.network&gt;, 2018-2022
-2022-08-25 15:31:45 📋 Chain specification: Darwinia Development Testnet-export
-2022-08-25 15:31:45 🏷 Node name: Alice
-2022-08-25 15:31:45 👤 Role: AUTHORITY
-2022-08-25 15:31:45 💾 Database: RocksDb at /tmp/substrateVfPtI4/chains/darwinia_dev-export/db/full
-2022-08-25 15:31:45 ⛓  Native runtime: Darwinia-1232 (Darwinia-0.tx0.au0)
-2022-08-25 15:32:15 🔨 Initializing Genesis block/state (state: 0xfff2…5f26, header-hash: 0xa524…c2b5)
-2022-08-25 15:32:15 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2022-08-25 15:32:16 ⏱  Loaded block-time = 6s from block 0xa524d767208b0142b2e2515f072add8391eb8d46359592f385585b453034c2b5
-2022-08-25 15:32:16 👶 Creating empty BABE epoch changes on what appears to be first startup.
-2022-08-25 15:32:16 🏷 Local node identity is: 12D3KooWBZ5yN77nLrmca1E7Fu1DpgXR5Y9VK3xupwPsWQHDBcdQ
-2022-08-25 15:32:16 DVM mapping worker starts syncing from 0
-2022-08-25 15:32:16 📦 Highest known block at #0
-2022-08-25 15:32:16 〽️ Prometheus exporter started at 127.0.0.1:9615
-2022-08-25 15:32:16 Listening for new connections on 0.0.0.0:9944.
-2022-08-25 15:32:16 👶 Starting BABE Authorship worker
-2022-08-25 15:32:18 🙌 Starting consensus session on top of parent 0xa524d767208b0142b2e2515f072add8391eb8d46359592f385585b453034c2b5
-2022-08-25 15:32:18 🎁 Prepared block for proposing at 1 [hash: 0x7b730198ec586071afc14498afa6c1a1f94353db0008e427758adb6353a05690; parent_hash: 0xa524…c2b5; extrinsics (1): [0x60ef…54c4]]
-2022-08-25 15:32:18 🔖 Pre-sealed block for proposal at 1. Hash now 0x9a763a5d33bd5bbb7fb37cb5fab5c8ec4f7c05f9e6cc4c1710a6d5076973c3e9, previously 0x7b730198ec586071afc14498afa6c1a1f94353db0008e427758adb6353a05690.
-2022-08-25 15:32:18 👶 New epoch 0 launching at block 0x9a76…c3e9 (block slot 276902123 &gt;= start slot 276902123).
-2022-08-25 15:32:18 👶 Next epoch starts at slot 276904523
-2022-08-25 15:32:18 ✨ Imported #1 (0x9a76…c3e9)
-2022-08-25 15:32:21 💤 Idle (0 peers), best: #1 (0x9a76…c3e9), finalized #0 (0xa524…c2b5), ⬇ 0 ⬆ 0
-2022-08-25 15:32:24 🙌 Starting consensus session on top of parent 0x9a763a5d33bd5bbb7fb37cb5fab5c8ec4f7c05f9e6cc4c1710a6d5076973c3e9
-2022-08-25 15:32:24 🎁 Prepared block for proposing at 2 [hash: 0xfe20a319a55f621fcb5c0a7a93679931a3e729a90836cac71ac47e23475db69a; parent_hash: 0x9a76…c3e9; extrinsics (1): [0xcb64…465b]]
-2022-08-25 15:32:24 🔖 Pre-sealed block for proposal at 2. Hash now 0x60275c406bd17b9c2ea4fd25a459db4fd5e3d0b46e5f4134789927b8cbe4c86e, previously 0xfe20a319a55f621fcb5c0a7a93679931a3e729a90836cac71ac47e23475db69a.
-2022-08-25 15:32:24 ✨ Imported #2 (0x6027…c86e)
-2022-08-25 15:32:26 💤 Idle (0 peers), best: #2 (0x6027…c86e), finalized #0 (0xa524…c2b5), ⬇ 14 B/s ⬆ 0
-2022-08-25 15:32:30 🙌 Starting consensus session on top of parent 0x60275c406bd17b9c2ea4fd25a459db4fd5e3d0b46e5f4134789927b8cbe4c86e
-2022-08-25 15:32:30 🎁 Prepared block for proposing at 3 [hash: 0x47a99410fa4b2414e1a50198ecd6f7ba191e3089942f29a3144bd0f37d48af53; parent_hash: 0x6027…c86e; extrinsics (1): [0xa820…1274]]
-2022-08-25 15:32:30 🔖 Pre-sealed block for proposal at 3. Hash now 0xf6e17b2a54364b18007d3bba082a4a68ddc04ad30d64cd6cab24b0b7c25f91a1, previously 0x47a99410fa4b2414e1a50198ecd6f7ba191e3089942f29a3144bd0f37d48af53.
-2022-08-25 15:32:30 ✨ Imported #3 (0xf6e1…91a1)
-2022-08-25 15:32:31 💤 Idle (0 peers), best: #3 (0xf6e1…91a1), finalized #0 (0xa524…c2b5), ⬇ 0 ⬆ 0
-2022-08-25 15:32:36 🙌 Starting consensus session on top of parent 0xf6e17b2a54364b18007d3bba082a4a68ddc04ad30d64cd6cab24b0b7c25f91a1
-2022-08-25 15:32:36 🎁 Prepared block for proposing at 4 [hash: 0x41065d03a825b9ab3a11281d5521c4e8d623804b28fab3931fc55af081d488bf; parent_hash: 0xf6e1…91a1; extrinsics (1): [0x5cfc…5083]]
-2022-08-25 15:32:36 🔖 Pre-sealed block for proposal at 4. Hash now 0xfd60895534f8ac72e73aa387b87264455ae06e6e484a7a3f50e4b1700798b2f2, previously 0x41065d03a825b9ab3a11281d5521c4e8d623804b28fab3931fc55af081d488bf.
-2022-08-25 15:32:36 ✨ Imported #4 (0xfd60…b2f2)
-2022-08-25 15:32:36 💤 Idle (0 peers), best: #4 (0xfd60…b2f2), finalized #1 (0x9a76…c3e9), ⬇ 0 ⬆ 0
-2022-08-25 15:32:41 💤 Idle (0 peers), best: #4 (0xfd60…b2f2), finalized #2 (0x6027…c86e), ⬇ 14 B/s ⬆ 0
+<p>The exported state is locate at <code>/tmp/subalfred-example/substrate-node-template/default-chain-spec.json.export</code>.</p>
+<h2 id="command-state-fork-off"><a class="header" href="#command-state-fork-off">Command <code>state fork-off</code></a></h2>
+<pre><code>Fork-off the Substrate-like chain state.
+
+The result will be stored at `&lt;a&gt;.fork-off`.
+
+Usage: subalfred state fork-off [OPTIONS] &lt;PATH&gt;
+
+Arguments:
+  &lt;PATH&gt;
+          Target chain spec file's path
+
+Options:
+      --renew-consensus-with &lt;PATH&gt;
+          Renew the consensus relate things of the chain.
+
+          We need the dev chain specification to renew the consensus relates genesis. Otherwise, the
+          fork-off chain won't produce block.
+
+          It will:
+          - Skip `[&quot;System&quot;, &quot;Babe&quot;, &quot;Authorship&quot;, &quot;Session&quot;, &quot;Grandpa&quot;, &quot;Beefy&quot;]` pallets, but keep
+            the `System::Account` data. (in order to make the new chain runnable)
+          - Change the id and impl name to `*-export`.
+          - Clear the bootnodes.
+          - Set the `Staking::ForceEra` to `ForceNone`. (in order to prevent the validator set from
+            changing mid-test)
+
+          Usually use this as below to get a runnable fork-off chain, and you can do whatever you
+          want on it. Test new features, runtime upgrade, etc.
+
+          ```sh
+          xxx-node --export-state &gt; xxx-export.json
+          xxx-node --build-spec xxx-dev &gt; xxx-dev.json
+          subalfred state fork-off xxx-export.json --renew-consensus-with xxx.dev.json --simple-governance --disable-default-bootnodes
+          xxx-node --chain xxx.json.fork-off --alice --tmp
+          ```
+
+          Note:
+          `--alice` only works for which dev chain's genesis validator is `//Alice`, otherwise the
+          new chain won't produce block. If your dev chain's genesis validator is `//Bob`, then
+          running with `--bob`. But if your dev chain's genesis validator isn't any one of the
+          well-known keys, then you should start the node with `--validator` and insert the key
+          manually.
+
+      --simple-governance
+          Use `//Alice` to control the governance.
+
+          It's useful when you want to test the runtime upgrade.
+
+          It will:
+          - Replace sudo key with `//Alice`, if the sudo pallet existed.
+          - Replace phragmen election and council members with `//Alice`, if the collective pallet
+            existed.
+          - Replace technical membership and tech.comm members with `//Alice`, if the membership
+            pallet existed.
+
+      --disable-default-bootnodes
+          Disable adding the default bootnodes to the specification.
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
 </code></pre>
-<p>With the <code>--simple-governance</code> flag, you could perform a runtime upgrade test through sudo or council locally.</p>
-<p>It's a really useful testing tool.</p>
-<h2 id="fork-off"><a class="header" href="#fork-off">Fork-Off</a></h2>
-<p>This is very similar to the <code>export</code> command. But this command can build a fork-off chain even offline.</p>
-<p>The result will be stored at <code>&lt;a&gt;.fork-off</code>.</p>
-<p>Sometimes, you have already running a node yourself.
-So, you don't want to fetch the state from a live chain, which is slow.
-Then you could use this command.</p>
-<h3 id="examples-11"><a class="header" href="#examples-11">Examples</a></h3>
-<p>For convenience, I use the <a href="https://github.com/darwinia-network">Darwinia Network</a> to demonstrate.</p>
-<p>Here is a most common way to use this command.
-To build a fork-off chain:</p>
-<pre><code class="language-sh">darwinia build-spec --raw &gt; darwinia-dev.json
-# Export the state from your node.
-darwinia export-state -d &lt;PATH TO DATA&gt; --chain &lt;CHAIN&gt; &lt;BLOCK NUMBER&gt; &gt; darwinia-node-export.json
-subalfred state fork-off darwinia-node-export.json --renew-consensus-with darwinia-dev.json --simple-governance --disable-default-bootnodes
+<h3 id="example-12"><a class="header" href="#example-12">Example</a></h3>
+<h4 id="env-preparation-2"><a class="header" href="#env-preparation-2">ENV preparation</a></h4>
+<p>Finish the <a href="user/cli/state.html#command-state-export">Command <code>state export</code></a>'s example first.</p>
+<h4 id="start-example-1"><a class="header" href="#start-example-1">Start example</a></h4>
+<pre><code class="language-sh">cd /tmp/subalfred-example/substrate-node-template
+subalfred state fork-off default-chain-spec.json.export --renew-consensus-with chain-spec.json
+target/debug/node-template --chain default-chain-spec.json.export.fork-off --alice --tmp
 </code></pre>
-<p>To run the fork-off chain:</p>
-<pre><code class="language-sh">darwinia --chain darwinia-node-export.json.fork-off --alice --tmp
+<p>Check block number from the console, it should be started from <strong>0</strong>.
+It means this is a new chain.</p>
+<p>Open <a href="https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/accounts">PolkadotApps account page</a>.
+Check <strong>Dave</strong>'s balances, it should be <strong>10</strong>.
+It means this is a new chain with the exported/fork-off(ed) data.</p>
+<h2 id="command-state-override"><a class="header" href="#command-state-override">Command <code>state override</code></a></h2>
+<pre><code>Override the chain spec a with b.
+
+The result will be stored at `&lt;a&gt;.override`.
+
+Usage: subalfred state override [OPTIONS] &lt;PATH&gt; &lt;PATH&gt;
+
+Arguments:
+  &lt;PATH&gt;
+          Chain spec a's path
+
+  &lt;PATH&gt;
+          Chain spec b's path
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
 </code></pre>
-<p>But there is an issue that we build the fork-off chain in this way.
-The block can not be finalized. After some searching I found some well-known keys were dumped.
-There some GRANDPA round state old data. Check this <a href="https://substrate.stackexchange.com/questions/4359/where-the-grandpa-round-state-stored-at">question</a>. I'll fix this once I get the well-known keys.</p>
-<h2 id="override"><a class="header" href="#override">Override</a></h2>
-<p>Override state a with b.</p>
-<p>In fact, it accepts two chain spec files. So, make sure JSON file contains the <code>object[&quot;genesis&quot;][&quot;raw&quot;][&quot;top]</code> field.</p>
-<p>The result will be stored at <code>&lt;a&gt;.override</code>.</p>
-<h3 id="examples-12"><a class="header" href="#examples-12">Examples</a></h3>
+<h3 id="example-13"><a class="header" href="#example-13">Example</a></h3>
 <pre><code class="language-sh">subalfred state override a.json b.json
-# You could check this command's output. It should be empty.
+# You could use `diff` command to check the result, its output should be empty.
 subalfred state diff a.json.override b.json
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-storage-key-command"><a class="header" href="#the-storage-key-command">The Storage Key Command</a></h1>
-<p>Calculate the storage key for the storage prefix/item quickly.</p>
-<h2 id="examples-13"><a class="header" href="#examples-13">Examples</a></h2>
-<pre><code class="language-sh">subalfred storage-key --prefix System --item Number
+<h2 id="command-state-insert"><a class="header" href="#command-state-insert">Command <code>state insert</code></a></h2>
+<pre><code>Insert the key/value pair into the specific file.
+
+If the key already exists, it will be overwritten.
+
+# Examples ```sh # Calculate the WASM code key. subalfred convert ascii2hex ':code' # &quot;0x3a636f6465&quot; # Override the WASM code. subalfred state insert chain-spec.json --key 0x3a636f6465 --with-file runtime.compact.compressed.wasm ```
+
+Usage: subalfred state insert [OPTIONS] --key &lt;HEX&gt; &lt;--value &lt;HEX&gt;|--with-file &lt;PATH&gt;&gt; &lt;PATH&gt;
+
+Arguments:
+  &lt;PATH&gt;
+          Target state file's path
+
+Options:
+      --key &lt;HEX&gt;
+          Storage key
+
+      --value &lt;HEX&gt;
+          Storage value
+
+      --with-file &lt;PATH&gt;
+          Storage value file
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
 </code></pre>
-<pre><code>0x26aa394eea5630e07c48ae0c9558cef702a5c1b19ab7a04f536c519aca4983ac
+<h3 id="example-14"><a class="header" href="#example-14">Example</a></h3>
+<pre><code class="language-sh"># Update WASM code of a chain spec file.
+subalfred state insert chain-spec.json --key 0x3a636f6465 --with-file runtime.compact.compressed.wasm
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-storage-key"><a class="header" href="#command-storage-key">Command <code>storage-key</code></a></h1>
+<pre><code>Calculate the storage key of the storage item
+
+Usage: subalfred storage-key [OPTIONS] --pallet &lt;PREFIX&gt; --item &lt;ITEM&gt;
+
+Options:
+      --pallet &lt;PREFIX&gt;
+          Prefix of the storage
+
+      --item &lt;ITEM&gt;
+          Name of the storage item
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
+<pre><code class="language-sh">subalfred storage-key --pallet System --item Account
+</code></pre>
+<pre><code>0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9
 </code></pre>
 <p>Actually, it equals to <code>twox128(prefix) + twox128(item)</code>.</p>
 <pre><code class="language-sh">subalfred convert ascii2hex System
@@ -882,14 +1463,57 @@ subalfred state diff a.json.override b.json
 <pre><code>0x26aa394eea5630e07c48ae0c9558cef7 + 0x02a5c1b19ab7a04f536c519aca4983ac
 0x26aa394eea5630e07c48ae0c9558cef702a5c1b19ab7a04f536c519aca4983ac
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-workspace-command"><a class="header" href="#the-workspace-command">The Workspace Command</a></h1>
-<p>This is a release helper.</p>
-<p>Currently, there is only one command.</p>
-<h2 id="update"><a class="header" href="#update">Update</a></h2>
-<p>Update the workspace members version to the given one.
-If <code>--manifest-path</code> is missing, it will read the current folder's <code>Cargo.toml</code> as the root manifest.</p>
-<h3 id="examples-14"><a class="header" href="#examples-14">Examples</a></h3>
-<pre><code class="language-sh">subalfred workspace update v0.9.1
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-workspace"><a class="header" href="#command-workspace">Command <code>workspace</code></a></h1>
+<pre><code>Workspace manager
+
+Usage: subalfred workspace [OPTIONS] &lt;COMMAND&gt;
+
+Commands:
+  update
+          Update the workspace members' crate version
+  help
+          Print this message or the help of the given subcommand(s)
+
+Options:
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="command-workspace-update"><a class="header" href="#command-workspace-update">Command <code>workspace update</code></a></h2>
+<pre><code>Update the workspace members' crate version
+
+Usage: subalfred workspace update [OPTIONS] &lt;VERSION&gt;
+
+Arguments:
+  &lt;VERSION&gt;
+          Target version
+
+Options:
+      --manifest-path &lt;PATH&gt;
+          Root `Cargo.toml`'s path.
+
+          If `Cargo.toml` wasn't given, Subalfred will search it under the given path.
+
+          [default: ./Cargo.toml]
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h3 id="example-16"><a class="header" href="#example-16">Example</a></h3>
+<pre><code class="language-sh">subalfred workspace update 1.0.0
 </code></pre>
 
                     </main>
