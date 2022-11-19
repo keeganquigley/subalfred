@@ -435,36 +435,39 @@ subalfred state diff a.json.override b.json
 
 If the key already exists, it will be overwritten.
 
-# Examples ```sh # Calculate the WASM code key. subalfred convert ascii2hex ':code' # &quot;0x3a636f6465&quot; # Override the WASM code. subalfred state insert chain-spec.json --key 0x3a636f6465 --with-file runtime.compact.compressed.wasm ```
-
-Usage: subalfred state insert [OPTIONS] --key &lt;HEX&gt; &lt;--value &lt;HEX&gt;|--with-file &lt;PATH&gt;&gt; &lt;PATH&gt;
-
-Arguments:
-  &lt;PATH&gt;
-          Target state file's path
-
-Options:
-      --key &lt;HEX&gt;
-          Storage key
-
-      --value &lt;HEX&gt;
-          Storage value
-
-      --with-file &lt;PATH&gt;
-          Storage value file
-
-  -l, --log &lt;TARGET=LEVEL,*&gt;
-          Set a custom log filter.
-
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
-
-          [default: info]
-
-  -h, --help
-          Print help information (use `-h` for a summary)
+# Example
+```sh
+# Calculate the WASM code key.
+subalfred convert ascii2hex ':code'
+# &quot;0x3a636f6465&quot;
+# Override the WASM code.
+subalfred state insert chain-spec.json --key 0x3a636f6465 --with-file runtime.compact.compressed.wasm
 </code></pre>
-<h3 id="example-4"><a class="header" href="#example-4">Example</a></h3>
-<pre><code class="language-sh"># Update WASM code of a chain spec file.
+<p>Usage: subalfred state insert [OPTIONS] --key <HEX> &lt;--value <HEX>|--with-file <PATH>&gt; <PATH></p>
+<p>Arguments:
+<PATH>
+Target state file's path</p>
+<p>Options:
+--key <HEX>
+Storage key</p>
+<pre><code>  --value &lt;HEX&gt;
+      Storage value
+
+  --with-file &lt;PATH&gt;
+      Storage value file
+</code></pre>
+<p>-l, --log &lt;TARGET=LEVEL,*&gt;
+Set a custom log filter.</p>
+<pre><code>      This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+      [default: info]
+</code></pre>
+<p>-h, --help
+Print help information (use <code>-h</code> for a summary)</p>
+<pre><code>
+### Example
+```sh
+# Update WASM code of a chain spec file.
 subalfred state insert chain-spec.json --key 0x3a636f6465 --with-file runtime.compact.compressed.wasm
 </code></pre>
 

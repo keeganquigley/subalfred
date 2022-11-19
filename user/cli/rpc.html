@@ -143,37 +143,40 @@
                         <h1 id="command-rpc"><a class="header" href="#command-rpc">Command <code>rpc</code></a></h1>
 <pre><code>Send a RPC request to the node's HTTP RPC endpoint.
 
-Example: Get the Polkadot's block zero's hash: ``` # Normal output subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' # Beautiful output subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' | jq ```
-
-Usage: subalfred rpc [OPTIONS] --method &lt;METHOD&gt; &lt;URI&gt;
-
-Arguments:
-  &lt;URI&gt;
-          Node's HTTP RPC endpoint
-
-          [default: http://localhost:9933]
-
-Options:
-      --method &lt;METHOD&gt;
-          JSONRPC method name
-
-      --params &lt;[PARAMETER]&gt;
-          JSONRPC parameters
-
-  -l, --log &lt;TARGET=LEVEL,*&gt;
-          Set a custom log filter.
-
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
-
-          [default: info]
-
-  -h, --help
-          Print help information (use `-h` for a summary)
+# Example:
+Get the Polkadot's block zero's hash:
+```sh
+# Normal output
+subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]'
+# Beautiful output
+subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' | jq
 </code></pre>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>If you don't have the <code>jq</code> command, then just ignore that.
-I only use it to beautify the output here.</p>
-<pre><code class="language-sh">subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' | jq
+<p>Usage: subalfred rpc [OPTIONS] --method <METHOD> <URI></p>
+<p>Arguments:
+<URI>
+Node's HTTP RPC endpoint</p>
+<pre><code>      [default: http://localhost:9933]
+</code></pre>
+<p>Options:
+--method <METHOD>
+JSONRPC method name</p>
+<pre><code>  --params &lt;[PARAMETER]&gt;
+      JSONRPC parameters
+</code></pre>
+<p>-l, --log &lt;TARGET=LEVEL,*&gt;
+Set a custom log filter.</p>
+<pre><code>      This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+
+      [default: info]
+</code></pre>
+<p>-h, --help
+Print help information (use <code>-h</code> for a summary)</p>
+<pre><code>
+## Example
+If you don't have the `jq` command, then just ignore that.
+I only use it to beautify the output here.
+```sh
+subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' | jq
 </code></pre>
 <pre><code class="language-json">{
   &quot;id&quot;: 0,
