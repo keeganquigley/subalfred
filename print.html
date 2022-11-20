@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="user/cli/index.html"><strong aria-hidden="true">2.</strong> Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="user/cli/rpc.html"><strong aria-hidden="true">2.6.</strong> rpc</a></li><li class="chapter-item expanded "><a href="user/cli/state.html"><strong aria-hidden="true">2.7.</strong> state</a></li><li class="chapter-item expanded "><a href="user/cli/storage-key.html"><strong aria-hidden="true">2.8.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="user/cli/workspace.html"><strong aria-hidden="true">2.9.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide(TODO)</li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="user/cli/index.html"><strong aria-hidden="true">2.</strong> Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="user/cli/rpc.html"><strong aria-hidden="true">2.6.</strong> rpc</a></li><li class="chapter-item expanded "><a href="user/cli/state.html"><strong aria-hidden="true">2.7.</strong> state</a></li><li class="chapter-item expanded "><a href="user/cli/storage-key.html"><strong aria-hidden="true">2.8.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="user/cli/track-update.html"><strong aria-hidden="true">2.9.</strong> track-update</a></li><li class="chapter-item expanded "><a href="user/cli/workspace.html"><strong aria-hidden="true">2.10.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide(TODO)</li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -217,6 +217,10 @@ Once you have installed <a href="https://rustup.rs">Rust</a>, the following comm
 <ul>
 <li>Build from crates.io:
 <pre><code class="language-sh">cargo install subalfred
+# If you want to install the RC version.
+#
+# e.g. v0.9.0-rc18
+cargo install subalfred --version 0.9.0-rc18
 </code></pre>
 </li>
 <li>Build from the latest main branch code:
@@ -246,11 +250,13 @@ Commands:
   key
           Calculate the public key/SS58 address of the SS58 address/public key
   rpc
-          Send a RPC request to the node's HTTP RPC endpoint
+          Send a RPC request to the node's HTTP RPC endpoint.
   state
           A set of tools to process Substrate-like chain state
   storage-key
           Calculate the storage key of the storage item
+  track-update
+          Track the updates
   workspace
           Workspace manager
   help
@@ -260,7 +266,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -287,7 +294,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -317,7 +325,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -421,21 +430,21 @@ Pallet System
 <h2 id="features"><a class="header" href="#features">Features</a></h2>
 <pre><code>Check if the crates' features are enabled correctly
 
-Usage: subalfred check features [OPTIONS] [PATH]
+Usage: subalfred check features [OPTIONS]
 
-Arguments:
-  [PATH]
-          Target `Cargo.toml`'s path. The target could be a pallet or runtime.
+Options:
+      --manifest-path &lt;PATH&gt;
+          Root `Cargo.toml`'s path.
 
           If `Cargo.toml` wasn't given, Subalfred will search it under the given path.
 
           [default: ./Cargo.toml]
 
-Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -507,7 +516,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -517,23 +527,23 @@ Options:
 <h2 id="command-convert-ascii2hex"><a class="header" href="#command-convert-ascii2hex">Command <code>convert ascii2hex</code></a></h2>
 <pre><code>Convert ascii to hex
 
-Usage: subalfred convert ascii2hex [OPTIONS] &lt;ASCII DATA&gt;
+Usage: subalfred convert ascii2hex [OPTIONS] &lt;ASCII&gt;
 
 Arguments:
-  &lt;ASCII DATA&gt;
+  &lt;ASCII&gt;
           Ascii data input
 
 Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
   -h, --help
           Print help information (use `-h` for a summary)
-
 </code></pre>
 <h3 id="example-2"><a class="header" href="#example-2">Example</a></h3>
 <pre><code class="language-sh">subalfred convert ascii2hex AurevoirXavier
@@ -543,19 +553,19 @@ Options:
 <h2 id="command-convert-bytes-style"><a class="header" href="#command-convert-bytes-style">Command <code>convert bytes-style</code></a></h2>
 <pre><code>Convert bytes between several different styles
 
-Usage: subalfred convert bytes-style [OPTIONS] --from &lt;BYTES STYLE&gt; --to &lt;BYTES STYLE&gt; &lt;BYTES&gt;
+Usage: subalfred convert bytes-style [OPTIONS] --from &lt;STYLE&gt; --to &lt;STYLE&gt; &lt;BYTES&gt;
 
 Arguments:
   &lt;BYTES&gt;
           Bytes data input
 
 Options:
-      --from &lt;BYTES STYLE&gt;
+      --from &lt;STYLE&gt;
           Origin style
 
           [possible values: byte-string-literal, vec-string]
 
-      --to &lt;BYTES STYLE&gt;
+      --to &lt;STYLE&gt;
           Target style
 
           [possible values: byte-string-literal, vec-string]
@@ -563,7 +573,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -604,7 +615,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -631,7 +643,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -658,7 +671,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -668,7 +682,8 @@ Options:
 <h2 id="command-get-runtime-upgrade-block"><a class="header" href="#command-get-runtime-upgrade-block">Command <code>get runtime-upgrade-block</code></a></h2>
 <pre><code>Get the runtime upgrade block.
 
-Using the dichotomy algorithm to find it out. This operation will fail if the runtime version does not existed.
+Using the dichotomy algorithm to find it out. This operation will fail if the runtime version does not
+existed.
 
 Usage: subalfred get runtime-upgrade-block [OPTIONS] --uri &lt;URI&gt; &lt;VERSION&gt;
 
@@ -685,7 +700,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -741,12 +757,14 @@ Options:
           Hash algorithm
 
           [default: blake2-128-concat]
-          [possible values: blake2-128, blake2-128-concat, blake2-256, blake2-512, twox64, twox64-concat, twox128, twox256, keccak256, keccak512, sha2-256]
+          [possible values: blake2-128, blake2-128-concat, blake2-256, blake2-512, twox64, twox64-concat,
+          twox128, twox256, keccak256, keccak512, sha2-256]
 
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -841,7 +859,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -1051,38 +1070,43 @@ I only use it to beautify the output here.</p>
 
 # Example:
 Get the Polkadot's block zero's hash:
-```sh
+\```sh
 # Normal output
 subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]'
 # Beautiful output
 subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' | jq
-</code></pre>
-<p>Usage: subalfred rpc [OPTIONS] --method <METHOD> <URI></p>
-<p>Arguments:
-<URI>
-Node's HTTP RPC endpoint</p>
-<pre><code>      [default: http://localhost:9933]
-</code></pre>
-<p>Options:
---method <METHOD>
-JSONRPC method name</p>
-<pre><code>  --params &lt;[PARAMETER]&gt;
-      JSONRPC parameters
-</code></pre>
-<p>-l, --log &lt;TARGET=LEVEL,*&gt;
-Set a custom log filter.</p>
-<pre><code>      This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+\```
 
-      [default: info]
+Usage: subalfred rpc [OPTIONS] --method &lt;METHOD&gt; &lt;URI&gt;
+
+Arguments:
+  &lt;URI&gt;
+          Node's HTTP RPC endpoint
+
+          [default: http://localhost:9933]
+
+Options:
+      --method &lt;METHOD&gt;
+          JSONRPC method name
+
+      --params &lt;[PARAMETER]&gt;
+          JSONRPC parameters
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
 </code></pre>
-<p>-h, --help
-Print help information (use <code>-h</code> for a summary)</p>
-<pre><code>
-## Example
-If you don't have the `jq` command, then just ignore that.
-I only use it to beautify the output here.
-```sh
-subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' | jq
+<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
+<p>If you don't have the <code>jq</code> command, then just ignore that.
+I only use it to beautify the output here.</p>
+<pre><code class="language-sh">subalfred rpc https://rpc.polkadot.io --method chain_getBlockHash --params '[[0,1,2]]' | jq
 </code></pre>
 <pre><code class="language-json">{
   &quot;id&quot;: 0,
@@ -1110,7 +1134,7 @@ Commands:
   fork-off
           Fork-off the Substrate-like chain state
   insert
-          Insert the key/value pair into the specific file
+          Insert the key/value pair into the specific file.
   override
           Override the chain spec a with b.
   help
@@ -1120,7 +1144,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -1146,14 +1171,15 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
   -h, --help
           Print help information (use `-h` for a summary)
 </code></pre>
-<h3 id="example-9"><a class="header" href="#example-9">Example</a></h3>
+<h3 id="example-10"><a class="header" href="#example-10">Example</a></h3>
 <pre><code class="language-sh">subalfred state diff chain-spec-a.json chain-spec-b.json
 </code></pre>
 <pre><code class="language-diff">-0xbd2a529379475088d3e29a918cd47872878d434d6125b40443fe11fd292d13a4:0x03000000
@@ -1179,7 +1205,9 @@ Arguments:
 
 Options:
       --at &lt;HASH/NUM&gt;
-          Export the data starting from this block
+          Export the data starting from this block.
+
+          Accept block hash or block number.
 
       --timeout &lt;SECS&gt;
           Timeout for the fetching
@@ -1221,7 +1249,8 @@ Options:
           ```sh
           xxx-node --export-state &gt; xxx-export.json
           xxx-node --build-spec xxx-dev &gt; xxx-dev.json
-          subalfred state fork-off xxx-export.json --renew-consensus-with xxx.dev.json --simple-governance --disable-default-bootnodes
+          subalfred state fork-off xxx-export.json --renew-consensus-with xxx.dev.json --simple-governance
+          --disable-default-bootnodes
           xxx-node --chain xxx.json.fork-off --alice --tmp
           ```
 
@@ -1250,14 +1279,15 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
   -h, --help
           Print help information (use `-h` for a summary)
 </code></pre>
-<h3 id="example-10"><a class="header" href="#example-10">Example</a></h3>
+<h3 id="example-11"><a class="header" href="#example-11">Example</a></h3>
 <h4 id="env-preparation-1"><a class="header" href="#env-preparation-1">ENV preparation</a></h4>
 <pre><code class="language-sh">git clone https://github.com/substrate-developer-hub/substrate-node-template.git /tmp/subalfred-example/substrate-node-template
 cd /tmp/subalfred-example/substrate-node-template
@@ -1305,7 +1335,8 @@ Options:
           ```sh
           xxx-node --export-state &gt; xxx-export.json
           xxx-node --build-spec xxx-dev &gt; xxx-dev.json
-          subalfred state fork-off xxx-export.json --renew-consensus-with xxx.dev.json --simple-governance --disable-default-bootnodes
+          subalfred state fork-off xxx-export.json --renew-consensus-with xxx.dev.json --simple-governance
+          --disable-default-bootnodes
           xxx-node --chain xxx.json.fork-off --alice --tmp
           ```
 
@@ -1334,14 +1365,15 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
   -h, --help
           Print help information (use `-h` for a summary)
 </code></pre>
-<h3 id="example-11"><a class="header" href="#example-11">Example</a></h3>
+<h3 id="example-12"><a class="header" href="#example-12">Example</a></h3>
 <h4 id="env-preparation-2"><a class="header" href="#env-preparation-2">ENV preparation</a></h4>
 <p>Finish the <a href="user/cli/state.html#command-state-export">Command <code>state export</code></a>'s example first.</p>
 <h4 id="start-example-1"><a class="header" href="#start-example-1">Start example</a></h4>
@@ -1372,14 +1404,15 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
   -h, --help
           Print help information (use `-h` for a summary)
 </code></pre>
-<h3 id="example-12"><a class="header" href="#example-12">Example</a></h3>
+<h3 id="example-13"><a class="header" href="#example-13">Example</a></h3>
 <pre><code class="language-sh">subalfred state override a.json b.json
 # You could use `diff` command to check the result, its output should be empty.
 subalfred state diff a.json.override b.json
@@ -1390,38 +1423,43 @@ subalfred state diff a.json.override b.json
 If the key already exists, it will be overwritten.
 
 # Example
-```sh
+\```sh
 # Calculate the WASM code key.
 subalfred convert ascii2hex ':code'
 # &quot;0x3a636f6465&quot;
 # Override the WASM code.
 subalfred state insert chain-spec.json --key 0x3a636f6465 --with-file runtime.compact.compressed.wasm
-</code></pre>
-<p>Usage: subalfred state insert [OPTIONS] --key <HEX> &lt;--value <HEX>|--with-file <PATH>&gt; <PATH></p>
-<p>Arguments:
-<PATH>
-Target state file's path</p>
-<p>Options:
---key <HEX>
-Storage key</p>
-<pre><code>  --value &lt;HEX&gt;
-      Storage value
+\```
 
-  --with-file &lt;PATH&gt;
-      Storage value file
-</code></pre>
-<p>-l, --log &lt;TARGET=LEVEL,*&gt;
-Set a custom log filter.</p>
-<pre><code>      This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+Usage: subalfred state insert [OPTIONS] --key &lt;HEX&gt; &lt;--value &lt;HEX&gt;|--with-file &lt;PATH&gt;&gt; &lt;PATH&gt;
 
-      [default: info]
+Arguments:
+  &lt;PATH&gt;
+          Target state file's path
+
+Options:
+      --key &lt;HEX&gt;
+          Storage key
+
+      --value &lt;HEX&gt;
+          Storage value
+
+      --with-file &lt;PATH&gt;
+          Storage value file
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
 </code></pre>
-<p>-h, --help
-Print help information (use <code>-h</code> for a summary)</p>
-<pre><code>
-### Example
-```sh
-# Update WASM code of a chain spec file.
+<h3 id="example-14"><a class="header" href="#example-14">Example</a></h3>
+<pre><code class="language-sh"># Update WASM code of a chain spec file.
 subalfred state insert chain-spec.json --key 0x3a636f6465 --with-file runtime.compact.compressed.wasm
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="command-storage-key"><a class="header" href="#command-storage-key">Command <code>storage-key</code></a></h1>
@@ -1439,14 +1477,15 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
   -h, --help
           Print help information (use `-h` for a summary)
 </code></pre>
-<h2 id="example-13"><a class="header" href="#example-13">Example</a></h2>
+<h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
 <pre><code class="language-sh">subalfred storage-key --pallet System --item Account
 </code></pre>
 <pre><code>0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9
@@ -1471,6 +1510,219 @@ Options:
 <pre><code>0x26aa394eea5630e07c48ae0c9558cef7 + 0x02a5c1b19ab7a04f536c519aca4983ac
 0x26aa394eea5630e07c48ae0c9558cef702a5c1b19ab7a04f536c519aca4983ac
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command-track-update"><a class="header" href="#command-track-update">Command <code>track-update</code></a></h1>
+<pre><code>Track the updates.
+
+Basically, it compares two commits and return the associated pull requests.
+
+The output is in markdown format.
+
+Usage: subalfred track-update [OPTIONS] --from &lt;VERSION&gt; --to &lt;VERSION&gt; &lt;OWNER/REPOSITORY&gt;
+
+Arguments:
+  &lt;OWNER/REPOSITORY&gt;
+          Target repository.
+
+          e.g. paritytech/substrate
+
+Options:
+      --from &lt;VERSION&gt;
+          Release starting from
+
+      --to &lt;VERSION&gt;
+          Release updating to
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="example-16"><a class="header" href="#example-16">Example</a></h2>
+<pre><code class="language-sh"># This key must have privilege of the target repository.
+#
+# e.g. paritytech/substrate
+export GITHUB_TOKEN=OMITTED
+subalfred track-update paritytech/substrate --from polkadot-v0.9.32 --to polkadot-v0.9.33
+</code></pre>
+<h3 id="source-blob"><a class="header" href="#source-blob">Source blob</a></h3>
+<pre><code>- [BlockId removal: refactor: ProofProvider](https://github.com/paritytech/substrate/pull/12519) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [registrar: Avoid freebies in provide_judgement](https://github.com/paritytech/substrate/pull/12465) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D1-audited 👍`
+- [EPM: allow duplicate submissions](https://github.com/paritytech/substrate/pull/12237) - `A0-pleasereview`, `B0-silent`, `E1-runtimemigration`, `C1-low 📌`, `D9-needsaudit 👮`
+- [CI check against Rust feature bleed](https://github.com/paritytech/substrate/pull/12341) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [contracts: Decrease the interation count on slow benchmarks](https://github.com/paritytech/substrate/pull/12526) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D2-notlive 💤`
+- [BlockId removal: refactor: Finalizer](https://github.com/paritytech/substrate/pull/12528) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [BlockId removal: refactor: BlockImportOperation+Bknd::finalize_block](https://github.com/paritytech/substrate/pull/12535) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Remove multiple DHTs support from `Discovery`](https://github.com/paritytech/substrate/pull/12524) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [CI: Enable debug assertions in Wasmer sandbox test](https://github.com/paritytech/substrate/pull/12540) - `A0-pleasereview`, `A8-mergeoncegreen`, `B0-silent`, `C1-low 📌`, `D2-notlive 💤`
+- [Force base weights to be the minimum only when the intercept is negative](https://github.com/paritytech/substrate/pull/12482) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Add `DefensiveTruncateFrom`](https://github.com/paritytech/substrate/pull/12515) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D5-nicetohaveaudit ⚠️`
+- [Refactor service tests in `sc-network`](https://github.com/paritytech/substrate/pull/12517) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Actually fix major sync detection](https://github.com/paritytech/substrate/pull/12114) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [BlockId removal: refactor: Backend::begin_state_operation](https://github.com/paritytech/substrate/pull/12541) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Use headers on weight templates](https://github.com/paritytech/substrate/pull/12546) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Make `NetworkService` callable for `ChainSync`](https://github.com/paritytech/substrate/pull/12542) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Use genesis hash- and fork ID-based protocol name for Kademlia](https://github.com/paritytech/substrate/pull/12545) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [contracts: Allow indeterministic instructions off-chain](https://github.com/paritytech/substrate/pull/12469) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D2-notlive 💤`
+- [Normalize keystore type and its usage across tests](https://github.com/paritytech/substrate/pull/12553) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`
+- [Update template pallet to latest enum syntax](https://github.com/paritytech/substrate/pull/12552) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [feat: generalize some functions in sp-trie](https://github.com/paritytech/substrate/pull/12376) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Make Multisig Pallet Bounded](https://github.com/paritytech/substrate/pull/12457) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D1-audited 👍`
+- [Fix error during build: failed to run custom build command for sc-net…](https://github.com/paritytech/substrate/pull/12494) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Update `pallet-multisig` benches](https://github.com/paritytech/substrate/pull/12558) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D3-trivial 🧸`
+- [[ci] cargo-check-benches against different base branches](https://github.com/paritytech/substrate/pull/12557) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`
+- [Fix typo in `membership` docs](https://github.com/paritytech/substrate/pull/12571) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [replaced println with log Closes #12338](https://github.com/paritytech/substrate/pull/12348) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Aura: Adds some compatibility mode to support old chains](https://github.com/paritytech/substrate/pull/12492) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [bump ed25519-zebra; fixes `full_crypto` feature flag in `no_std`](https://github.com/paritytech/substrate/pull/12576) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Utility: add more tests for batch/batchAll/forceBatch](https://github.com/paritytech/substrate/pull/12506) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Treat near-zero intercept values as zero when calculating weights](https://github.com/paritytech/substrate/pull/12573) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [[Enhancement] Convert fast-unstake to use StakingInterface, decouplin…](https://github.com/paritytech/substrate/pull/12424) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [nomination-pools: allow pool-ids to be reused](https://github.com/paritytech/substrate/pull/12407) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D5-nicetohaveaudit ⚠️`
+- [WIP: Replace `wasm-gc` with `wasm-opt`](https://github.com/paritytech/substrate/pull/12280) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Use `minimum_nominator_bond` instead of `nominator_bond`](https://github.com/paritytech/substrate/pull/12585) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [BlockId removal: refactor: Backend::append_justification](https://github.com/paritytech/substrate/pull/12551) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Gov2 Documentation Typos](https://github.com/paritytech/substrate/pull/12584) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Added test for Client::block](https://github.com/paritytech/substrate/pull/12590) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [client/beefy: fix incorrect BEEFY justifications import test](https://github.com/paritytech/substrate/pull/12593) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D2-notlive 💤`
+- [BlockId removal: refactor: Backend::body](https://github.com/paritytech/substrate/pull/12587) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [fix: construct_runtime multiple features](https://github.com/paritytech/substrate/pull/12594) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D5-nicetohaveaudit ⚠️`
+- [Fix fungible unbalanced trait](https://github.com/paritytech/substrate/pull/12569) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D1-audited 👍`
+- [[ci] allow fail skip-if-draft job](https://github.com/paritytech/substrate/pull/12604) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`
+- [BlockId removal: refactor: Backend::justifications](https://github.com/paritytech/substrate/pull/12602) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [use associated iterator types for InspectEnumerable](https://github.com/paritytech/substrate/pull/12389) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Add map and try_map methods to BoundedBTreeMap](https://github.com/paritytech/substrate/pull/12581) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [[contracts] stabilize four storage host functions](https://github.com/paritytech/substrate/pull/12611) - `A0-pleasereview`, `B3-apinoteworthy`, `C1-low 📌`, `D3-trivial 🧸`
+- [Collective benchmark respects DefaultVote configuration](https://github.com/paritytech/substrate/pull/12612) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [BlockId removal: refactor: Backend::block_indexed_body](https://github.com/paritytech/substrate/pull/12609) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Introduce DefensiveMin and DefensiveMax](https://github.com/paritytech/substrate/pull/12554) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [pallet-sudo: add `CheckOnlySudoAccount` signed extension](https://github.com/paritytech/substrate/pull/12496) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D5-nicetohaveaudit ⚠️`
+- [Move Throughput into `sc-sysinfo`](https://github.com/paritytech/substrate/pull/12368) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Bump `k256` from `0.10.4` to `0.11.4`](https://github.com/paritytech/substrate/pull/12085) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Guard some invalid node for proof decoding.](https://github.com/paritytech/substrate/pull/12417) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Bump regex from 1.5.5 to 1.6.0](https://github.com/paritytech/substrate/pull/12117) - `A2-insubstantial`, `A3-stale`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Make `--db` case insensitive again](https://github.com/paritytech/substrate/pull/12630) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [txpool: enactment state forced update](https://github.com/paritytech/substrate/pull/12632) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Add pallet dev mode](https://github.com/paritytech/substrate/pull/12536) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D3-trivial 🧸`
+- [BlockId removal: &amp;Hash to Hash](https://github.com/paritytech/substrate/pull/12626) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Do not update peer information if ancestor search is in progress](https://github.com/paritytech/substrate/pull/12631) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Pipeline with ci image with rust 1.65](https://github.com/paritytech/substrate/pull/12628) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [`sp_trie::Recorder`: Fix recording the same key for different tries](https://github.com/paritytech/substrate/pull/12636) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Fix UI tests](https://github.com/paritytech/substrate/pull/12642) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D2-notlive 💤`
+- [`payment_queryInfo`: Make it work with `WeightV2`](https://github.com/paritytech/substrate/pull/12633) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [State-db refactoring](https://github.com/paritytech/substrate/pull/12239) - `A0-pleasereview`, `B0-silent`, `C3-medium 📣`
+- [Machine metrics: remove duplicate units](https://github.com/paritytech/substrate/pull/12634) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Add batching to fast-unstake pallet](https://github.com/paritytech/substrate/pull/12394) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D9-needsaudit 👮`
+- [[ci] Use ci-linux:production image in ci](https://github.com/paritytech/substrate/pull/12648) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`
+- [New Weights for All Pallets](https://github.com/paritytech/substrate/pull/12325) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D3-trivial 🧸`
+- [Remove partial key size limit from trie codec](https://github.com/paritytech/substrate/pull/12566) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Keep the same type of name](https://github.com/paritytech/substrate/pull/12616) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Do not finalize parent twice](https://github.com/paritytech/substrate/pull/12653) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [update paritydb and remove dev deps on rocksdb](https://github.com/paritytech/substrate/pull/12641) - `A3-inprogress`, `B5-clientnoteworthy`, `C1-low 📌`, `D2-notlive 💤`
+- [Epoch-Changes tree pruning was lagging by one epoch](https://github.com/paritytech/substrate/pull/12567) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D2-notlive 💤`
+- [Bound Election and Staking by MaxActiveValidators](https://github.com/paritytech/substrate/pull/12436) - `A0-pleasereview`, `B3-apinoteworthy`, `C1-low 📌`, `D3-trivial 🧸`
+- [Update some dependencies to prune duplicated crates with different version](https://github.com/paritytech/substrate/pull/12560) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Consolidate and deduplicate MMR API methods](https://github.com/paritytech/substrate/pull/12530) - `A0-pleasereview`, `B3-apinoteworthy`, `C1-low 📌`, `D2-notlive 💤`, `D2-breaksapi`
+- [Bump ss58-registry from 1.29.0 to 1.34.0](https://github.com/paritytech/substrate/pull/12659) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [Add `CreateOrigin` to Assets Pallet](https://github.com/paritytech/substrate/pull/12586) - `A0-pleasereview`, `B7-runtimenoteworthy`, `C1-low 📌`, `D1-audited 👍`
+- [`sp-runtime`: make `parity-util-mem` dependency optional](https://github.com/paritytech/substrate/pull/12657) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [GrandpaJustification: Feature gate `Debug`](https://github.com/paritytech/substrate/pull/12664) - `A2-insubstantial`, `B0-silent`, `C1-low 📌`, `D3-trivial 🧸`
+- [More testing and fuzzing and docs for pools](https://github.com/paritytech/substrate/pull/12624) - `A0-pleasereview`, `B0-silent`, `C1-low 📌`, `D2-notlive 💤`
+- [Remove `sp_tasks::spawn` API and related code + host functions](https://github.com/paritytech/substrate/pull/12639) - `A0-pleasereview`, `B3-apinoteworthy`, `B5-clientnoteworthy`, `C1-low 📌`, `E4-newhostfunctions`, `D3-trivial 🧸`
+- [Backport &quot;Contracts pallet: Bump Runtime API (#12677)&quot; to 0.9.33 branch](https://github.com/paritytech/substrate/pull/12686)
+</code></pre>
+<h3 id="rendered-blob"><a class="header" href="#rendered-blob">Rendered blob</a></h3>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/pull/12519">BlockId removal: refactor: ProofProvider</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12465">registrar: Avoid freebies in provide_judgement</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D1-audited 👍</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12237">EPM: allow duplicate submissions</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>E1-runtimemigration</code>, <code>C1-low 📌</code>, <code>D9-needsaudit 👮</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12341">CI check against Rust feature bleed</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12526">contracts: Decrease the interation count on slow benchmarks</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12528">BlockId removal: refactor: Finalizer</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12535">BlockId removal: refactor: BlockImportOperation+Bknd::finalize_block</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12524">Remove multiple DHTs support from <code>Discovery</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12540">CI: Enable debug assertions in Wasmer sandbox test</a> - <code>A0-pleasereview</code>, <code>A8-mergeoncegreen</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12482">Force base weights to be the minimum only when the intercept is negative</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12515">Add <code>DefensiveTruncateFrom</code></a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D5-nicetohaveaudit ⚠️</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12517">Refactor service tests in <code>sc-network</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12114">Actually fix major sync detection</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12541">BlockId removal: refactor: Backend::begin_state_operation</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12546">Use headers on weight templates</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12542">Make <code>NetworkService</code> callable for <code>ChainSync</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12545">Use genesis hash- and fork ID-based protocol name for Kademlia</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12469">contracts: Allow indeterministic instructions off-chain</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12553">Normalize keystore type and its usage across tests</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12552">Update template pallet to latest enum syntax</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12376">feat: generalize some functions in sp-trie</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12457">Make Multisig Pallet Bounded</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D1-audited 👍</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12494">Fix error during build: failed to run custom build command for sc-net…</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12558">Update <code>pallet-multisig</code> benches</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12557">[ci] cargo-check-benches against different base branches</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12571">Fix typo in <code>membership</code> docs</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12348">replaced println with log Closes #12338</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12492">Aura: Adds some compatibility mode to support old chains</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12576">bump ed25519-zebra; fixes <code>full_crypto</code> feature flag in <code>no_std</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12506">Utility: add more tests for batch/batchAll/forceBatch</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12573">Treat near-zero intercept values as zero when calculating weights</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12424">[Enhancement] Convert fast-unstake to use StakingInterface, decouplin…</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12407">nomination-pools: allow pool-ids to be reused</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D5-nicetohaveaudit ⚠️</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12280">WIP: Replace <code>wasm-gc</code> with <code>wasm-opt</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12585">Use <code>minimum_nominator_bond</code> instead of <code>nominator_bond</code></a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12551">BlockId removal: refactor: Backend::append_justification</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12584">Gov2 Documentation Typos</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12590">Added test for Client::block</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12593">client/beefy: fix incorrect BEEFY justifications import test</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12587">BlockId removal: refactor: Backend::body</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12594">fix: construct_runtime multiple features</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D5-nicetohaveaudit ⚠️</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12569">Fix fungible unbalanced trait</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D1-audited 👍</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12604">[ci] allow fail skip-if-draft job</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12602">BlockId removal: refactor: Backend::justifications</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12389">use associated iterator types for InspectEnumerable</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12581">Add map and try_map methods to BoundedBTreeMap</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12611">[contracts] stabilize four storage host functions</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12612">Collective benchmark respects DefaultVote configuration</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12609">BlockId removal: refactor: Backend::block_indexed_body</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12554">Introduce DefensiveMin and DefensiveMax</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12496">pallet-sudo: add <code>CheckOnlySudoAccount</code> signed extension</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D5-nicetohaveaudit ⚠️</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12368">Move Throughput into <code>sc-sysinfo</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12085">Bump <code>k256</code> from <code>0.10.4</code> to <code>0.11.4</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12417">Guard some invalid node for proof decoding.</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12117">Bump regex from 1.5.5 to 1.6.0</a> - <code>A2-insubstantial</code>, <code>A3-stale</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12630">Make <code>--db</code> case insensitive again</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12632">txpool: enactment state forced update</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12536">Add pallet dev mode</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12626">BlockId removal: &amp;Hash to Hash</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12631">Do not update peer information if ancestor search is in progress</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12628">Pipeline with ci image with rust 1.65</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12636"><code>sp_trie::Recorder</code>: Fix recording the same key for different tries</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12642">Fix UI tests</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12633"><code>payment_queryInfo</code>: Make it work with <code>WeightV2</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12239">State-db refactoring</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C3-medium 📣</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12634">Machine metrics: remove duplicate units</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12394">Add batching to fast-unstake pallet</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D9-needsaudit 👮</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12648">[ci] Use ci-linux:production image in ci</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12325">New Weights for All Pallets</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12566">Remove partial key size limit from trie codec</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12616">Keep the same type of name</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12653">Do not finalize parent twice</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12641">update paritydb and remove dev deps on rocksdb</a> - <code>A3-inprogress</code>, <code>B5-clientnoteworthy</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12567">Epoch-Changes tree pruning was lagging by one epoch</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12436">Bound Election and Staking by MaxActiveValidators</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12560">Update some dependencies to prune duplicated crates with different version</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12530">Consolidate and deduplicate MMR API methods</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code>, <code>D2-breaksapi</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12659">Bump ss58-registry from 1.29.0 to 1.34.0</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12586">Add <code>CreateOrigin</code> to Assets Pallet</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D1-audited 👍</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12657"><code>sp-runtime</code>: make <code>parity-util-mem</code> dependency optional</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12664">GrandpaJustification: Feature gate <code>Debug</code></a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12624">More testing and fuzzing and docs for pools</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12639">Remove <code>sp_tasks::spawn</code> API and related code + host functions</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>B5-clientnoteworthy</code>, <code>C1-low 📌</code>, <code>E4-newhostfunctions</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12686">Backport &quot;Contracts pallet: Bump Runtime API (#12677)&quot; to 0.9.33 branch</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="command-workspace"><a class="header" href="#command-workspace">Command <code>workspace</code></a></h1>
 <pre><code>Workspace manager
 
@@ -1478,7 +1730,9 @@ Usage: subalfred workspace [OPTIONS] &lt;COMMAND&gt;
 
 Commands:
   update
-          Update the workspace members' crate version
+          Update the workspace member versions
+  update-deps
+          Update the workspace dependency versions.
   help
           Print this message or the help of the given subcommand(s)
 
@@ -1486,7 +1740,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -1494,7 +1749,7 @@ Options:
           Print help information (use `-h` for a summary)
 </code></pre>
 <h2 id="command-workspace-update"><a class="header" href="#command-workspace-update">Command <code>workspace update</code></a></h2>
-<pre><code>Update the workspace members' crate version
+<pre><code>Update the workspace member versions
 
 Usage: subalfred workspace update [OPTIONS] &lt;VERSION&gt;
 
@@ -1513,15 +1768,69 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
   -h, --help
           Print help information (use `-h` for a summary)
 </code></pre>
-<h3 id="example-14"><a class="header" href="#example-14">Example</a></h3>
-<pre><code class="language-sh">subalfred workspace update 1.0.0
+<h3 id="example-17"><a class="header" href="#example-17">Example</a></h3>
+<pre><code class="language-sh">git clone https://github.com/substrate-developer-hub/substrate-parachain-template.git /tmp/subalfred-example/substrate-parachain-template
+cd /tmp/subalfred-example/substrate-parachain-template
+subalfred workspace update 1.0.0
+</code></pre>
+<h2 id="command-workspace-update-1"><a class="header" href="#command-workspace-update-1">Command <code>workspace update</code></a></h2>
+<pre><code>Update the workspace dependency versions.
+
+To use this command, you must make sure your dependencies were anchored at a branch.
+This is a general rule of the Polkadot ecosystem.
+
+We use the regex pattern matching here.
+So, `git` field must be set before the `branch` field.
+
+It might look like this:
+\```toml
+frame-system = { git = &quot;https://github.com/paritytech/substrate&quot;, branch = &quot;polkadot-v.0.0.0&quot; }
+\```
+
+Usage: subalfred workspace update-deps [OPTIONS] --targets &lt;REPOSITORY,*&gt; &lt;VERSION&gt;
+
+Arguments:
+  &lt;VERSION&gt;
+          Target version.
+
+          e.g. `0.0.0` will generate `release-v0.0.0` and `polkadot-v0.0.0`
+
+Options:
+      --manifest-path &lt;PATH&gt;
+          Root `Cargo.toml`'s path.
+
+          If `Cargo.toml` wasn't given, Subalfred will search it under the given path.
+
+          [default: ./Cargo.toml]
+
+      --targets &lt;REPOSITORY,*&gt;
+          Targets.
+
+          e.g. cumulus,polkadot,substrate
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h3 id="example-18"><a class="header" href="#example-18">Example</a></h3>
+<pre><code class="language-sh">git clone https://github.com/substrate-developer-hub/substrate-parachain-template.git /tmp/subalfred-example/substrate-parachain-template
+cd /tmp/subalfred-example/substrate-parachain-template
+subalfred workspace update-deps 0.9.31 --targets cumulus,polkadot,substrate
 </code></pre>
 
                     </main>

@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../user/cli/index.html"><strong aria-hidden="true">2.</strong> Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="../../user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="../../user/cli/get.html" class="active"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="../../user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="../../user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="../../user/cli/rpc.html"><strong aria-hidden="true">2.6.</strong> rpc</a></li><li class="chapter-item expanded "><a href="../../user/cli/state.html"><strong aria-hidden="true">2.7.</strong> state</a></li><li class="chapter-item expanded "><a href="../../user/cli/storage-key.html"><strong aria-hidden="true">2.8.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="../../user/cli/workspace.html"><strong aria-hidden="true">2.9.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide(TODO)</li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../user/cli/index.html"><strong aria-hidden="true">2.</strong> Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="../../user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="../../user/cli/get.html" class="active"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="../../user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="../../user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="../../user/cli/rpc.html"><strong aria-hidden="true">2.6.</strong> rpc</a></li><li class="chapter-item expanded "><a href="../../user/cli/state.html"><strong aria-hidden="true">2.7.</strong> state</a></li><li class="chapter-item expanded "><a href="../../user/cli/storage-key.html"><strong aria-hidden="true">2.8.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="../../user/cli/track-update.html"><strong aria-hidden="true">2.9.</strong> track-update</a></li><li class="chapter-item expanded "><a href="../../user/cli/workspace.html"><strong aria-hidden="true">2.10.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide(TODO)</li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,7 +155,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
@@ -165,7 +166,8 @@ Options:
 <h2 id="command-get-runtime-upgrade-block"><a class="header" href="#command-get-runtime-upgrade-block">Command <code>get runtime-upgrade-block</code></a></h2>
 <pre><code>Get the runtime upgrade block.
 
-Using the dichotomy algorithm to find it out. This operation will fail if the runtime version does not existed.
+Using the dichotomy algorithm to find it out. This operation will fail if the runtime version does not
+existed.
 
 Usage: subalfred get runtime-upgrade-block [OPTIONS] --uri &lt;URI&gt; &lt;VERSION&gt;
 
@@ -182,7 +184,8 @@ Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
 
           [default: info]
 
