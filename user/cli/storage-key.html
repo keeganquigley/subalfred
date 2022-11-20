@@ -143,10 +143,10 @@
                         <h1 id="command-storage-key"><a class="header" href="#command-storage-key">Command <code>storage-key</code></a></h1>
 <pre><code>Calculate the storage key of the storage item
 
-Usage: subalfred storage-key [OPTIONS] --pallet &lt;PREFIX&gt; --item &lt;ITEM&gt;
+Usage: subalfred storage-key [OPTIONS] --pallet &lt;PALLET&gt; --item &lt;ITEM&gt;
 
 Options:
-      --pallet &lt;PREFIX&gt;
+      --pallet &lt;PALLET&gt;
           Prefix of the storage
 
       --item &lt;ITEM&gt;
@@ -167,7 +167,7 @@ Options:
 </code></pre>
 <pre><code>0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9
 </code></pre>
-<p>Actually, it equals to <code>twox128(prefix) + twox128(item)</code>.</p>
+<p>Actually, it equals to <code>twox128(pallet) + twox128(item)</code>.</p>
 <pre><code class="language-sh">subalfred convert ascii2hex System
 </code></pre>
 <pre><code>0x53797374656d
