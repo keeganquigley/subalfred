@@ -293,21 +293,22 @@ Pallet System
 <h2 id="features"><a class="header" href="#features">Features</a></h2>
 <pre><code>Check if the crates' features are enabled correctly
 
-Usage: subalfred check features [OPTIONS]
+Usage: subalfred check features [OPTIONS] [PATH]
 
-Options:
-      --manifest-path &lt;PATH&gt;
+Arguments:
+  [PATH]
           Root `Cargo.toml`'s path.
 
           If `Cargo.toml` wasn't given, Subalfred will search it under the given path.
 
           [default: ./Cargo.toml]
 
+Options:
   -l, --log &lt;TARGET=LEVEL,*&gt;
           Set a custom log filter.
 
-          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
-          simultaneously, this will append `RUST_LOG`'s value after the log.
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG` simultaneously, this will append `RUST_LOG`'s
+          value after the log.
 
           [default: info]
 
