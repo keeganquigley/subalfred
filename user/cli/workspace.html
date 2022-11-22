@@ -198,8 +198,8 @@ Options:
 cd /tmp/subalfred-example/substrate-parachain-template
 subalfred workspace update 1.0.0
 </code></pre>
-<h2 id="command-workspace-update-1"><a class="header" href="#command-workspace-update-1">Command <code>workspace update</code></a></h2>
-<pre><code>Update the workspace dependency versions.
+<h2 id="command-workspace-update-deps"><a class="header" href="#command-workspace-update-deps">Command <code>workspace update-deps</code></a></h2>
+<pre><code>Update the Substrate-related repositories' dependency versions.
 
 To use this command, you must make sure your dependencies were anchored at a branch.
 This is a general rule of the Polkadot ecosystem.
@@ -244,7 +244,18 @@ Options:
   -h, --help
           Print help information (use `-h` for a summary)
 </code></pre>
+<h3 id="episode-1"><a class="header" href="#episode-1">Episode 1</a></h3>
+<p>In parachain development. We have some dependency groups. <code>cumulus</code>,<code>polkadot</code> and <code>substrate</code>.
+And you can add your specific dependency group. For example <code>frontier</code>.</p>
+<p>For example, when we want to update the version from <code>polkadot-v0.9.30</code> to <code>polkadot-v0.9.31</code>. We need to handle those dependency versions.
+And here is a general rule. All those repositories have and must have a branch named <code>polkadot-v0.9.31</code>. For <code>polkadot</code> it's <code>release-v0.9.31</code>.</p>
+<p>So, with this, you can update those versions with a one-line command.</p>
+<p>Any ideas/improvements are welcome. We can draft an <code>Episode 2</code> together!</p>
 <h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
+<p>We take <code>substrate-parachain-template</code> as an example.</p>
+<p>This command will update all the dependencies correctly that I described above.</p>
+<p>And there is nothing I can show. Try the example commands below and check the file differences.
+You'll find all the dependencies were updated correctly.</p>
 <pre><code class="language-sh">git clone https://github.com/substrate-developer-hub/substrate-parachain-template.git /tmp/subalfred-example/substrate-parachain-template
 cd /tmp/subalfred-example/substrate-parachain-template
 subalfred workspace update-deps 0.9.31 --targets cumulus,polkadot,substrate
