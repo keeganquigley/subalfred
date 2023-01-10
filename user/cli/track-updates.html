@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>track-updates - Subalfred Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../user/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../user/cli/index.html"><strong aria-hidden="true">2.</strong> Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user/cli/check.html"><strong aria-hidden="true">2.1.</strong> check</a></li><li class="chapter-item expanded "><a href="../../user/cli/convert.html"><strong aria-hidden="true">2.2.</strong> convert</a></li><li class="chapter-item expanded "><a href="../../user/cli/get.html"><strong aria-hidden="true">2.3.</strong> get</a></li><li class="chapter-item expanded "><a href="../../user/cli/hash.html"><strong aria-hidden="true">2.4.</strong> hash</a></li><li class="chapter-item expanded "><a href="../../user/cli/key.html"><strong aria-hidden="true">2.5.</strong> key</a></li><li class="chapter-item expanded "><a href="../../user/cli/rpc.html"><strong aria-hidden="true">2.6.</strong> rpc</a></li><li class="chapter-item expanded "><a href="../../user/cli/state.html"><strong aria-hidden="true">2.7.</strong> state</a></li><li class="chapter-item expanded "><a href="../../user/cli/storage-key.html"><strong aria-hidden="true">2.8.</strong> storage-key</a></li><li class="chapter-item expanded "><a href="../../user/cli/track-updates.html" class="active"><strong aria-hidden="true">2.9.</strong> track-updates</a></li><li class="chapter-item expanded "><a href="../../user/cli/workspace.html"><strong aria-hidden="true">2.10.</strong> workspace</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide(TODO)</li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Subalfred Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/hack-ink/subalfred/tree/main/doc" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/hack-ink/subalfred/edit/main/doc/src/user/cli/track-updates.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="command-track-updates"><a class="header" href="#command-track-updates">Command <code>track-updates</code></a></h1>
+<pre><code>Track the updates.
+
+This command require a `GITHUB_TOKEN` environment variable to be set. It will list all the commits between the `from` and `to` GitHub ref.
+
+The output is in markdown format.
+
+Usage: subalfred track-updates [OPTIONS] --from &lt;VERSION&gt; --to &lt;VERSION&gt; &lt;OWNER/REPOSITORY&gt;
+
+Arguments:
+  &lt;OWNER/REPOSITORY&gt;
+          Target repository.
+
+          e.g. paritytech/substrate
+
+Options:
+      --from &lt;VERSION&gt;
+          Release starting from
+
+      --to &lt;VERSION&gt;
+          Release updating to
+
+  -l, --log &lt;TARGET=LEVEL,*&gt;
+          Set a custom log filter.
+
+          This flag is also working with the `RUST_LOG` environment variable. If you use `RUST_LOG`
+          simultaneously, this will append `RUST_LOG`'s value after the log.
+
+          [default: info]
+
+  -h, --help
+          Print help information (use `-h` for a summary)
+</code></pre>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>We take <code>paritytech/substrate</code> as an example. If you want to track the updates of <code>cumulus</code> just replace the <code>paritytech/substrate</code> with <code>paritytech/cumulus</code>.</p>
+<p>The <code>GITHUB_TOKEN</code> API key must have the privilege of the target repository.</p>
+<p>This command will list all the commits/pull requests and their labels between <code>polkadot-v0.9.33</code> and <code>polkadot-v0.9.36</code>.
+And some commits/pull requests which was under the important/specific labels.</p>
+<pre><code class="language-rs">pub enum WatchedLabels {
+	/// [https://github.com/paritytech/substrate/labels/B3-apinoteworthy]
+	B3Api,
+	/// [https://github.com/paritytech/substrate/labels/B5-clientnoteworthy]
+	B5Client,
+	/// [https://github.com/paritytech/substrate/labels/B7-runtimenoteworthy]
+	B7Runtime,
+	/// [https://github.com/paritytech/substrate/labels/C7-high%20❗%EF%B8%8F]
+	C7High,
+	/// [https://github.com/paritytech/substrate/labels/C9-critical%20‼%EF%B8%8F]
+	C9Critical,
+	/// [https://github.com/paritytech/substrate/labels/E1-runtimemigration]
+	E1Runtime,
+	/// [https://github.com/paritytech/substrate/labels/E2-databasemigration]
+	E2Database,
+	/// [https://github.com/paritytech/substrate/labels/E4-newhostfunctions]
+	E4NewHostFunctions,
+	/// [https://github.com/paritytech/substrate/labels/E5-breaksapi]
+	E5BreaksApi,
+	/// [https://github.com/paritytech/substrate/labels/E6-transactionversion]
+	E6TransactionVersion,
+	/// [https://github.com/paritytech/substrate/labels/E7-breaksauthoring]
+	E7BreaksAuthoring,
+	/// [https://github.com/paritytech/substrate/labels/E8-breakseverything]
+	E8BreaksEverything,
+	/// [https://github.com/paritytech/substrate/labels/E10-client-update-first%20👀]
+	E10ClientUpdateFirst,
+	/// [https://github.com/paritytech/substrate/labels/I8-enhancement%20🎁]
+	I8Enhancement,
+}
+</code></pre>
+<p>Currently, its output is a markdown. You can copy and paste it to create a new issue manually.</p>
+<p>There is an open <a href="https://substrate.stackexchange.com/questions/5884/how-to-play-with-the-substrate-labels/5903#5903">StackExchange question</a>.
+After paritytech finishes the refactoring of the labels.
+This command will provide a more professional update list in the future. You can easily focus on specific parts.</p>
+<p>Also, there are some discussion about this command <a href="https://github.com/w3f/Grant-Milestone-Delivery/pull/629">here</a>.</p>
+<p>Moreover, there will be a GitHub action later, which will check the Polkadot updates and create an issue for that.</p>
+<pre><code class="language-sh">export GITHUB_TOKEN=OMITTED
+subalfred track-updates paritytech/substrate --from polkadot-v0.9.33 --to polkadot-v0.9.36
+# or
+GITHUB_TOKEN=OMITTED subalfred track-updates paritytech/substrate --from polkadot-v0.9.33 --to polkadot-v0.9.36
+</code></pre>
+<h3 id="track-updates"><a class="header" href="#track-updates">Track updates</a></h3>
+<pre><code>repository: paritytech/substrate
+commits   : 112
+command   : subalfred track-updates paritytech/substrate --from polkadot-v0.9.33 --to polkadot-v0.9.36
+</code></pre>
+<blockquote>
+<p>https://github.com/paritytech/substrate/compare/polkadot-v0.9.33...polkadot-v0.9.36</p>
+</blockquote>
+<h3 id="all"><a class="header" href="#all">All</a></h3>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/pull/12677">Contracts pallet: Bump Runtime API</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12680">Fix typo in MultiSignature docs</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12603">Move <code>WeightCounter</code> to <code>sp-weights</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D1-audited 👍</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12666">Allow other pallets to check asset ids.</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12683">derive type info for some grandpa types</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12691">Safe TreeRoute constructor</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12451">New <code>root_testing</code> pallet</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>E6-transactionversion</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12687">[ci] Add DAG for build-rustdoc and check-dependent-project</a> - <code>A3-inprogress</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12454">Collective: Benchmark with greater <code>MaxProposals</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12703">[ci] fix buildah for publishing docker</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12667">Make public is_passing and ReferendumStatus</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12310">Asset Pallet: Support repeated destroys to safely destroy large assets</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>E1-runtimemigration</code>, <code>C1-low 📌</code>, <code>D1-audited 👍</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12695"><code>seal_reentrant_count</code> returns contract reentrant count</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12708">Assets Pallet: reintroduce fungibles::Destroy trait </a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12599">release <code>sp-core 7.0.0</code> and <code>sp-runtime 7.0.0</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12716">Release <code>sp-keyring</code> and <code>pallet-contracts-primitives</code> <code>7.0.0</code></a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12706">Fix <code>cargo check</code> for <code>pallet-contracts-proc-macro</code></a> - <code>B5-clientnoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12717">[ci] Improve pipeline stopper</a> - <code>A3-inprogress</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12720">sc-chainspec: Switch to <code>assimilate_storage</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12725">[Cleanup] Remove an obsolete event from fast-unstake</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12729">[Fix] Deposit for fast-unstake has to be define as pallet::constant</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12722">Add event testing example to pallet template</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12684">Remove the <code>wasmtime</code> feature flag</a> - <code>A0-pleasereview</code>, <code>B5-clientnoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12732">Fix the light client protocol protobuf schema</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12670">Update template to remove clippy warnings</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12709">Check all crates</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12712">client/beefy: persist voter state</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12748">[Fix] Get target count from TargetList instead of storage</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12739">Move block/state/warpc sync requests/responses to <code>ChainSync</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12651">perf: generate_initial_session_keys: load runtime only if its relevant</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12758">Prevent epochs pruning while finalizing blocks on epoch 0</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12745">return error instead of expect in <code>feasibility_check</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12760">BEEFY: optimize voter event loop for fewer 'active' wakeups</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12755">Sort crates before splitting them into groups (+ some improvements)</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12501">contracts: Replace <code>sp-sandbox</code> and <code>wasmi-validation</code> by newest wasmi</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12723">Update DefaultNoBound derive macro</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12777">Fix rustdoc</a> - <code>A2-insubstantial</code>, <code>A8-mergeoncegreen</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12730">Allow Alliance Fellows to Give Up Voting Rights</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D5-nicetohaveaudit ⚠️</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12770">Add total nb to trie migration rpc</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12775">add EnsureWithSuccess</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12771">Explicitly unset RUSTC_WRAPPER=sccache environment variable</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12781">contracts: Don't put unstable functions in special module</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12661">ed25519_verify: Support using dalek for historical blocks</a> - <code>A0-pleasereview</code>, <code>B5-clientnoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12767">client/beefy: fix on-demand justifications sync for old blocks</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12740">Remove Default, HasCompact, and TypeInfo trait bounds on AssetId</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>E6-transactionversion</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12753">pallet-mmr: move offchain logic to client-side gadget</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12796">Require rust-features check</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12805">MMR: move RPC code from frame/ to client/</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12792">chore: remove unused traits for wasm interface</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12807">sc-transaction-handler: Fix potential crashes on exit</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12783">Don't announce blocks in <code>sync_to_tip_when_we_sync_together_with_multiple_peers</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12787">contracts: Replace cargo feature <code>unstable-interface</code> with config</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12808">Bounties use SpendOrigin</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12749">Reduce provisioner work</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code>, <code>D2-breaksapi</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12815">Fix quantization in referenda alarm</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12829">Add <code>Weightless</code> benchmark bailing</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12813">API for registering inactive funds</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>E1-runtimemigration</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12832">Tweak to active total migrations</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12365">frame-executive: Reject invalid inherents in the executive</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D1-audited 👍</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12646">Upgrade tokio to 1.22.0 and replace async-std with tokio</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12814">Make Gov2 Curve::threshold fn public</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12610">Non-Interactive Staking</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12840">pallet-balances: Fix inactive funds migration</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12562">client/beefy: add some bounds on enqueued votes</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12842">OpenGov: Abstentions</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12848">Add <code>with_weight</code> extrinsic</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D9-needsaudit 👮</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12806">[contracts] Add per local weight for function call</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12800">contracts: Add <code>instantiation_nonce</code> API</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D9-needsaudit 👮</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12837">Rename some crates for publishing to crates.io</a> - <code>A2-insubstantial</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12834">Whitelist pallet preimage provider upgrade</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12795">Remove <code>mem_info</code> and references to <code>parity-util-mem</code></a> - <code>A0-pleasereview</code>, <code>B5-clientnoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12844">frame-support: Introduce <code>EnsureOriginOrHigherPrivilege</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12822">Mmr persist state</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12788">Refund referendum submission deposit</a> - <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12852">Remove sandboxing host function interface</a> - <code>A0-pleasereview</code>, <code>B5-clientnoteworthy</code>, <code>C1-low 📌</code>, <code>E4-newhostfunctions</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12866">Referenda benchmark assert fix</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12768">Implement crate publishing on CI</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12675">zombienet: warp-sync integration test added</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12798">Move LockableCurrency trait to fungibles::Lockable and deprecate LockableCurrency</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D5-nicetohaveaudit ⚠️</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12782">[pallet-assets] add asset_exists(id: AssetId) function</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12868">Introduce sensible weight constants</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12876">Checkout to the branch HEAD explicitly in <code>build-linux-substrate</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12819">cli: Improve pruning documentation</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12882">Revert &quot;Move LockableCurrency trait to fungibles::Lockable and deprecate LockableCurrency&quot;</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12885">Don't indefinitely block on shutting down Tokio</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12485">General Message Queue Pallet</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12890">zombienet timings adjusted</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12764">Move import queue out of <code>sc-network</code></a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12886">Trace response payload in default <code>jsonrpsee</code> middleware</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12897">Ensure that we inform all tasks to stop before starting the 60 seconds shutdown</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12826">Safe desired targets call</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12900">Fix typo</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12870">ValidateUnsigned: Improve docs.</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12663">rpc server with HTTP/WS on the same socket</a> - <code>A0-pleasereview</code>, <code>B5-clientnoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12895"><code>pallet-message-queue</code>: Fix license</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12891">Use explicit call indices</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12902">Fix state-db race</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C7-high ❗️</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12420">Remove implicit approval chilling upon slash.</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D1-audited 👍</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12909">pallet bounties calls docs fix</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12905">pallet-contracts migration pre-upgrade fix for v8</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12912">Use custom environment for publishing crates</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12845">[contracts] Add debug buffer limit + enforcement</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12899">Fixup some wrong dependencies</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12914">add numerator and denominator to Rational128 Debug impl</a> - <code>A2-insubstantial</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12927">Fix state-db pinning</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12922">[ci] add job switcher</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12875">Use LOG_TARGET in consensus related crates</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>B5-clientnoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12889">Staking: store last <code>min-active-bond</code> on-chain</a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12537">Try-runtime Revamp and Facelift</a> - <code>A0-pleasereview</code>, <code>B3-apinoteworthy</code>, <code>C1-low 📌</code>, <code>D5-nicetohaveaudit ⚠️</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12582">Automatic <code>withdraw_unbonded</code> upon <code>unbond</code> </a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D1-audited 👍</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12920">documentation: add BEEFY 'spec'</a> - <code>A0-pleasereview</code>, <code>B0-silent</code>, <code>C1-low 📌</code>, <code>D2-notlive 💤</code></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12894">Warn on missing <code>pallet::call_index</code></a> - <code>A0-pleasereview</code>, <code>B7-runtimenoteworthy</code>, <code>C1-low 📌</code>, <code>D3-trivial 🧸</code></li>
+</ul>
+<h3 id="watched-labels"><a class="header" href="#watched-labels">Watched labels</a></h3>
+<ul>
+<li>
+<h4 id="b3-apinoteworthy"><a class="header" href="#b3-apinoteworthy">B3-apinoteworthy</a></h4>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/pull/12666">Allow other pallets to check asset ids.</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12708">Assets Pallet: reintroduce fungibles::Destroy trait </a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12740">Remove Default, HasCompact, and TypeInfo trait bounds on AssetId</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12787">contracts: Replace cargo feature <code>unstable-interface</code> with config</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12749">Reduce provisioner work</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12837">Rename some crates for publishing to crates.io</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12788">Refund referendum submission deposit</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12798">Move LockableCurrency trait to fungibles::Lockable and deprecate LockableCurrency</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12782">[pallet-assets] add asset_exists(id: AssetId) function</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12537">Try-runtime Revamp and Facelift</a></li>
+</ul>
+</li>
+<li>
+<h4 id="b5-clientnoteworthy"><a class="header" href="#b5-clientnoteworthy">B5-clientnoteworthy</a></h4>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/pull/12706">Fix <code>cargo check</code> for <code>pallet-contracts-proc-macro</code></a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12684">Remove the <code>wasmtime</code> feature flag</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12661">ed25519_verify: Support using dalek for historical blocks</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12795">Remove <code>mem_info</code> and references to <code>parity-util-mem</code></a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12852">Remove sandboxing host function interface</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12663">rpc server with HTTP/WS on the same socket</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12875">Use LOG_TARGET in consensus related crates</a></li>
+</ul>
+</li>
+<li>
+<h4 id="b7-runtimenoteworthy"><a class="header" href="#b7-runtimenoteworthy">B7-runtimenoteworthy</a></h4>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/pull/12677">Contracts pallet: Bump Runtime API</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12310">Asset Pallet: Support repeated destroys to safely destroy large assets</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12695"><code>seal_reentrant_count</code> returns contract reentrant count</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12501">contracts: Replace <code>sp-sandbox</code> and <code>wasmi-validation</code> by newest wasmi</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12730">Allow Alliance Fellows to Give Up Voting Rights</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12808">Bounties use SpendOrigin</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12829">Add <code>Weightless</code> benchmark bailing</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12610">Non-Interactive Staking</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12842">OpenGov: Abstentions</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12848">Add <code>with_weight</code> extrinsic</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12800">contracts: Add <code>instantiation_nonce</code> API</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12485">General Message Queue Pallet</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12420">Remove implicit approval chilling upon slash.</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12889">Staking: store last <code>min-active-bond</code> on-chain</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12582">Automatic <code>withdraw_unbonded</code> upon <code>unbond</code> </a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12894">Warn on missing <code>pallet::call_index</code></a></li>
+</ul>
+</li>
+<li>
+<h4 id="c7-high-"><a class="header" href="#c7-high-">C7-high ❗️</a></h4>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/pull/12902">Fix state-db race</a></li>
+</ul>
+</li>
+<li>
+<h4 id="e1-runtimemigration"><a class="header" href="#e1-runtimemigration">E1-runtimemigration</a></h4>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/pull/12310">Asset Pallet: Support repeated destroys to safely destroy large assets</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12813">API for registering inactive funds</a></li>
+</ul>
+</li>
+<li>
+<h4 id="e4-newhostfunctions"><a class="header" href="#e4-newhostfunctions">E4-newhostfunctions</a></h4>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/pull/12852">Remove sandboxing host function interface</a></li>
+</ul>
+</li>
+<li>
+<h4 id="e6-transactionversion"><a class="header" href="#e6-transactionversion">E6-transactionversion</a></h4>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/pull/12451">New <code>root_testing</code> pallet</a></li>
+<li><a href="https://github.com/paritytech/substrate/pull/12740">Remove Default, HasCompact, and TypeInfo trait bounds on AssetId</a></li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../user/cli/storage-key.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../user/cli/workspace.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../user/cli/storage-key.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../user/cli/workspace.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
